@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"> 
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Stars</title>
+</head>
+
+<style>
+    
+
+</style>
+<body style="background-color: #f5fdff">
+    <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
+    <div>
+        <form class="LoginForm" id="login" method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+                <br>
+            {% endfor %}
+        </form>
+        <input type="submit" name="submitlogin" id="submitlogin" form="login">
+    </div>
+
+</body>
+</html>
