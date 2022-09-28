@@ -12,13 +12,14 @@ def login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             # Authenticate login here
-            logged_in = True
+            logged_in = False
             if logged_in:
                 #Login successful
-                return render(request, 'home.html', {'username': form.cleaned_data['Username']})
+                return render(request, 'home.html', {'username': form.cleaned_data['username']})
             else:
                 #Bad login
-                return render(request, 'login.html', {'username': form.cleaned_data['Username']})
+                newForm = LoginForm(initial={'username': form.cleaned_data['username']})
+                return render(request, 'login.html', {'form': newForm, 'error_message':'Incorrect Username/Password'})
     else:
         #Return with empty form
         form = LoginForm()

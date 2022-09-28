@@ -8,13 +8,26 @@
 </head>
 
 <style>
-    
+    div.form{
+        display: block;
+        text-align: center;
+    }
+
+    div.error{
+        color: red;
+        text-align: center;
+    }
 
 </style>
 <body style="background-color: #f5fdff">
     <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
-    <div>
-        <form class="LoginForm" id="login" method="POST" action="{% url 'home' %}">
+    <br><br><br>
+    <center><h3>Login</h3></center>
+    <div class="error">
+        {{ error_message }}
+    </div>
+    <div class="form">
+        <form class="LoginForm" id="login" method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             {% for field in form %}
                 <div class="fieldWrapper">
