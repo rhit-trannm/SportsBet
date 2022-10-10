@@ -12,6 +12,7 @@ def login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             # Authenticate login here
+            
             logged_in = False
             if logged_in:
                 #Login successful
@@ -25,3 +26,9 @@ def login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
+
+def acct(request):
+    if(request.method=='POST'):
+        pass
+    else:
+        return render(request, 'acct.html', {})

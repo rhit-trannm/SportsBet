@@ -27,7 +27,7 @@
         {{ error_message }}
     </div>
     <div class="form">
-        <form class="LoginForm" id="login" method="POST" action="{% url 'login' %}">
+        <form class="AcctForm" id="acct" method="POST" action="{% url 'acct' %}">
             {% csrf_token %}
             {% for field in form %}
                 <div class="fieldWrapper">
@@ -44,11 +44,7 @@
     <br>
     <br>
 
-    <div class="form">
-        <form method="GET" action="{% url 'acct' %}">
-            <input type="submit" value="Create Account"></input>
-        </form>
-    </div>
+    <button type="button" name="createacct" id="createacct"></button>
 
 </body>
 </html>
