@@ -21,3 +21,11 @@ if __name__ == '__main__':
     ConnectRedis()
     #r.hset(f'book:1', 'ISBN', 1)
     print(r.keys("*"))
+
+def loginCheck(username, password, r):
+    username = input('enter username')
+    password = input('enter password')
+    if(r.sismember('users', username)):
+        correctPasswordHash = r.hget(username, 'passwordHash')
+        if(bcrypt.checkpw(password, correctPasswordHash)):
+            loggedIn = True
