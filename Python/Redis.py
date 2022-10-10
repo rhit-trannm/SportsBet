@@ -1,10 +1,9 @@
 import bcrypt
 import redis
 def ConnectRedis():
-    def ConnectRedis():
         global r
         r = redis.Redis(
-            host='localhost',
+            host='433-17.csse.rose-hulman.edu',
             port=6379,
             decode_responses=True)
 def CreateUser(username, password):
@@ -19,4 +18,6 @@ def ChangeUserInformation(field, value):
     print('x')
 
 if __name__ == '__main__':
-    print('x')
+    ConnectRedis()
+    #r.hset(f'book:1', 'ISBN', 1)
+    print(r.keys("*"))

@@ -1,0 +1,171 @@
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "GET /topology?name=Northwind HTTP/1.1" 503 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "GET /topology?name=Northwind HTTP/1.1" 503 None
+DEBUG:root:Database Northwind does not exists
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 230
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 176
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): a.cylimor.ravendb.community:8080
+DEBUG:urllib3.connectionpool:https://a.cylimor.ravendb.community:8080 "GET /topology?name=temp HTTP/1.1" 403 None
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\ab8e64b0ee628a257aead70934ae5a40.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('https://a.cylimor.ravendb.community:8080', AuthorizationException('Forbidden access to temp@https://a.cylimor.ravendb.community:8080, a certificate is required.GET /topology?name=temp'))])
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\ab8e64b0ee628a257aead70934ae5a40.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('https://a.cylimor.ravendb.community:8080', OSError('Could not find the TLS certificate file, invalid path: 63AFCEB1386E4845758D685220F298D544F9D882'))])
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\ab8e64b0ee628a257aead70934ae5a40.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('https://a.cylimor.ravendb.community:8080', OSError('Could not find the TLS certificate file, invalid path: 63AFCEB1386E4845758D685220F298D544F9D882'))])
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:root:No known topology and no previously known one, cannot proceed, likely a bug
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:root:No known topology and no previously known one, cannot proceed, likely a bug
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:root:No known topology and no previously known one, cannot proceed, likely a bug
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "GET /topology?name=Danielle HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "GET /databases/Danielle/hilo/next?tag=foos&lastBatchSize=0&lastRangeAt=0001-01-01%2000:00:00&identityPartsSeparator=/&lastMax=0 HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "PUT /databases/Danielle/hilo/return?tag=foos&end=32&last=1 HTTP/1.1" 204 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "GET /topology?name=Danielle HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "GET /databases/Danielle/hilo/next?tag=foos&lastBatchSize=0&lastRangeAt=0001-01-01%2000:00:00&identityPartsSeparator=/&lastMax=0 HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "POST /databases/Danielle/bulk_docs HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): live-test.ravendb.net:80
+DEBUG:urllib3.connectionpool:http://live-test.ravendb.net:80 "PUT /databases/Danielle/hilo/return?tag=foos&end=33&last=2 HTTP/1.1" 204 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): http:80
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\0011ac4a7245bf33bbc554a3fd2a0af5.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('http://http://137.112.104.162:8080', ConnectionError(MaxRetryError("HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //137.112.104.162:8080/topology?name=temp (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000021D6B903F40>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))")))])
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): http:80
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\0011ac4a7245bf33bbc554a3fd2a0af5.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('http://http://137.112.104.162:8080', ConnectionError(MaxRetryError("HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //137.112.104.162:8080/topology?name=temp (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000021D6B928C70>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))")))])
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): http:80
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\bb89863d88bb8857fd37014406e9c571.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('http://http://137.112.104.162:8080/', ConnectionError(MaxRetryError("HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //137.112.104.162:8080//topology?name=temp (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001BE29233F40>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))")))])
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): http:80
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\bb89863d88bb8857fd37014406e9c571.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('http://http://137.112.104.162:8080/', ConnectionError(MaxRetryError("HTTPConnectionPool(host='http', port=80): Max retries exceeded with url: //137.112.104.162:8080//topology?name=temp (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001BE29257CA0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))")))])
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:root:No known topology and no previously known one, cannot proceed, likely a bug
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:root:No known topology and no previously known one, cannot proceed, likely a bug
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET //topology?name=temp HTTP/1.1" 400 None
+DEBUG:root:Raven.Client.Exceptions.Routing.RouteNotFoundException: There is no handler for path: GET //topology?name=temp
+   at Raven.Server.Routing.RequestRouter.HandlePath(RequestHandlerContext reqCtx) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\Routing\RequestRouter.cs:line 365
+   at Raven.Server.RavenServerStartup.RequestHandler(HttpContext context) in C:\Builds\RavenDB-Stable-5.4\54006\src\Raven.Server\RavenServerStartup.cs:line 253
+DEBUG:root:'NoneType' object is not subscriptable
+DEBUG:root:No known topology and no previously known one, cannot proceed, likely a bug
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 433-15:8080
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\fc0a8ed1d67c3f665dab0640339eee82.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('http://433-15:8080', ConnectionError(MaxRetryError("HTTPConnectionPool(host='433-15', port=8080): Max retries exceeded with url: /topology?name=temp (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000215827E3DF0>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))")))])
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 433-15:8080
+INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\fc0a8ed1d67c3f665dab0640339eee82.raven-topology'
+DEBUG:root:('Failed to retrieve database topology from all known nodes', [('http://433-15:8080', ConnectionError(MaxRetryError("HTTPConnectionPool(host='433-15', port=8080): Max retries exceeded with url: /topology?name=temp (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002158280BB20>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))")))])
