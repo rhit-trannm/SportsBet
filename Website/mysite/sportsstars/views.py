@@ -1,6 +1,6 @@
 from django.shortcuts import render
-
-from sportsstars.forms import LoginForm
+from sportsstars.forms import AcctForm, LoginForm
+from Python.Redis import *
 
 # Create your views here.
 def home(request):
@@ -29,6 +29,9 @@ def login(request):
 
 def acct(request):
     if(request.method=='POST'):
-        pass
+        form = AcctForm(request.POST)
+        if form.is_valid():
+            pass
     else:
-        return render(request, 'acct.html', {})
+        form = AcctForm()
+        return render(request, 'acct.html', {'form': form})
