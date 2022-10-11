@@ -47,7 +47,7 @@ def acct(request):
                 return render(request, 'login.html', {'form': newForm})
             except ValueError:
                 newForm = AcctForm(initial={'name': name, 'birthday': birthday})
-                return render(request, 'acct.html', {'form':form, 'error_message':'Need a different username'})
+                return render(request, 'acct.html', {'form':form, 'error_message':'Username already exists. Please use a different username'})
     else:
         form = AcctForm()
         return render(request, 'acct.html', {'form': form})
