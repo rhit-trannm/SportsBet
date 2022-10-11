@@ -22,10 +22,10 @@ if __name__ == '__main__':
     #r.hset(f'book:1', 'ISBN', 1)
     print(r.keys("*"))
 
-def loginCheck(username, password, r):
+def loginCheck(username, password, r=r):
     username = input('enter username')
     password = input('enter password')
     if(r.sismember('users', username)):
         correctPassword = r.hget(username, 'password')
         if(password == correctPassword):
-            loggedIn = True
+            return True

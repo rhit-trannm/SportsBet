@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from Website.mysite.sportsstars.forms import AcctForm
+from Python.Redis import *
 
 from sportsstars.forms import LoginForm
 
@@ -29,6 +31,9 @@ def login(request):
 
 def acct(request):
     if(request.method=='POST'):
-        pass
+        form = AcctForm(request.POST)
+        if form.is_valid():
+            pass
     else:
-        return render(request, 'acct.html', {})
+        form = AcctForm()
+        return render(request, 'acct.html', {'form': form})
