@@ -41,6 +41,13 @@ class Player(object):
         self.TOV = TOV
         self.PF = PF
         self.PTS = PTS
+class Team(object):
+    def __init__(self):
+        self.playerid
+class Match(object):
+    def __init__(self):
+        self.playerid
+
 def GetPlayerStats(playerID):
     career = playercareerstats.PlayerCareerStats(player_id=f'{playerID}').get_dict()
     #might need validation if json is different format.

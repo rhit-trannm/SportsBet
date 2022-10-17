@@ -10,6 +10,7 @@ def StoreObject(object):
 if __name__ == '__main__':
     player = API.GetPlayerStats(203076)
     print(player.PLAYER_ID)
+    StoreObject(player)
     # with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
     #     store.initialize()
     #     print("hello 2")
