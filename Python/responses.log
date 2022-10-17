@@ -169,15 +169,3 @@ DEBUG:root:('Failed to retrieve database topology from all known nodes', [('http
 DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 433-15:8080
 INFO:root:[Errno 2] No such file or directory: 'C:\\CSSE433-Project\\Python\\topology_files\\fc0a8ed1d67c3f665dab0640339eee82.raven-topology'
 DEBUG:root:('Failed to retrieve database topology from all known nodes', [('http://433-15:8080', ConnectionError(MaxRetryError("HTTPConnectionPool(host='433-15', port=8080): Max retries exceeded with url: /topology?name=temp (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002158280BB20>: Failed to establish a new connection: [Errno 11001] getaddrinfo failed'))")))])
-DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
-DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
-DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
-DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /databases/temp/hilo/next?tag=foos&lastBatchSize=0&lastRangeAt=0001-01-01%2000:00:00&identityPartsSeparator=/&lastMax=0 HTTP/1.1" 201 None
-DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
-DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "PUT /databases/temp/hilo/return?tag=foos&end=34&last=3 HTTP/1.1" 204 0
-DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
-DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
-DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
-DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /databases/temp/hilo/next?tag=foos&lastBatchSize=0&lastRangeAt=0001-01-01%2000:00:00&identityPartsSeparator=/&lastMax=0 HTTP/1.1" 201 None
-DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
-DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "PUT /databases/temp/hilo/return?tag=foos&end=35&last=4 HTTP/1.1" 204 0

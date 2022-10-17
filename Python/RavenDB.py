@@ -17,10 +17,5 @@ if __name__ == '__main__':
         with store.open_session() as session:
             print("hello world")
             foo = Foo("PyRavenDB")
-<<<<<<< Updated upstream
             faa = session.store(foo)
             session.save_changes()
-=======
-            session.store(foo)
-            #session.save_changes()
->>>>>>> Stashed changes
