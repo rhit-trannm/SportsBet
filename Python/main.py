@@ -11,9 +11,10 @@ import json
 import numpy
 import pandas
 class Players(object):
-    def __init__(self, name, foo):
-        self.name = name
-        self.foo = foo
+    def __init__(self, PLAYER_ID, SEASON_ID,LEAGUE_ID,
+                 TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
+                 GS,MIN,FGM,FGA,FG_PCT,FG3M,FG3A,FG3_PCT,
+                 FTM,FTA,FT_PCT,OREB,DREB,REB,AST,STL,BLK,TOV,PTS):
         self.PLAYER_ID
         self.SEASON_ID
         self.LEAGUE_ID
@@ -41,15 +42,14 @@ class Players(object):
         self.TOV
         self.PF
         self.PTS
-def GetPlayerStats():
-    career = playercareerstats.PlayerCareerStats(player_id='203076')
+def GetPlayerStats(playerID):
+    career = playercareerstats.PlayerCareerStats(player_id=f'{playerID}')
     #might need validation if json is different format.
     print(json.dumps(career.get_dict()['resultSets'][0]['rowSet']))
     f = open("playerdemo.json", "a")
     #f.write(json.dumps(career.get_dict()['resultSets'][0]))
     f.close()
 def GetScoreboard():
-
     day_offset = 0
     date = "2022-10-5"
     id = '00'
@@ -69,5 +69,5 @@ def GetScoreboard():
         print("Request failed.")
 #ScratchPad
 if __name__ == '__main__':
-    GetPlayerStats()
+    GetPlayerStats(203076)
 
