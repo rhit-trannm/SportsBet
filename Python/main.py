@@ -43,8 +43,10 @@ class Players(object):
         self.PTS
 def GetPlayerStats():
     career = playercareerstats.PlayerCareerStats(player_id='203076')
+    #might need validation if json is different format.
+    print(json.dumps(career.get_dict()['resultSets'][0]['rowSet']))
     f = open("playerdemo.json", "a")
-    f.write(json.dumps(career.get_dict()))
+    #f.write(json.dumps(career.get_dict()['resultSets'][0]))
     f.close()
 def GetScoreboard():
 
