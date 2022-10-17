@@ -14,34 +14,34 @@ class Players(object):
     def __init__(self, PLAYER_ID, SEASON_ID,LEAGUE_ID,
                  TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
                  GS,MIN,FGM,FGA,FG_PCT,FG3M,FG3A,FG3_PCT,
-                 FTM,FTA,FT_PCT,OREB,DREB,REB,AST,STL,BLK,TOV,PTS):
-        self.PLAYER_ID
-        self.SEASON_ID
-        self.LEAGUE_ID
-        self.TEAM_ID
-        self.TEAM_ABBREVIATION
-        self.PLAYER_AGE
-        self.GP;
-        self.GS
-        self.MIN
-        self.FGM
-        self.FGA
-        self.FG_PCT
-        self.FG3M
-        self.FG3A
-        self.FG3_PCT
-        self.FTM
-        self.FTA
-        self.FT_PCT
-        self.OREB
-        self.DREB
-        self.REB
-        self.AST
-        self.STL
-        self.BLK
-        self.TOV
-        self.PF
-        self.PTS
+                 FTM,FTA,FT_PCT,OREB,DREB,REB,AST,STL,BLK,TOV,PF,PTS):
+        self.PLAYER_ID = PLAYER_ID
+        self.SEASON_ID = SEASON_ID
+        self.LEAGUE_ID = LEAGUE_ID
+        self.TEAM_ID = TEAM_ID
+        self.TEAM_ABBREVIATION = TEAM_ABBREVIATION
+        self.PLAYER_AGE = PLAYER_AGE
+        self.GP = GP
+        self.GS = GS
+        self.MIN = MIN
+        self.FGM = FGM
+        self.FGA = FGA
+        self.FG_PCT = FG_PCT
+        self.FG3M = FG3M
+        self.FG3A = FG3A
+        self.FG3_PCT = FG3_PCT
+        self.FTM = FTM
+        self.FTA = FTA
+        self.FT_PCT = FT_PCT
+        self.OREB = OREB
+        self.DREB = DREB
+        self.REB = REB
+        self.AST = AST
+        self.STL = STL
+        self.BLK = BLK
+        self.TOV = TOV
+        self.PF = PF
+        self.PTS = PTS
 def GetPlayerStats(playerID):
     career = playercareerstats.PlayerCareerStats(player_id=f'{playerID}')
     #might need validation if json is different format.
