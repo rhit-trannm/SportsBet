@@ -177,3 +177,7 @@ DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8
 DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/bulk_docs HTTP/1.1" 201 None
 DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
 DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "PUT /databases/temp/hilo/return?tag=foos&end=32&last=1 HTTP/1.1" 204 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): stats.nba.com:443
+DEBUG:urllib3.connectionpool:https://stats.nba.com:443 "GET /stats/playercareerstats?LeagueID=&PerMode=Totals&PlayerID=203076 HTTP/1.1" 200 2178
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): stats.nba.com:443
+DEBUG:urllib3.connectionpool:https://stats.nba.com:443 "GET /stats/playercareerstats?LeagueID=&PerMode=Totals&PlayerID=203076 HTTP/1.1" 200 2178

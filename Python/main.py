@@ -1,6 +1,5 @@
 import pip
 from datetime import datetime, timezone
-
 import requests
 from dateutil import parser
 from nba_api.live.nba.endpoints import scoreboard
@@ -54,7 +53,7 @@ def GetPlayerStats(playerID):
                                     row[18],row[19], row[20], row[21],
                                     row[22], row[23], row[24],
                                     row[25], row[26])
-                print(tempPlayer.SEASON_ID)
+                return tempPlayer
     #print(json.dumps(career.get_dict()['resultSets'][0]['rowSet']))
     #f = open("playerdemo.json", "a")
     #f.write(json.dumps(career.get_dict()['resultSets'][0]))
@@ -78,6 +77,7 @@ def GetScoreboard():
     except requests.exceptions.ConnectionError:
         print("Request failed.")
 #ScratchPad
-if __name__ == '__main__':
-    GetPlayerStats(203076)
+# if __name__ == '__main__':
+#     print("X")
+    #GetPlayerStats(203076)
 
