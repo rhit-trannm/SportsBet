@@ -1,7 +1,8 @@
 from pyravendb.store import document_store
 import bcrypt
 import time
-from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats, commonteamroster
+from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats, \
+    commonteamroster
 from nba_api.stats.static import teams, players
 import pip
 from datetime import datetime, timezone
@@ -9,17 +10,19 @@ import requests
 from dateutil import parser
 from nba_api.live.nba.endpoints import scoreboard
 from nba_api.live.nba.endpoints import boxscore
-from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats, commonteamroster
+from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats, \
+    commonteamroster
 from nba_api.stats.static import teams, players
 import json
 import numpy
 import pandas
-class Player(object):
-    def __init__(self, PLAYER_ID, SEASON_ID,LEAGUE_ID,
-                 TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
-                 GS,MIN,FGM,FGA,FG_PCT,FG3M,FG3A,FG3_PCT,
-                 FTM,FTA,FT_PCT,OREB,DREB,REB,AST,STL,BLK,TOV,PF,PTS):
 
+
+class Player(object):
+    def __init__(self, PLAYER_ID, SEASON_ID, LEAGUE_ID,
+                 TEAM_ID, TEAM_ABBREVIATION, PLAYER_AGE, GP,
+                 GS, MIN, FGM, FGA, FG_PCT, FG3M, FG3A, FG3_PCT,
+                 FTM, FTA, FT_PCT, OREB, DREB, REB, AST, STL, BLK, TOV, PF, PTS):
         self.Id = f'Player/{PLAYER_ID}'
         self.full_name = None
         self.first_name = None
@@ -51,9 +54,11 @@ class Player(object):
         self.TOV = TOV
         self.PF = PF
         self.PTS = PTS
+
+
 class Team(object):
     def __init__(self, team_id, full_name, abbreviation, city,
-                 state, year_founded, team_members = []):
+                 state, year_founded, team_members=[]):
         self.Id = f'Team/{team_id}'
         self.team_id = team_id
         self.full_name = full_name
@@ -62,56 +67,79 @@ class Team(object):
         self.state = state
         self.year_founded = year_founded
         self.team_members = team_members
+
+
 class Match(object):
     def __init__(self):
         self.playerid
 
+
 class User(object):
-    def __init__(self, username, hashPassword, balance = 0, betID = []):
+    def __init__(self, username, hashPassword, balance=0, betID=[]):
         self.username = username
         self.hashPassword = hashPassword
         self.balance = balance
         self.betID = betID
+
+
 def GetAllTeamInfo():
     nba_teams = teams.get_teams()
     teamList = []
-    nba_players = players.get_active_players()
     with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
         store.initialize()
         for team in nba_teams:
-            temp = Team(team['id'], team['full_name'], team['abbreviation'], team['city'], team['state'], team['year_founded'])
-            for player in nba_players:
+            temp = Team(team['id'], team['full_name'], team['abbreviation'], team['city'], team['state'],
+                        team['year_founded'])
+            teamfinder = commonteamroster.CommonTeamRoster(season='2021-22',
+                                                           team_id=f'{team["id"]}',
+                                                           league_id_nullable='00').get_dict()
+            for x in teamfinder['resultSets'][0]['rowSet']:
+                id = x[14]
+                print(f'Player/{id}')
                 with store.open_session() as session:
-                    print(f'Player/{player["id"]}')
-                    temp2 = list(session.query(object_type=Player).where_equals("PLAYER_ID", player["id"]))
-                    if temp2 is None:
-                        continue
-                    if temp2.TEAM_ID == temp.team_id:
-                        temp.team_members.append(temp2.PLAYER_ID)
-            session.store(temp)
+                    temp2 = list(session.query(object_type=Player).where_equals("PLAYER_ID", id))
+                    if temp2 == []:
+                        player = CreatePlayer(id)
+                        if player is None:
+                            continue
+                        session.store(CreatePlayer(id))
+                        session.save_changes()
+                        temp.team_members.append(id)
+                    temp2 = list(session.query(object_type=Player).where_equals("PLAYER_ID", id))
+                    if temp2 != []:
+                        temp.team_members.append(id)
+
+            with store.open_session() as session:
+                print(temp.team_id)
+                session.store(temp)
+                session.save_changes()
+
+
 def GetAllPlayerStats():
     nba_players = players.get_active_players()
     PlayerList = []
     for player in nba_players:
         PlayerList.append(GetPlayerStats(player['id']))
     return PlayerList
+
+
 def GetPlayerStats(playerID):
     career = playercareerstats.PlayerCareerStats(player_id=f'{playerID}').get_dict()
-    #might need validation if json is different format.
+    # might need validation if json is different format.
     if career['resultSets'][0]['rowSet'] != []:
         i = len(career['resultSets'][0]['rowSet'])
-        row = career['resultSets'][0]['rowSet'][i-1]
-        tempPlayer = Player(row[0],row[1], row[2], row[3], row[4], row[5],
-                                    row[6], row[7], row[8], row[9], row[10], row[11],
-                                    row[12], row[13], row[14], row[15], row[16], row[17],
-                                    row[18],row[19], row[20], row[21],
-                                    row[22], row[23], row[24],
-                                    row[25], row[26])
+        row = career['resultSets'][0]['rowSet'][i - 1]
+        tempPlayer = Player(row[0], row[1], row[2], row[3], row[4], row[5],
+                            row[6], row[7], row[8], row[9], row[10], row[11],
+                            row[12], row[13], row[14], row[15], row[16], row[17],
+                            row[18], row[19], row[20], row[21],
+                            row[22], row[23], row[24],
+                            row[25], row[26])
         return tempPlayer
 
 
 def CreateUser(username, password):
-    #User key format: User_{Username}
+    # User key format: User_{Username}
     passwordSalt = bcrypt.gensalt()
     hashPassword = bcrypt.hashpw(password, passwordSalt)
     temp = User(username, password)
@@ -120,6 +148,8 @@ def CreateUser(username, password):
         with store.open_session() as session:
             session.store(temp)
             session.save_changes()
+
+
 def StoreObject(object):
     with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
         store.initialize()
@@ -128,6 +158,21 @@ def StoreObject(object):
             if query_result == []:
                 session.store(object)
                 session.save_changes()
+
+
+def CreatePlayer(id):
+    time.sleep(0.7)
+    player = players.find_player_by_id(id)
+    if player is not None:
+        print(players.find_player_by_id(id))
+        temp = GetPlayerStats(id)
+        if temp is None:
+            return
+        temp.full_name = player['full_name']
+        temp.first_name = player['first_name']
+        temp.last_name = player['last_name']
+        return temp
+
 
 def StoreAllPlayers():
     nba_players = players.get_active_players()
@@ -139,14 +184,19 @@ def StoreAllPlayers():
                 temp.full_name = player['full_name']
                 temp.first_name = player['first_name']
                 temp.last_name = player['last_name']
-                #try:
+                # try:
                 StoreObject(temp)
-                #except:
-                    #print("ID already exists")
+                # except:
+                # print("ID already exists")
+
 
 if __name__ == '__main__':
-    StoreAllPlayers()
-    # GetAllTeamInfo()
+    # teamfinder = commonteamroster.CommonTeamRoster(season='2021-22',
+    #                                                team_id=f'1610612738',
+    #                                                league_id_nullable='00')
+    # print(teamfinder.get_dict()['resultSets'][0]['rowSet'][0][14])
+    GetAllTeamInfo()
+    #print(playercareerstats.PlayerCareerStats(player_id=1630554).get_dict())
     # with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
     #     store.initialize()
     #     print("hello 2")
