@@ -1,6 +1,23 @@
 from pyravendb.store import document_store
 from Python import main as API
+import bcrypt
+class User(object):
+    def __init__(self, username, hashPassword, balance = 0, betID = []):
+        self.username = username
+        self.hashPassword = hashPassword
+        self.balance = balance
+        self.betID = betID
 
+def CreateUser(username, password):
+    #User key format: User_{Username}
+    passwordSalt = bcrypt.gensalt()
+    hashPassword = bcrypt.hashpw(password, passwordSalt)
+    temp = User(username, password)
+    with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            session.store(temp)
+            session.save_changes()
 def StoreObject(object):
     with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
         store.initialize()
