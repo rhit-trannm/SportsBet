@@ -14,6 +14,7 @@ class Player(object):
                  TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
                  GS,MIN,FGM,FGA,FG_PCT,FG3M,FG3A,FG3_PCT,
                  FTM,FTA,FT_PCT,OREB,DREB,REB,AST,STL,BLK,TOV,PF,PTS):
+        self.Id = PLAYER_ID
         self.PLAYER_ID = PLAYER_ID
         self.SEASON_ID = SEASON_ID
         self.LEAGUE_ID = LEAGUE_ID
