@@ -14,7 +14,11 @@ class Player(object):
                  TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
                  GS,MIN,FGM,FGA,FG_PCT,FG3M,FG3A,FG3_PCT,
                  FTM,FTA,FT_PCT,OREB,DREB,REB,AST,STL,BLK,TOV,PF,PTS):
-        self.Id = PLAYER_ID
+
+        self.Id = f'Player/{PLAYER_ID}'
+        self.full_name = None
+        self.first_name = None
+        self.last_name = None
         self.PLAYER_ID = PLAYER_ID
         self.SEASON_ID = SEASON_ID
         self.LEAGUE_ID = LEAGUE_ID
@@ -45,6 +49,7 @@ class Player(object):
 class Team(object):
     def __init__(self, team_id, full_name, abbreviation, city,
                  state, year_founded, team_members = []):
+        self.Id = f'Team/{team_id}'
         self.team_id = team_id
         self.full_name = full_name
         self.abbreviation = abbreviation
@@ -58,9 +63,9 @@ class Match(object):
 def GetAllTeamInfo():
     nba_teams = teams.get_teams()
     teamList = []
+    nba_players = players.get_players()
     for team in nba_teams:
         temp = Team(team[0], team[1], team[2], team[3], team[4], team[5], team[6])
-        nba_players = players.get_players()
         for player in nba_players:
             temp2 = GetPlayerStats(player['id'])
             if temp2.TEAM_ID == temp.team_id:

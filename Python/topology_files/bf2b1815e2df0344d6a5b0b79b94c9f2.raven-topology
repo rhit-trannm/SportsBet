@@ -1,0 +1,1 @@
+{"Nodes": [{"Url": "http://137.112.104.155:8080", "ClusterTag": "C", "ServerRole": "Member", "Database": "temp"}, {"Url": "http://137.112.104.152:8080", "ClusterTag": "D", "ServerRole": "Member", "Database": "temp"}, {"Url": "http://137.112.104.162:8080", "ClusterTag": "A", "Database": "temp", "ServerRole": "Rehab"}], "Etag": 76}
