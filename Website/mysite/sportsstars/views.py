@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, date
 from Python import Redis
 
 
+
 # Create your views here.
 def home(request):
     return render(request, 'home.html', {})

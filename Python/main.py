@@ -1,20 +1,64 @@
 import pip
 from datetime import datetime, timezone
-
 import requests
 from dateutil import parser
 from nba_api.live.nba.endpoints import scoreboard
 from nba_api.live.nba.endpoints import boxscore
-from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2
+from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats
 from nba_api.stats.static import teams
 import json
 import numpy
 import pandas
-
-#ScratchPad
-if __name__ == '__main__':
-    from nba_api.stats.endpoints import scoreboardv2
-
+class Player(object):
+    def __init__(self, PLAYER_ID, SEASON_ID,LEAGUE_ID,
+                 TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
+                 GS,MIN,FGM,FGA,FG_PCT,FG3M,FG3A,FG3_PCT,
+                 FTM,FTA,FT_PCT,OREB,DREB,REB,AST,STL,BLK,TOV,PF,PTS):
+        self.PLAYER_ID = PLAYER_ID
+        self.SEASON_ID = SEASON_ID
+        self.LEAGUE_ID = LEAGUE_ID
+        self.TEAM_ID = TEAM_ID
+        self.TEAM_ABBREVIATION = TEAM_ABBREVIATION
+        self.PLAYER_AGE = PLAYER_AGE
+        self.GP = GP
+        self.GS = GS
+        self.MIN = MIN
+        self.FGM = FGM
+        self.FGA = FGA
+        self.FG_PCT = FG_PCT
+        self.FG3M = FG3M
+        self.FG3A = FG3A
+        self.FG3_PCT = FG3_PCT
+        self.FTM = FTM
+        self.FTA = FTA
+        self.FT_PCT = FT_PCT
+        self.OREB = OREB
+        self.DREB = DREB
+        self.REB = REB
+        self.AST = AST
+        self.STL = STL
+        self.BLK = BLK
+        self.TOV = TOV
+        self.PF = PF
+        self.PTS = PTS
+def GetPlayerStats(playerID):
+    career = playercareerstats.PlayerCareerStats(player_id=f'{playerID}').get_dict()
+    #might need validation if json is different format.
+    if career['resultSets'][0]['rowSet'] != []:
+        for row in career['resultSets'][0]['rowSet']:
+            if(row[1] == '2021-22'):
+                tempPlayer = Player(row[0],row[1], row[2], row[3], row[4], row[5],
+                                    row[6], row[7], row[8], row[9], row[10], row[11],
+                                    row[12], row[13], row[14], row[15], row[16], row[17],
+                                    row[18],row[19], row[20], row[21],
+                                    row[22], row[23], row[24],
+                                    row[25], row[26])
+                return tempPlayer
+    #print(json.dumps(career.get_dict()['resultSets'][0]['rowSet']))
+    #f = open("playerdemo.json", "a")
+    #f.write(json.dumps(career.get_dict()['resultSets'][0]))
+    #f.close()
+def GetScoreboard():
     day_offset = 0
     date = "2022-10-5"
     id = '00'
@@ -32,4 +76,8 @@ if __name__ == '__main__':
 
     except requests.exceptions.ConnectionError:
         print("Request failed.")
+#ScratchPad
+# if __name__ == '__main__':
+#     print("X")
+    #GetPlayerStats(203076)
 
