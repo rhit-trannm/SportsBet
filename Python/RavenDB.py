@@ -89,30 +89,31 @@ def GetAllTeamInfo():
         store.initialize()
         for team in nba_teams:
             temp = Team(team['id'], team['full_name'], team['abbreviation'], team['city'], team['state'],
-                        team['year_founded'])
+                        team['year_founded'], team_members = [])
             teamfinder = commonteamroster.CommonTeamRoster(season='2021-22',
                                                            team_id=f'{team["id"]}',
                                                            league_id_nullable='00').get_dict()
             for x in teamfinder['resultSets'][0]['rowSet']:
                 id = x[14]
-                print(f'Player/{id}')
+                print(x)
+                temp.team_members.append(id)
+                print(f"{temp.team_id}|{temp.team_members}")
                 with store.open_session() as session:
                     temp2 = list(session.query(object_type=Player).where_equals("PLAYER_ID", id))
                     if temp2 == []:
                         player = CreatePlayer(id)
                         if player is None:
-                            continue
+                            break
                         session.store(CreatePlayer(id))
                         session.save_changes()
-                        temp.team_members.append(id)
-                    temp2 = list(session.query(object_type=Player).where_equals("PLAYER_ID", id))
-                    if temp2 != []:
-                        temp.team_members.append(id)
+                        store.close()
+                        break
+            with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
+                store.initialize()
+                with store.open_session() as session:
 
-            with store.open_session() as session:
-                print(temp.team_id)
-                session.store(temp)
-                session.save_changes()
+                    session.store(temp)
+                    session.save_changes()
 
 
 def GetAllPlayerStats():
@@ -196,7 +197,8 @@ if __name__ == '__main__':
     #                                                league_id_nullable='00')
     # print(teamfinder.get_dict()['resultSets'][0]['rowSet'][0][14])
     GetAllTeamInfo()
-    #print(playercareerstats.PlayerCareerStats(player_id=1630554).get_dict())
+    # StoreAllPlayers()
+    #print(playercareerstats.PlayerCareerStats(player_id=1630552).get_dict())
     # with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
     #     store.initialize()
     #     print("hello 2")

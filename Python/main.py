@@ -116,6 +116,9 @@ def GetScoreboard():
 if __name__ == '__main__':
     nba_teams = players.get_players()
     print(nba_teams[0])
+    print(commonteamroster.CommonTeamRoster(season='2021-22',
+                                                   team_id=f'1610612766',
+                                                   league_id_nullable='00').get_dict()['resultSets'][0]['rowSet'])
 #     print("X")
     #GetPlayerStats(203076)
 
