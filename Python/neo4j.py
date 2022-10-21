@@ -1,5 +1,7 @@
 from matplotlib.backend_bases import GraphicsContextBase
 from py2neo import Graph
+import bcrypt
+from regex import F
 
 
 
@@ -21,7 +23,24 @@ def Get_Balance(username):
     return balance
 
 
+def Create_User(username, password):
+    ConnectNeo4J
+    passwordSalt = bcrypt.gensalt()
+    hashPassword = bcrypt.hashpw(password, passwordSalt)
+    graph.run(f"CREATE (n:Person {{username: '{username}', passwordHash: '{hashPassword}', balance: {0}}})")
 
+def loginCheck(username, password):
+   userExists = graph.run(f"MATCH (u:User) WHERE User.username = {username} WITH COUNT(u) > {0} as node_exists RETURN node_exists")
+   if(userExists):
+    correctPassword = graph.run(f"MATCH(User) WHERE User.username = {username} RETURN User.passwordHash")
+    if(password == correctPassword):
+        return True
+
+
+   # if(r.sismember('users', username)):
+    #    correctPassword = r.hget(username, 'password')
+     #   if(password == correctPassword):
+      #      return True
 
 
 
