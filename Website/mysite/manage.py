@@ -2,6 +2,8 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
+from Python import Redis
 
 
 def main():
@@ -15,6 +17,7 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+    Redis.ConnectRedis()
     execute_from_command_line(sys.argv)
 
 

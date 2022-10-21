@@ -47,34 +47,6 @@
       content:"\2630";
   }
 
-  .btn-group{
-    margin: 0 auto;
-  }
-
-  .btn-group input{
-    background-color: #fff;
-    border: 1px #000;
-    color: black;
-    padding: 10px 24px;
-    cursor: pointer;
-    float: left;
-  }
-
-  .btn-group input:not(:last-child){
-    border-right: none;
-  }
-
-  .btn-group::after{
-    content: "";
-    clear: both;
-    display: table;
-  }
-
-  .btn-group input:hover{
-    background-color: #888;
-  }
-  
-
 </style>
 <body style="background-color: #f5fdff">
     <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
@@ -82,21 +54,20 @@
       <div class="row">
         <br><br>
         <center><h2>Welcome {{ username }}</h2></center>
-        <br>
-        <center><h4>Balance: {{ balance }}</h4></center>
       </div>
     </div>
 
-    <form method="POST" action="{% url 'bets' %}" id="bets"></form>
-
-    <form method="POST" action="{% url 'stats' %}" id="stats"></form>
-
-
-    <div class="btn-group">
-      <input type="submit" form="bets" value="View Bets">
-      <input type="submit" form="stats" value="View Stats">
+    <div class="row">
+      <div class="form">
+        <form method="POST" action="{% url 'bets' %}">
+          <input type="submit" value="View Bets">
+        </form>
+      </div>
+      <div class="form">
+        <form method="POST" action="{% url 'stats' %}">
+          <input type="submit" value="View Stats">
+        </form>
+      </div>
     </div>
-
-
 </body>
 </html>

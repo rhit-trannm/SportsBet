@@ -22,7 +22,7 @@
 <body style="background-color: #f5fdff">
     <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
     <br><br><br>
-    <center><h3>Login</h3></center>
+    <center><h3>Create Account</h3></center>
     <div class="error">
         {{ error_message }}
     </div>
@@ -40,5 +40,11 @@
         <input type="submit" name="submitlogin" id="submitlogin" form="acct">
     </div>
 
-</body>
-</html>
+    <br>
+    <br>
+    <br>
+    <div class="form">
+        <form method="GET" action="{% url 'login' %}">
+            <input type="submit" value="Back to Login"></input>
+        </form>
+    </div>
