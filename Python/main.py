@@ -4,8 +4,8 @@ import requests
 from dateutil import parser
 from nba_api.live.nba.endpoints import scoreboard
 from nba_api.live.nba.endpoints import boxscore
-from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats
-from nba_api.stats.static import teams
+from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats, commonteamroster
+from nba_api.stats.static import teams, players
 import json
 import numpy
 import pandas
@@ -14,6 +14,11 @@ class Player(object):
                  TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
                  GS,MIN,FGM,FGA,FG_PCT,FG3M,FG3A,FG3_PCT,
                  FTM,FTA,FT_PCT,OREB,DREB,REB,AST,STL,BLK,TOV,PF,PTS):
+
+        self.Id = f'Player/{PLAYER_ID}'
+        self.full_name = None
+        self.first_name = None
+        self.last_name = None
         self.PLAYER_ID = PLAYER_ID
         self.SEASON_ID = SEASON_ID
         self.LEAGUE_ID = LEAGUE_ID
@@ -41,6 +46,37 @@ class Player(object):
         self.TOV = TOV
         self.PF = PF
         self.PTS = PTS
+class Team(object):
+    def __init__(self, team_id, full_name, abbreviation, city,
+                 state, year_founded, team_members = []):
+        self.Id = f'Team/{team_id}'
+        self.team_id = team_id
+        self.full_name = full_name
+        self.abbreviation = abbreviation
+        self.city = city
+        self.state = state
+        self.year_founded = year_founded
+        self.team_members = team_members
+class Match(object):
+    def __init__(self):
+        self.playerid
+def GetAllTeamInfo():
+    nba_teams = teams.get_teams()
+    teamList = []
+    nba_players = players.get_players()
+    for team in nba_teams:
+        temp = Team(team[0], team[1], team[2], team[3], team[4], team[5], team[6])
+        for player in nba_players:
+            temp2 = GetPlayerStats(player['id'])
+            if temp2.TEAM_ID == temp.team_id:
+                temp.team_members.append(temp2.PLAYER_ID)
+    return teamList
+def GetAllPlayerStats():
+    nba_players = players.get_players()
+    PlayerList = []
+    for player in nba_players:
+        PlayerList.append(GetPlayerStats(player['id']))
+    return PlayerList
 def GetPlayerStats(playerID):
     career = playercareerstats.PlayerCareerStats(player_id=f'{playerID}').get_dict()
     #might need validation if json is different format.
@@ -77,7 +113,12 @@ def GetScoreboard():
     except requests.exceptions.ConnectionError:
         print("Request failed.")
 #ScratchPad
-# if __name__ == '__main__':
+if __name__ == '__main__':
+    nba_teams = players.get_players()
+    print(nba_teams[0])
+    print(commonteamroster.CommonTeamRoster(season='2021-22',
+                                                   team_id=f'1610612766',
+                                                   league_id_nullable='00').get_dict()['resultSets'][0]['rowSet'])
 #     print("X")
     #GetPlayerStats(203076)
 
