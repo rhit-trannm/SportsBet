@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from sportsstars.forms import AcctForm, LoginForm
 from datetime import datetime, timedelta, date
-from Python import Redis
+from Python import Redis, neo4j
 
 
 
@@ -17,7 +17,10 @@ def login(request):
             # Authenticate login here
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            logged_in = Redis.loginCheck(username, password)
+            try:
+                logged_in = neo4j.Login_Check(username, password)
+            except:
+                logged_in = neo4j.Login_Check(username, password)
             if logged_in:
                 #Login successful
                 return homeRender(request, username)
@@ -32,8 +35,9 @@ def login(request):
 
 
 def homeRender(request, username):
-    balance = 0
-    return render(request, 'home.html', {'username': username, 'balance': balance})
+    balance = neo4j.Get_Balance(username)
+    num_Friends = neo4j.Get_Number_Of_Friends(username)
+    return render(request, 'home.html', {'username': username, 'balance': balance, 'friends': num_Friends})
 
 
 def acct(request):
@@ -50,8 +54,9 @@ def acct(request):
                 return render(request, 'acct.html', {'form': newForm, 'error_message': 'Age must be at least 21'})
             try:
                 Redis.CreateUser(name, username, password, birthday)
-                newForm = LoginForm(initial={'username': username})
-                return render(request, 'login.html', {'form': newForm})
+                neo4j.Create_User(name, username, password, birthday)
+                newForm = LoginForm(initial={'username':username})
+                return render(request, 'login.html', {'form':newForm})
             except ValueError:
                 newForm = AcctForm(initial={'name': name, 'birthday': birthday})
                 return render(request, 'acct.html', {'form':form, 'error_message':'Username already exists. Please use a different username'})
