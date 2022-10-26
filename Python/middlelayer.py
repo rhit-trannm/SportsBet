@@ -83,12 +83,18 @@ class LogObject(object):
 def Logging(CRUD, classObject):
     #Need Individual Files for different database to keep track of up to dateness
 
-    redisLog = open("Logs/RedisLog.txt", "a")
-    neo4JLog = open("Logs/Neo4JLog.txt", "a")
+    redisLog = open("Logs/RedisLog.txt", "r+")
+    neo4JLog = open("Logs/Neo4JLog.txt", "r+")
+
+    redisEventList = json.loads(redisLog.read(), object_hook=lambda d: SimpleNamespace(**d))
+    neo4JEventList = json.loads(neo4JLog.read(), object_hook=lambda d: SimpleNamespace(**d))
 
     #Create log entry
-    logEntry = LogObject(CRUD, classObject, classObject.__class__.__name__)
+    logEntry = LogObject(CRUD, classObject.__dict__, classObject.__class__.__name__)
 
+    redisEventList.append(json.dumps(logEntry))
+    neo4JEventList.append(logEntry)
+    #
 
 
 
@@ -99,15 +105,17 @@ def UpdateRedis():
     print('x')
 
 if __name__ == '__main__':
-    file1 = open("Logs/Log.txt", "a")
+    file1 = open("Logs/Log.txt", "r")
+    ########## Loading&Adding JSON List example ##############
+
+    #file1 = open("Logs/Log.txt", "r")
+    #temp2 = json.loads(file1.read(), object_hook=lambda d: SimpleNamespace(**d))
+    #temp2.append(json.dumps(LogObject("ADD", json.dumps(User("user", "pass").__dict__), "User").__dict__))
+    #print(temp2)
+    #print(f"{json.loads(temp2[0])}")
+
     ########## Loading JSON List example ##############
 
-    # file1 = open("Logs/Log.txt", "r")
-    # temp2 = json.loads(file1.read(), object_hook=lambda d: SimpleNamespace(**d)).__dict__
-    # print(f"{temp2}")
-
-    ########## Loading JSON List example ##############
-    
     ########## Storing List as JSON example ##############
 
     # file1 = open("Logs/Log.txt", "a")
