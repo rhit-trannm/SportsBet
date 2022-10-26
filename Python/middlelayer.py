@@ -76,9 +76,10 @@ class User(object):
         self.balance = balance
         self.betID = betID
 class LogObject(object):
-    def __init__(self, command, classObject):
+    def __init__(self, command, classObject, classType):
         self.command = command
         self.classObject = classObject
+        self.classType = classType
 def Logging(CRUD, classObject):
     #Need Individual Files for different database to keep track of up to dateness
 
@@ -86,8 +87,8 @@ def Logging(CRUD, classObject):
     neo4JLog = open("Logs/Neo4JLog.txt", "a")
 
     #Create log entry
-    logEntry = LogObject(CRUD, classObject)
-    
+    logEntry = LogObject(CRUD, classObject, classObject.__class__.__name__)
+
 
 
 
@@ -99,8 +100,20 @@ def UpdateRedis():
 
 if __name__ == '__main__':
     file1 = open("Logs/Log.txt", "a")
-    temp = User('112321321', '232132132132131dad !@#V!@#V@!#')
-    x = json.dumps(temp.__dict__)
-    file1.write(x)
-    temp2 = json.loads(x, object_hook=lambda d: SimpleNamespace(**d))
-    print(temp.betID)
+    ########## Loading JSON List example ##############
+
+    # file1 = open("Logs/Log.txt", "r")
+    # temp2 = json.loads(file1.read(), object_hook=lambda d: SimpleNamespace(**d)).__dict__
+    # print(f"{temp2}")
+
+    ########## Loading JSON List example ##############
+    
+    ########## Storing List as JSON example ##############
+
+    # file1 = open("Logs/Log.txt", "a")
+    # temp = LogObject("ADD", json.dumps(User("user", "pass").__dict__), "User")
+    # temp2 = LogObject("ADD", json.dumps(User("user2", "pass2").__dict__), "User")
+    # lists = [json.dumps(temp.__dict__), json.dumps(temp2.__dict__)]
+    # file1.write(json.dumps(lists))
+
+    ########## Storing List as JSON example ##############
