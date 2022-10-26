@@ -82,20 +82,38 @@ class LogObject(object):
         self.classType = classType
 def Logging(CRUD, classObject):
     #Need Individual Files for different database to keep track of up to dateness
-
-    redisLog = open("Logs/RedisLog.txt", "r+")
-    neo4JLog = open("Logs/Neo4JLog.txt", "r+")
-
-    redisEventList = json.loads(redisLog.read(), object_hook=lambda d: SimpleNamespace(**d))
-    neo4JEventList = json.loads(neo4JLog.read(), object_hook=lambda d: SimpleNamespace(**d))
-
+    redisLog = open("Logs/RedisLog.txt", "r")
+    neo4JLog = open("Logs/Neo4JLog.txt", "r")
+    #Load into python list
+    try:
+        redisEventList = json.loads(redisLog.read())
+        neo4JEventList = json.loads(neo4JLog.read())
+    except:
+        redisEventList = []
+        neo4JEventList = []
+    redisLog.close()
+    neo4JLog.close()
+    #This isn't safe but no other solution for now
+    redisLog = open("Logs/RedisLog.txt", "w")
+    neo4JLog = open("Logs/Neo4JLog.txt", "w")
+    print(redisEventList)
     #Create log entry
-    logEntry = LogObject(CRUD, classObject.__dict__, classObject.__class__.__name__)
-
-    redisEventList.append(json.dumps(logEntry))
+    logEntry = json.dumps(LogObject(CRUD, json.dumps(classObject.__dict__), classObject.__class__.__name__).__dict__)
+    #Add to list of event
+    redisEventList.append(logEntry)
     neo4JEventList.append(logEntry)
-    #
+    #Write to file
 
+
+
+    redisLog.truncate()
+    neo4JLog.truncate()
+
+    redisLog.write(json.dumps(redisEventList))
+    neo4JLog.write(json.dumps(neo4JEventList))
+
+    redisLog.close()
+    neo4JLog.close()
 
 
 
@@ -105,16 +123,16 @@ def UpdateRedis():
     print('x')
 
 if __name__ == '__main__':
-    file1 = open("Logs/Log.txt", "r")
-    ########## Loading&Adding JSON List example ##############
-
     #file1 = open("Logs/Log.txt", "r")
-    #temp2 = json.loads(file1.read(), object_hook=lambda d: SimpleNamespace(**d))
-    #temp2.append(json.dumps(LogObject("ADD", json.dumps(User("user", "pass").__dict__), "User").__dict__))
-    #print(temp2)
-    #print(f"{json.loads(temp2[0])}")
+    Logging("Add", User("123", "password123"))
+    ########## Loading & Adding JSON List example ##############
 
-    ########## Loading JSON List example ##############
+    # file1 = open("Logs/Log.txt", "r")
+    # temp2 = json.loads(file1.read(), object_hook=lambda d: SimpleNamespace(**d))
+    # temp2.append(json.dumps(LogObject("ADD", json.dumps(User("user", "pass").__dict__), "User").__dict__))
+    # print(f"{temp2}")
+
+    ########## Loading & Adding JSON List example ##############
 
     ########## Storing List as JSON example ##############
 
