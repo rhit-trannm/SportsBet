@@ -1,0 +1,1 @@
+{"username": "112321321", "hashPassword": "232132132132131dad !@#V!@#V@!#", "balance": 0, "betID": []}

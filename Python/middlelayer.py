@@ -1,7 +1,9 @@
 from Python import neo4j
 from Python import RavenDB
+from Python import Redis
 from py2neo import Graph
 from pyravendb.store import document_store
+from types import SimpleNamespace
 import json
 #Principles When coding middle layer:
 #Read does not need to get written to file
@@ -73,17 +75,32 @@ class User(object):
         self.hashPassword = hashPassword
         self.balance = balance
         self.betID = betID
+class LogObject(object):
+    def __init__(self, command, classObject):
+        self.command = command
+        self.classObject = classObject
+def Logging(CRUD, classObject):
+    #Need Individual Files for different database to keep track of up to dateness
 
-def LogRedis():
-    print('x')
-def LogNeo4J():
-    print('x')
+    redisLog = open("Logs/RedisLog.txt", "a")
+    neo4JLog = open("Logs/Neo4JLog.txt", "a")
+
+    #Create log entry
+    logEntry = LogObject(CRUD, classObject)
+    
+
+
+
+
 def UpdateNeo4J():
     print('x')
 def UpdateRedis():
     print('x')
 
 if __name__ == '__main__':
-
-
-    print('x')
+    file1 = open("Logs/Log.txt", "a")
+    temp = User('112321321', '232132132132131dad !@#V!@#V@!#')
+    x = json.dumps(temp.__dict__)
+    file1.write(x)
+    temp2 = json.loads(x, object_hook=lambda d: SimpleNamespace(**d))
+    print(temp.betID)
