@@ -196,9 +196,9 @@ if __name__ == '__main__':
     #                                                team_id=f'1610612738',
     #                                                league_id_nullable='00')
     # print(teamfinder.get_dict()['resultSets'][0]['rowSet'][0][14])
-    GetAllTeamInfo()
+    # GetAllTeamInfo()
     # StoreAllPlayers()
-    #print(playercareerstats.PlayerCareerStats(player_id=1630552).get_dict())
+     print(playercareerstats.PlayerCareerStats(player_id=1630552).get_dict())
     # with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
     #     store.initialize()
     #     print("hello 2")

@@ -7,6 +7,11 @@ def ConnectNeo4J():
     global graph
     graph = Graph("bolt://433-15.csse.rose-hulman.edu:7687", auth=("neo4j", "433-15")) #EDIT THIS TO BE ACCURATE -Josh Mestemacher
 
+def CheckConnection():
+    try:
+        graph.run("Match () return 1 limit 1")
+    except Exception:
+        print('Connection Error')
 
 
 def Get_Number_Of_Friends(username):
