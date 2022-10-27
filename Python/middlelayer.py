@@ -77,10 +77,10 @@ class User(object):
         self.balance = balance
         self.betID = betID
 class LogObject(object):
-    def __init__(self, command, classObject, classType):
+    def __init__(self, command, classObject, className):
         self.command = command
         self.classObject = classObject
-        self.classType = classType
+        self.className = className
 def Logging(CRUD, classObject):
     #Need Individual Files for different database to keep track of up to dateness
     redisLog = open("Logs/RedisLog.txt", "r")
@@ -123,7 +123,20 @@ def Routing(CRUD, object):
     #Theory: CUD should all go through RavenDB first. RavenDB acts as a Master database.
     #Any changes should go through RavenDB first. Read should be routed to its approriate database.
     if CRUD == "CREATE":
-        print("x")
+        try:
+            if object.__class__.__name__ == "User":
+                RavenDB.CreateUser(object.username, object.hashPassword)
+                Logging(CRUD, object)
+            elif object.__class__.__name__ == "Bet":
+                print('x')
+            elif object.__class__.__name__ == "Player":
+                #Do not log
+                print('x')
+            elif object.__class__.__name__ == "Team":
+                #Do not log
+                print('x')
+)        except:
+            return 0
     elif CRUD == "READ":
         print("x")
     elif CRUD == "UPDATE":
