@@ -127,6 +127,7 @@ def Routing(CRUD, object):
             if object.__class__.__name__ == "User":
                 RavenDB.CreateUser(object.username, object.hashPassword)
                 Logging(CRUD, object)
+                return 1
             elif object.__class__.__name__ == "Bet":
                 print('x')
             elif object.__class__.__name__ == "Player":
@@ -135,14 +136,57 @@ def Routing(CRUD, object):
             elif object.__class__.__name__ == "Team":
                 #Do not log
                 print('x')
-)        except:
+        except:
             return 0
     elif CRUD == "READ":
-        print("x")
+        try:
+            if object.__class__.__name__ == "User":
+                RavenDB.CreateUser(object.username, object.hashPassword)
+                Logging(CRUD, object)
+                return 1
+            elif object.__class__.__name__ == "Bet":
+                print('x')
+            elif object.__class__.__name__ == "Player":
+                #Do not log
+                print('x')
+            elif object.__class__.__name__ == "Team":
+                #Do not log
+                print('x')
+        except:
+            return 0
     elif CRUD == "UPDATE":
+        try:
+            if object.__class__.__name__ == "User":
+                RavenDB.CreateUser(object.username, object.hashPassword)
+                Logging(CRUD, object)
+                return 1
+            elif object.__class__.__name__ == "Bet":
+                print('x')
+            elif object.__class__.__name__ == "Player":
+                #Do not log
+                print('x')
+            elif object.__class__.__name__ == "Team":
+                #Do not log
+                print('x')
+        except:
+            return 0
         print("x")
     elif CRUD == "DELETE":
-        print("x")
+        try:
+            if object.__class__.__name__ == "User":
+                RavenDB.CreateUser(object.username, object.hashPassword)
+                Logging(CRUD, object)
+                return 1
+            elif object.__class__.__name__ == "Bet":
+                print('x')
+            elif object.__class__.__name__ == "Player":
+                #Do not log
+                print('x')
+            elif object.__class__.__name__ == "Team":
+                #Do not log
+                print('x')
+        except:
+            return 0
 
     #CRUD for each object. if success then log.
 
