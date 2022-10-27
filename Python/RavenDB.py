@@ -124,7 +124,15 @@ def GetAllPlayerStats():
         PlayerList.append(GetPlayerStats(player['id']))
     return PlayerList
 
-
+def QueryPlayer(playerId):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            temp2 = list(session.query(object_type=Player).where_equals("PLAYER_ID", id))
+            if temp2 != []:
+                return temp2.pop()
+            else:
+                return 0
 def GetPlayerStats(playerID):
     career = playercareerstats.PlayerCareerStats(player_id=f'{playerID}').get_dict()
     # might need validation if json is different format.

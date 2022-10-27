@@ -125,30 +125,32 @@ def Routing(CRUD, object):
     if CRUD == "CREATE":
         try:
             if object.__class__.__name__ == "User":
-                RavenDB.CreateUser(object.username, object.hashPassword)
-                Logging(CRUD, object)
-                return 1
+                try:
+                    RavenDB.CreateUser(object.username, object.hashPassword)
+                    Logging(CRUD, object)
+                    return 1
+                except:
+                    return 0
             elif object.__class__.__name__ == "Bet":
-                print('x')
-            elif object.__class__.__name__ == "Player":
-                #Do not log
-                print('x')
-            elif object.__class__.__name__ == "Team":
-                #Do not log
                 print('x')
         except:
             return 0
     elif CRUD == "READ":
         try:
             if object.__class__.__name__ == "User":
-                RavenDB.CreateUser(object.username, object.hashPassword)
-                Logging(CRUD, object)
-                return 1
+                Redis.L
             elif object.__class__.__name__ == "Bet":
                 print('x')
             elif object.__class__.__name__ == "Player":
-                #Do not log
-                print('x')
+                # Do not log
+                try:
+                    result = RavenDB.GetPlayerStats()
+                    if result != 0:
+                        return result
+                    else:
+                        return 0
+                except:
+                    return 0
             elif object.__class__.__name__ == "Team":
                 #Do not log
                 print('x')
