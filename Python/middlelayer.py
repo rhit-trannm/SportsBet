@@ -6,20 +6,22 @@ from pyravendb.store import document_store
 from types import SimpleNamespace
 import json
 import os
-#Principles When coding middle layer:
-#Read does not need to get written to file
-#Write needs to get written to file
 
-#routing logic: Ping each database before performing action. Check if they are up.
-#Check if up to date,
-#If it is not -> reroute and update it while rerouting.
-#If it is -> Use database.
 
-#User -> Duplicated on all 3 database. Should follow this roadmap... Redis -> Neo4j -> RavendB
-#Bets -> Duplicated on Neo4J and RavenDB. Neo4J -> RavenDB.
-#NBA Teams/Player info -> On RavenDB. Should never go down.
+# Principles When coding middle layer:
+# Read does not need to get written to file
+# Write needs to get written to file
 
-#In general, RavenDB should never go down. If it does go down, the entire system should go down.
+# routing logic: Ping each database before performing action. Check if they are up.
+# Check if up to date,
+# If it is not -> reroute and update it while rerouting.
+# If it is -> Use database.
+
+# User -> Duplicated on all 3 database. Should follow this roadmap... Redis -> Neo4j -> RavendB
+# Bets -> Duplicated on Neo4J and RavenDB. Neo4J -> RavenDB.
+# NBA Teams/Player info -> On RavenDB. Should never go down.
+
+# In general, RavenDB should never go down. If it does go down, the entire system should go down.
 
 class Player(object):
     def __init__(self, PLAYER_ID, SEASON_ID, LEAGUE_ID,
@@ -70,45 +72,51 @@ class Team(object):
         self.state = state
         self.year_founded = year_founded
         self.team_members = team_members
+
+
 class User(object):
     def __init__(self, username, hashPassword, balance=0, betID=[]):
         self.username = username
         self.hashPassword = hashPassword
         self.balance = balance
         self.betID = betID
+
+
 class LogObject(object):
     def __init__(self, command, classObject, className):
         self.command = command
         self.classObject = classObject
         self.className = className
+
+
 def Logging(CRUD, classObject):
-    #Need Individual Files for different database to keep track of up to dateness
+    # Need Individual Files for different database to keep track of up to dateness
     redisLog = open("Logs/RedisLog.txt", "r")
     neo4JLog = open("Logs/Neo4JLog.txt", "r")
-    #Load into python list
+    # Load into python list
     check_file = os.stat("Logs/RedisLog.txt").st_size
     check_file2 = os.stat("Logs/Neo4JLog.txt").st_size
-    if(check_file == 0):
+    if (check_file == 0):
         redisEventList = json.loads(redisLog.read())
     else:
         redisEventList = []
-    if(check_file2 == 0):
+    if (check_file2 == 0):
         neo4JEventList = json.loads(neo4JLog.read())
     else:
         neo4JEventList = []
 
     redisLog.close()
     neo4JLog.close()
-    #This isn't safe but no other solution for now
+    # This isn't safe but no other solution for now
     redisLog = open("Logs/RedisLog.txt", "w")
     neo4JLog = open("Logs/Neo4JLog.txt", "w")
     print(redisEventList)
-    #Create log entry
+    # Create log entry
     logEntry = json.dumps(LogObject(CRUD, json.dumps(classObject.__dict__), classObject.__class__.__name__).__dict__)
-    #Add to list of event
+    # Add to list of event
     redisEventList.append(logEntry)
     neo4JEventList.append(logEntry)
-    #Write to file
+    # Write to file
 
     redisLog.truncate()
     neo4JLog.truncate()
@@ -119,9 +127,10 @@ def Logging(CRUD, classObject):
     redisLog.close()
     neo4JLog.close()
 
+
 def Routing(CRUD, object):
-    #Theory: CUD should all go through RavenDB first. RavenDB acts as a Master database.
-    #Any changes should go through RavenDB first. Read should be routed to its approriate database.
+    # Theory: CUD should all go through RavenDB first. RavenDB acts as a Master database.
+    # Any changes should go through RavenDB first. Read should be routed to its approriate database.
     if CRUD == "CREATE":
         try:
             if object.__class__.__name__ == "User":
@@ -136,67 +145,80 @@ def Routing(CRUD, object):
         except:
             return 0
     elif CRUD == "READ":
-        try:
-            if object.__class__.__name__ == "User":
-                Redis.L
-            elif object.__class__.__name__ == "Bet":
-                print('x')
-            elif object.__class__.__name__ == "Player":
-                # Do not log
+        if object.__class__.__name__ == "User":
+            try:
+                if Redis.LoginCheck(object.username, object.hashPassword) == True:
+                    return True
+                else:
+                    return False
+            except:
                 try:
-                    result = RavenDB.GetPlayerStats()
-                    if result != 0:
-                        return result
+                    if neo4j.Login_Check(object.username, object.hashPassword) == True:
+                        return True
                     else:
-                        return 0
+                        return False
                 except:
+                    RavenDB.
+        elif object.__class__.__name__ == "Bet":
+            print('x')
+        elif object.__class__.__name__ == "Player":
+            # Do not log
+            try:
+                result = RavenDB.GetPlayerStats()
+                if result != 0:
+                    return result
+                else:
                     return 0
-            elif object.__class__.__name__ == "Team":
-                #Do not log
-                print('x')
-        except:
-            return 0
-    elif CRUD == "UPDATE":
-        try:
-            if object.__class__.__name__ == "User":
-                RavenDB.CreateUser(object.username, object.hashPassword)
-                Logging(CRUD, object)
-                return 1
-            elif object.__class__.__name__ == "Bet":
-                print('x')
-            elif object.__class__.__name__ == "Player":
-                #Do not log
-                print('x')
-            elif object.__class__.__name__ == "Team":
-                #Do not log
-                print('x')
-        except:
-            return 0
-        print("x")
-    elif CRUD == "DELETE":
-        try:
-            if object.__class__.__name__ == "User":
-                RavenDB.CreateUser(object.username, object.hashPassword)
-                Logging(CRUD, object)
-                return 1
-            elif object.__class__.__name__ == "Bet":
-                print('x')
-            elif object.__class__.__name__ == "Player":
-                #Do not log
-                print('x')
-            elif object.__class__.__name__ == "Team":
-                #Do not log
-                print('x')
-        except:
-            return 0
+            except:
+                return 0
+        elif object.__class__.__name__ == "Team":
+            # Do not log
+            print('x')
+    except:
+    return 0
 
-    #CRUD for each object. if success then log.
+elif CRUD == "UPDATE":
+try:
+    if object.__class__.__name__ == "User":
+        RavenDB.CreateUser(object.username, object.hashPassword)
+        Logging(CRUD, object)
+        return 1
+    elif object.__class__.__name__ == "Bet":
+        print('x')
+    elif object.__class__.__name__ == "Player":
+        # Do not log
+        print('x')
+    elif object.__class__.__name__ == "Team":
+        # Do not log
+        print('x')
+except:
+    return 0
+print("x")
+elif CRUD == "DELETE":
+try:
+    if object.__class__.__name__ == "User":
+        RavenDB.CreateUser(object.username, object.hashPassword)
+        Logging(CRUD, object)
+        return 1
+    elif object.__class__.__name__ == "Bet":
+        print('x')
+    elif object.__class__.__name__ == "Player":
+        # Do not log
+        print('x')
+    elif object.__class__.__name__ == "Team":
+        # Do not log
+        print('x')
+except:
+    return 0
 
 
+# CRUD for each object. if success then log.
 
 
 def UpdateNeo4J():
     neo4JLog = open("Logs/Neo4JLog.txt", "r")
+
+
 def UpdateRedis():
     redisLog = open("Logs/RedisLog.txt", "r")
     temp2 = json.loads(redisLog.read(), object_hook=lambda d: SimpleNamespace(**d))
@@ -205,7 +227,7 @@ def UpdateRedis():
 
 
 if __name__ == '__main__':
-    #file1 = open("Logs/Log.txt", "r")
+    # file1 = open("Logs/Log.txt", "r")
     UpdateRedis()
     ########## Loading & Adding JSON List example ##############
 

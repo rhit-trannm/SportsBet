@@ -37,4 +37,6 @@ def Login_Check(username, password):
     passwordHash = cursor.evaluate()
     if bcrypt.checkpw(password.encode("utf-8"), passwordHash.encode("utf-8")):
         return True
+    else:
+        return False
 

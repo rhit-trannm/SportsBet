@@ -171,6 +171,18 @@ def CreateUser(username, password):
                 return 0
 
 
+def LoginCheck(username, password):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query(object_type=User).where_equals("username", "Username"))
+            if query_result != []:
+                passwordHash = json.dumps(query_result[0].__dict__)
+                if bcrypt.checkpw(password.encode("utf-8"), passwordHash.encode("utf-8")):
+                    return True
+                else:
+                    return False
+
 
 
 def StoreObject(object):
@@ -221,18 +233,20 @@ if __name__ == '__main__':
     # GetAllTeamInfo()
     # StoreAllPlayers()
 
-    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
-        store.initialize()
-        with store.open_session() as session:
-            temp = User("sds", "2321")
-            query_result = list(session.query(object_type=User).where_equals("username", "Username"))
-            foo = session.load("User/Username", object_type=User)
-            print(foo.username)
-            foo.username = "Editted Username2"
-            session.save_changes()
-            query_result = list(session.query(object_type=User).where_equals("username", "Editted Username2"))
-            print(json.dumps(query_result[0].__dict__))
-            #print(query_result[0].Id)
+    # with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+    #     store.initialize()
+    #     with store.open_session() as session:
+    #         temp = User("sds", "2321")
+    #         query_result = list(session.query(object_type=User).where_equals("username", "Username"))
+    #         foo = session.load("User/Username", object_type=User)
+    #         print(foo.username)
+    #         foo.username = "Editted Username2"
+    #         session.save_changes()
+    #         query_result = list(session.query(object_type=User).where_equals("username", "Editted Username2"))
+    #         print(json.dumps(query_result[0].__dict__))
+    #         #print(query_result[0].Id)
+
+
     #CreateUser("Username", "Password")
     # print(playercareerstats.PlayerCareerStats(player_id=1630552).get_dict())
     # with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
