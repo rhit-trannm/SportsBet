@@ -76,16 +76,18 @@ class Match(object):
 
 class User(object):
     def __init__(self, username, hashPassword, balance=0, betID=[]):
+        self.Id = f'User/{username}'
         self.username = username
         self.hashPassword = hashPassword
         self.balance = balance
         self.betID = betID
-
+global IPList
+IPList = ['http://137.112.104.162:8080', 'http://137.112.104.155:8080', 'http://137.112.104.152:8080']
 
 def GetAllTeamInfo():
     nba_teams = teams.get_teams()
     teamList = []
-    with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         for team in nba_teams:
             temp = Team(team['id'], team['full_name'], team['abbreviation'], team['city'], team['state'],
@@ -108,7 +110,7 @@ def GetAllTeamInfo():
                         session.save_changes()
                         store.close()
                         break
-            with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
+            with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
                 store.initialize()
                 with store.open_session() as session:
 
@@ -139,20 +141,33 @@ def GetPlayerStats(playerID):
         return tempPlayer
 
 
+
+
+
+
 def CreateUser(username, password):
     # User key format: User_{Username}
     passwordSalt = bcrypt.gensalt()
+    password =  password.encode('utf-8')
     hashPassword = bcrypt.hashpw(password, passwordSalt)
+    password = password.decode('utf-8')
     temp = User(username, password)
-    with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            session.store(temp)
-            session.save_changes()
+            query_result = list(session.query(object_type=User).where_equals("username", "Username"))
+            if query_result == []:
+                session.store(temp)
+                session.save_changes()
+                return 1
+            else:
+                return 0
+
+
 
 
 def StoreObject(object):
-    with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
             query_result = list(session.query(object_type=Player).where_equals("PLAYER_ID", object.PLAYER_ID))
@@ -198,7 +213,17 @@ if __name__ == '__main__':
     # print(teamfinder.get_dict()['resultSets'][0]['rowSet'][0][14])
     # GetAllTeamInfo()
     # StoreAllPlayers()
-     print(playercareerstats.PlayerCareerStats(player_id=1630552).get_dict())
+
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            temp = User("sds", "2321")
+            query_result = list(session.query(object_type=User).where_equals("username", "Username"))
+
+            print(User)
+            print(query_result[0].Id)
+    #CreateUser("Username", "Password")
+    # print(playercareerstats.PlayerCareerStats(player_id=1630552).get_dict())
     # with document_store.DocumentStore(urls=["http://137.112.104.162:8080"], database="temp") as store:
     #     store.initialize()
     #     print("hello 2")

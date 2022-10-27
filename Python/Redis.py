@@ -4,10 +4,12 @@ import datetime
 def ConnectRedis():
         global r, serverList
         serverList = ['localhost','433-14.csse.rose-hulman.edu', '433-15.csse.rose-hulman.edu', '433-16.csse.rose-hulman.edu', '433-17.csse.rose-hulman.edu']
-        r = redis.Redis(
-            host= serverList[1],
-            port=6379,
-            decode_responses=True)
+        while True:
+            index = 0
+            r = redis.Redis(
+                host= serverList[index],
+                port=6379,
+                decode_responses=True)
 def CheckConnection():
     try:
         ConnectRedis()

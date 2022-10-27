@@ -5,6 +5,7 @@ from py2neo import Graph
 from pyravendb.store import document_store
 from types import SimpleNamespace
 import json
+import os
 #Principles When coding middle layer:
 #Read does not need to get written to file
 #Write needs to get written to file
@@ -85,12 +86,17 @@ def Logging(CRUD, classObject):
     redisLog = open("Logs/RedisLog.txt", "r")
     neo4JLog = open("Logs/Neo4JLog.txt", "r")
     #Load into python list
-    try:
+    check_file = os.stat("Logs/RedisLog.txt").st_size
+    check_file2 = os.stat("Logs/Neo4JLog.txt").st_size
+    if(check_file == 0):
         redisEventList = json.loads(redisLog.read())
-        neo4JEventList = json.loads(neo4JLog.read())
-    except:
+    else:
         redisEventList = []
+    if(check_file2 == 0):
+        neo4JEventList = json.loads(neo4JLog.read())
+    else:
         neo4JEventList = []
+
     redisLog.close()
     neo4JLog.close()
     #This isn't safe but no other solution for now
@@ -104,8 +110,6 @@ def Logging(CRUD, classObject):
     neo4JEventList.append(logEntry)
     #Write to file
 
-
-
     redisLog.truncate()
     neo4JLog.truncate()
 
@@ -115,16 +119,35 @@ def Logging(CRUD, classObject):
     redisLog.close()
     neo4JLog.close()
 
+def Routing(CRUD, object):
+    #Theory: CUD should all go through RavenDB first. RavenDB acts as a Master database.
+    #Any changes should go through RavenDB first. Read should be routed to its approriate database.
+    if CRUD == "CREATE":
+        print("x")
+    elif CRUD == "READ":
+        print("x")
+    elif CRUD == "UPDATE":
+        print("x")
+    elif CRUD == "DELETE":
+        print("x")
+
+    #CRUD for each object. if success then log.
+
+
 
 
 def UpdateNeo4J():
-    print('x')
+    neo4JLog = open("Logs/Neo4JLog.txt", "r")
 def UpdateRedis():
-    print('x')
+    redisLog = open("Logs/RedisLog.txt", "r")
+    temp2 = json.loads(redisLog.read(), object_hook=lambda d: SimpleNamespace(**d))
+    for item in temp2:
+        print(json.loads(item))
+
 
 if __name__ == '__main__':
     #file1 = open("Logs/Log.txt", "r")
-    Logging("Add", User("123", "password123"))
+    UpdateRedis()
     ########## Loading & Adding JSON List example ##############
 
     # file1 = open("Logs/Log.txt", "r")
