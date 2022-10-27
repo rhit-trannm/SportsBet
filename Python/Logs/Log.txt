@@ -1,0 +1,1 @@
+["{\"command\": \"ADD\", \"classObject\": \"{\\\"username\\\": \\\"user\\\", \\\"hashPassword\\\": \\\"pass\\\", \\\"balance\\\": 0, \\\"betID\\\": []}\", \"classType\": \"User\"}", "{\"command\": \"ADD\", \"classObject\": \"{\\\"username\\\": \\\"user2\\\", \\\"hashPassword\\\": \\\"pass2\\\", \\\"balance\\\": 0, \\\"betID\\\": []}\", \"classType\": \"User\"}"]

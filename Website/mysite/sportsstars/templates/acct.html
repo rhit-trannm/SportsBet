@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"> 
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Sports Stars</title>
+</head>
+
+<style>
+    div.form{
+        display: block;
+        text-align: center;
+    }
+
+    div.error{
+        color: red;
+        text-align: center;
+    }
+
+</style>
+<body style="background-color: #f5fdff">
+    <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
+    <br><br><br>
+    <center><h3>Create Account</h3></center>
+    <div class="error">
+        {{ error_message }}
+    </div>
+    <div class="form">
+        <form class="AcctForm" id="acct" method="POST" action="{% url 'acct' %}">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+                <br>
+            {% endfor %}
+        </form>
+        <input type="submit" name="submitlogin" id="submitlogin" form="acct">
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <div class="form">
+        <form method="GET" action="{% url 'login' %}">
+            <input type="submit" value="Back to Login"></input>
+        </form>
+    </div>
