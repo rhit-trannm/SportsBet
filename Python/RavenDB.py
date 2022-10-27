@@ -182,6 +182,8 @@ def LoginCheck(username, password):
                     return True
                 else:
                     return False
+            else:
+                return False
 
 
 
@@ -225,7 +227,7 @@ def StoreAllPlayers():
                 # print("ID already exists")
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     # teamfinder = commonteamroster.CommonTeamRoster(season='2021-22',
     #                                                team_id=f'1610612738',
     #                                                league_id_nullable='00')

@@ -158,58 +158,56 @@ def Routing(CRUD, object):
                     else:
                         return False
                 except:
-                    RavenDB.
+                    if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
+                        return True
+                    else:
+                        return False
         elif object.__class__.__name__ == "Bet":
             print('x')
         elif object.__class__.__name__ == "Player":
             # Do not log
-            try:
-                result = RavenDB.GetPlayerStats()
-                if result != 0:
-                    return result
-                else:
-                    return 0
-            except:
+            result = RavenDB.QueryPlayer(object.PLAYER_ID)
+            if result != 0:
+                return result
+            else:
                 return 0
         elif object.__class__.__name__ == "Team":
             # Do not log
             print('x')
-    except:
-    return 0
 
-elif CRUD == "UPDATE":
-try:
-    if object.__class__.__name__ == "User":
-        RavenDB.CreateUser(object.username, object.hashPassword)
-        Logging(CRUD, object)
-        return 1
-    elif object.__class__.__name__ == "Bet":
-        print('x')
-    elif object.__class__.__name__ == "Player":
-        # Do not log
-        print('x')
-    elif object.__class__.__name__ == "Team":
-        # Do not log
-        print('x')
-except:
-    return 0
-print("x")
-elif CRUD == "DELETE":
-try:
-    if object.__class__.__name__ == "User":
-        RavenDB.CreateUser(object.username, object.hashPassword)
-        Logging(CRUD, object)
-        return 1
-    elif object.__class__.__name__ == "Bet":
-        print('x')
-    elif object.__class__.__name__ == "Player":
-        # Do not log
-        print('x')
-    elif object.__class__.__name__ == "Team":
-        # Do not log
-        print('x')
-except:
-    return 0
+    elif CRUD == "UPDATE":
+        try:
+            if object.__class__.__name__ == "User":
+                RavenDB.CreateUser(object.username, object.hashPassword)
+                Logging(CRUD, object)
+                return 1
+            elif object.__class__.__name__ == "Bet":
+                print('x')
+            elif object.__class__.__name__ == "Player":
+                # Do not log
+                print('x')
+            elif object.__class__.__name__ == "Team":
+                # Do not log
+                print('x')
+        except:
+            return 0
+        print("x")
+    elif CRUD == "DELETE":
+        try:
+            if object.__class__.__name__ == "User":
+                RavenDB.CreateUser(object.username, object.hashPassword)
+                Logging(CRUD, object)
+                return 1
+            elif object.__class__.__name__ == "Bet":
+                print('x')
+            elif object.__class__.__name__ == "Player":
+                # Do not log
+                print('x')
+            elif object.__class__.__name__ == "Team":
+                # Do not log
+                print('x')
+        except:
+            return 0
 
 
 # CRUD for each object. if success then log.
