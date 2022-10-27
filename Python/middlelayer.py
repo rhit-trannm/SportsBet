@@ -96,11 +96,13 @@ def Logging(CRUD, classObject):
     # Load into python list
     check_file = os.stat("Logs/RedisLog.txt").st_size
     check_file2 = os.stat("Logs/Neo4JLog.txt").st_size
-    if (check_file == 0):
+    redisEventList = []
+    neo4JEventList = []
+    if (check_file != 0):
         redisEventList = json.loads(redisLog.read())
     else:
         redisEventList = []
-    if (check_file2 == 0):
+    if (check_file2 != 0):
         neo4JEventList = json.loads(neo4JLog.read())
     else:
         neo4JEventList = []
@@ -128,7 +130,7 @@ def Logging(CRUD, classObject):
     neo4JLog.close()
 
 
-def Routing(CRUD, object):
+def Routing(CRUD, object, command):
     # Theory: CUD should all go through RavenDB first. RavenDB acts as a Master database.
     # Any changes should go through RavenDB first. Read should be routed to its approriate database.
     if CRUD == "CREATE":
@@ -145,23 +147,43 @@ def Routing(CRUD, object):
         except:
             return 0
     elif CRUD == "READ":
+        #Need to check if each database is up to date according to logs.
         if object.__class__.__name__ == "User":
-            try:
-                if Redis.LoginCheck(object.username, object.hashPassword) == True:
-                    return True
-                else:
-                    return False
-            except:
+            if command == "Login":
                 try:
-                    if neo4j.Login_Check(object.username, object.hashPassword) == True:
+                    if Redis.LoginCheck(object.username, object.hashPassword) == True:
                         return True
                     else:
                         return False
                 except:
-                    if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
+                    try:
+                        if neo4j.Login_Check(object.username, object.hashPassword) == True:
+                            return True
+                        else:
+                            return False
+                    except:
+                        if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
+                            return True
+                        else:
+                            return False
+            elif command == "GetUser":
+                try:
+                    if Redis.GetUser(object.username) == True:
                         return True
                     else:
                         return False
+                except:
+                    try:
+                        if neo4j.GetUser(object.username) == True:
+                            return True
+                        else:
+                            return False
+                    except:
+                        if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
+                            return True
+                        else:
+                            return False
+
         elif object.__class__.__name__ == "Bet":
             print('x')
         elif object.__class__.__name__ == "Player":
@@ -174,7 +196,6 @@ def Routing(CRUD, object):
         elif object.__class__.__name__ == "Team":
             # Do not log
             print('x')
-
     elif CRUD == "UPDATE":
         try:
             if object.__class__.__name__ == "User":
@@ -214,6 +235,7 @@ def Routing(CRUD, object):
 
 
 def UpdateNeo4J():
+    #these updates should be multithreaded.
     neo4JLog = open("Logs/Neo4JLog.txt", "r")
 
 
@@ -226,7 +248,7 @@ def UpdateRedis():
 
 if __name__ == '__main__':
     # file1 = open("Logs/Log.txt", "r")
-    UpdateRedis()
+    print(Routing("CREATE", User('johnd', 'password123'), "Login"))
     ########## Loading & Adding JSON List example ##############
 
     # file1 = open("Logs/Log.txt", "r")
