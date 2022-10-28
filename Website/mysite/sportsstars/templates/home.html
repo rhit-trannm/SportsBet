@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Sports Stars</title>
 </head>
 
@@ -78,21 +79,43 @@
 </style>
 <body style="background-color: #f5fdff">
     <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
+    <div class="text-right">
+      <a class="btn btn-danger" href="{% url 'login' %}">Log Out</a>
+    </div>
     <div class="container" style="width: 50%; margin: auto">
-      <div class="row">
-        <br><br>
-        <center><h2>Welcome {{ username }}</h2></center>
         <br>
-        <center><h4>Balance: {{ balance }}</h4></center>
-      </div>
+        <center><h2>Welcome {{ username }}</h2>
+        <br>
+        <h4>Balance: ${{ balance }}</h4>
+        <br>
+        <h4>You have {{ friends }} friends</h4></center>
+    </div>
+
+    <br>
+    <br>
+    <div class="text-center">
+    {{ msg }}
+    <form method="POST" action="{% url 'friends' %}" id="friends">
+      {% csrf_token %}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+                <br>
+            {% endfor %}
+            <input type="hidden" name="username" value="{{ username }}">
+            <input type="submit" name="submitfriend" id="submitfriend" form="friends">
+    </form>
     </div>
 
     <form method="POST" action="{% url 'bets' %}" id="bets"></form>
 
     <form method="POST" action="{% url 'stats' %}" id="stats"></form>
 
-
-    <div class="btn-group">
+    <br>
+    <br>
+    <div class="text-center">
       <input type="submit" form="bets" value="View Bets">
       <input type="submit" form="stats" value="View Stats">
     </div>

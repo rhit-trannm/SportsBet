@@ -3,7 +3,7 @@
 import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
-from Python import Redis
+from Python import Redis, neo4j
 
 
 def main():
@@ -18,6 +18,7 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     Redis.ConnectRedis()
+    neo4j.ConnectNeo4J()
     execute_from_command_line(sys.argv)
 
 

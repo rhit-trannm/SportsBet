@@ -11,3 +11,6 @@ class AcctForm(forms.Form):
     birthday = forms.DateField(label='Birthday', widget=forms.SelectDateWidget(years=years))
     username = forms.CharField(label='Username', max_length=20)
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
+
+class FriendForm(forms.Form):
+    friend = forms.CharField(label='friend', max_length=20)

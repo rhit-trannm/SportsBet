@@ -20,11 +20,21 @@ def Get_Number_Of_Friends(username):
     friendCount = cursor.evaluate()
     return friendCount
 
+def Check_Friend(user, friend):
+    cursor  = graph.run(f"MATCH (User1)-[r:friend_of]-(User2)\nWHERE User1.username = '{user}' AND User2.username='{friend}' \nRETURN COUNT(r)")
+    friendCount = cursor.evaluate()
+    return friendCount
+
 def Get_Balance(username):
     cursor = graph.run(f"MATCH (User)\nWHERE User.username = '{username}' \nRETURN User.balance")
     balance = cursor.evaluate()
     return balance
 
+def Find_User(user):
+    cursor = graph.run(f"MATCH (u) WHERE u.username='{user}' \nRETURN COUNT(u)")
+    num = cursor.evaluate()
+    return num
+    
 
 def Create_User(name, username, password, birthday):
     passwordSalt = bcrypt.gensalt()
@@ -33,7 +43,7 @@ def Create_User(name, username, password, birthday):
     graph.run(f"CREATE CONSTRAINT usernameUniqueness ON (u:User) ASSERT u.username IS UNIQUE") #add constraint enforcing uniqueness of usernames
 
 def Login_Check(username, password):
-   userExists = graph.run(f"MATCH (u:User) WHERE User.username = {username} WITH COUNT(u) > {0} as node_exists RETURN node_exists")
+   userExists = graph.run(f"MATCH (u:User) WHERE u.username = '{username}' WITH COUNT(u) > {0} as node_exists RETURN node_exists")
    if(userExists):
     cursor = graph.run(f"MATCH(User) WHERE User.username = '{username}' RETURN User.passwordHash")
     passwordHash = cursor.evaluate()
@@ -68,7 +78,7 @@ def Payout_MoneyLine_Bets(currentDate, winningTeamAbbrev): #we assume a team can
 
 def Add_Friend(userUsername, userFriendUsername): #note that I assume both usernames are 
     #actual usernames in the system here, I may go back and change this later.
-    graph.run(f"MATCH (u.User) WHERE u.username = {userUsername} SET u.friends = u.friends + ['{userFriendUsername}']")
+    graph.run(f"MATCH (u1:Person), (u2:Person) WHERE u1.username = '{userUsername}' AND u2.username = '{userFriendUsername}' CREATE (u1)-[r:friend_of]->(u2)")
 
 def Remove_Friend(userUsername, userFriendUsername):
     #note that I assume both usernames are 
