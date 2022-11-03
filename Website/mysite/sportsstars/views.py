@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from sportsstars.forms import AcctForm, LoginForm, FriendForm
 from datetime import datetime, timedelta, date
-from Python import Redis, neo4j
+from Python import Redis, neo4j, middlelayer
+from Python.middlelayer import Logging
 
 
 
@@ -18,7 +19,7 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             try:
-                logged_in = neo4j.Login_Check(username, password)
+                logged_in = Redis.loginCheck(username, password)
             except:
                 logged_in = neo4j.Login_Check(username, password)
             if logged_in:
@@ -70,8 +71,8 @@ def acct(request):
                 newForm = AcctForm(initial={'name': name, 'birthday': birthday, 'username': username})
                 return render(request, 'acct.html', {'form': newForm, 'error_message': 'Age must be at least 21'})
             try:
-                #Redis.CreateUser(name, username, password, birthday)
-                neo4j.Create_User(name, username, password, birthday)
+                obj = middlelayer.User(name, username, password, birthday.strftime("%d-%m-%Y"), 1000)
+                Logging("CREATE", obj)
                 newForm = LoginForm(initial={'username':username})
                 return render(request, 'login.html', {'form':newForm})
             except ValueError:

@@ -75,7 +75,7 @@ class Match(object):
 
 
 class User(object):
-    def __init__(self, username, hashPassword, balance=0, betID=[]):
+    def __init__(self, name, username, hashPassword, birthday, balance=0, betID=[]):
         self.username = username
         self.hashPassword = hashPassword
         self.balance = balance
@@ -152,13 +152,13 @@ def GetPlayerStats(playerID):
 
 
 
-def CreateUser(username, password):
+def CreateUser(name, username, password, birthday):
     # User key format: User_{Username}
     passwordSalt = bcrypt.gensalt()
     password =  password.encode('utf-8')
     hashPassword = bcrypt.hashpw(password, passwordSalt)
     password = password.decode('utf-8')
-    temp = User(username, hashPassword)
+    temp = User(name, username, hashPassword.decode('utf-8'), birthday)
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
@@ -184,6 +184,14 @@ def LoginCheck(username, password):
                     return False
             else:
                 return False
+
+
+def TestConnection():
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            a = session.query()
+            return a
 
 
 

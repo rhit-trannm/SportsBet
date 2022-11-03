@@ -6,6 +6,21 @@ from pyravendb.store import document_store
 from types import SimpleNamespace
 import json
 import os
+import pymongo
+from pymongo import MongoClient
+from pymongo import ReturnDocument
+
+
+client = MongoClient("mongodb://logUser:abcd123@433-17.csse.rose-hulman.edu:27017,433-16.csse.rose-hulman.edu:27017,433-15.csse.rose-hulman.edu:27017/?replicaSet=rs0&authMechanism=DEFAULT&authSource=admin") 
+
+db = client['logs']
+
+counters = db['counter']
+
+def get_id(db):
+    new_id = counters.find_one_and_update({'_id':db}, {'$inc':{'last_written':1}}, return_document=ReturnDocument.AFTER)
+    return new_id['last_written']
+
 
 
 # Principles When coding middle layer:
@@ -75,9 +90,11 @@ class Team(object):
 
 
 class User(object):
-    def __init__(self, username, hashPassword, balance=0, betID=[]):
+    def __init__(self, name, username, password, birthday, balance=0, betID=[]):
+        self.name = name
         self.username = username
-        self.hashPassword = hashPassword
+        self.password = password
+        self.birthday = birthday
         self.balance = balance
         self.betID = betID
 
@@ -91,43 +108,88 @@ class LogObject(object):
 
 def Logging(CRUD, classObject):
     # Need Individual Files for different database to keep track of up to dateness
-    redisLog = open("Logs/RedisLog.txt", "r")
-    neo4JLog = open("Logs/Neo4JLog.txt", "r")
-    # Load into python list
-    check_file = os.stat("Logs/RedisLog.txt").st_size
-    check_file2 = os.stat("Logs/Neo4JLog.txt").st_size
-    redisEventList = []
-    neo4JEventList = []
-    if (check_file != 0):
-        redisEventList = json.loads(redisLog.read())
-    else:
-        redisEventList = []
-    if (check_file2 != 0):
-        neo4JEventList = json.loads(neo4JLog.read())
-    else:
-        neo4JEventList = []
+    # redisLog = open("Logs/RedisLog.txt", "r")
+    # neo4JLog = open("Logs/Neo4JLog.txt", "r")
+    # # Load into python list
+    # check_file = os.stat("Logs/RedisLog.txt").st_size
+    # check_file2 = os.stat("Logs/Neo4JLog.txt").st_size
+    # redisEventList = []
+    # neo4JEventList = []
+    # if (check_file != 0):
+    #     redisEventList = json.loads(redisLog.read())
+    # else:
+    #     redisEventList = []
+    # if (check_file2 != 0):
+    #     neo4JEventList = json.loads(neo4JLog.read())
+    # else:
+    #     neo4JEventList = []
 
-    redisLog.close()
-    neo4JLog.close()
-    # This isn't safe but no other solution for now
-    redisLog = open("Logs/RedisLog.txt", "w")
-    neo4JLog = open("Logs/Neo4JLog.txt", "w")
-    print(redisEventList)
+    # redisLog.close()
+    # neo4JLog.close()
+    # # This isn't safe but no other solution for now
+    # redisLog = open("Logs/RedisLog.txt", "w")
+    # neo4JLog = open("Logs/Neo4JLog.txt", "w")
+    # print(redisEventList)
     # Create log entry
-    logEntry = json.dumps(LogObject(CRUD, json.dumps(classObject.__dict__), classObject.__class__.__name__).__dict__)
+    logEntry = LogObject(CRUD, classObject.__dict__, classObject.__class__.__name__).__dict__
     # Add to list of event
-    redisEventList.append(logEntry)
-    neo4JEventList.append(logEntry)
-    # Write to file
+    if CRUD == 'CREATE' and classObject.__class__.__name__ == "User": #go to all 3 databases
+        logEntry['_id'] = get_id('redis')
+        db.redis.insert_one(logEntry)
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if CRUD == 'CREATE' and classObject.__class__.__name__ == "Bet":
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+    if CRUD == 'UPDATE' and classObject.__class__.__name__ == "User":
+        logEntry['_id'] = get_id('redis')
+        db.redis.insert_one(logEntry)
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if CRUD == 'UPDATE' and classObject.__class__.__name__ == "Bet":
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+    if CRUD == 'UPDATE' and classObject.__class__.__name__ == "Player":
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if CRUD == 'UPDATE' and classObject.__class__.__name__ == "Team":
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if CRUD == 'DELETE' and classObject.__class__.__name__ == "User":
+        logEntry['_id'] = get_id('redis')
+        db.redis.insert_one(logEntry)
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if CRUD == 'DELETE' and classObject.__class__.__name__ == "Bet":
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+    if CRUD == 'DELETE' and classObject.__class__.__name__ == "Player":
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if CRUD == 'DELETE' and classObject.__class__.__name__ == "Team":
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
 
-    redisLog.truncate()
-    neo4JLog.truncate()
+    #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY
+    
+    # redisEventList.append(logEntry)
+    # neo4JEventList.append(logEntry)
+    # # Write to file
 
-    redisLog.write(json.dumps(redisEventList))
-    neo4JLog.write(json.dumps(neo4JEventList))
+    # redisLog.truncate()
+    # neo4JLog.truncate()
 
-    redisLog.close()
-    neo4JLog.close()
+    # redisLog.write(json.dumps(redisEventList))
+    # neo4JLog.write(json.dumps(neo4JEventList))
+
+    # redisLog.close()
+    # neo4JLog.close()
 
 
 def Routing(CRUD, object, command):
@@ -146,7 +208,7 @@ def Routing(CRUD, object, command):
                 print('x')
         except:
             return 0
-    elif CRUD == "READ":
+    elif CRUD == "READ": #Not stored in Mongo, rather is sent directly to databases
         #Need to check if each database is up to date according to logs.
         if object.__class__.__name__ == "User":
             if command == "Login":

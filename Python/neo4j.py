@@ -40,7 +40,7 @@ def Create_User(name, username, password, birthday):
     passwordSalt = bcrypt.gensalt()
     hashPassword = bcrypt.hashpw(password.encode("utf-8"), passwordSalt)
     graph.run(f"CREATE (n:Person {{username: '{username}', passwordHash: '{hashPassword.decode()}', balance: {0}, fullName: '{name}', birthday: '{birthday}', friends: []}})")
-    graph.run(f"CREATE CONSTRAINT usernameUniqueness ON (u:User) ASSERT u.username IS UNIQUE") #add constraint enforcing uniqueness of usernames
+    #graph.run(f"CREATE CONSTRAINT usernameUniqueness ON (u:User) ASSERT u.username IS UNIQUE") #add constraint enforcing uniqueness of usernames
 
 def Login_Check(username, password):
    userExists = graph.run(f"MATCH (u:User) WHERE u.username = '{username}' WITH COUNT(u) > {0} as node_exists RETURN node_exists")
