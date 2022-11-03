@@ -79,10 +79,21 @@ def GetScoreboard():
         print("Request failed.")
 #ScratchPad
 def GetGame():
-    #gamefinder = leaguegamefinder.LeagueGameFinder(game_id_nullable='0012200018')
-    game = boxscoreadvancedv2.BoxScoreAdvancedV2(game_id='0012200018').get_dict()
+    gamefinder  = leaguegamefinder.LeagueGameFinder(game_id_nullable='0012200018')
+    games = gamefinder.get_data_frames()[0]
+
+    #print(games.head())
+    #print(games.groupby(games.SEASON_ID.str[-4:])[['GAME_ID']].count().loc['2022':])
+    games_1718 = games[games.GAME_ID == '0012200018']['WL']
+    print(games_1718)
+
+    #game = boxscoreadvancedv2.BoxScoreAdvancedV2(game_id='0012200018').get_dict()
     #games = game.get_data_frames()[0]
-    print(game['resultSets'])
+    #f = open("demofile2.json", "w")
+    #print(game['resultSets']['GAME_ID'])
+    #f.write(json.dumps(game))
+    #f.close()
+
     #print(games.head())
 
 if __name__ == '__main__':
