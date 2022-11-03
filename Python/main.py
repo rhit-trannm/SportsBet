@@ -9,6 +9,7 @@ from nba_api.stats.static import teams
 import json
 import numpy
 import pandas
+from nba_api.stats.endpoints import leaguegamefinder, boxscoreadvancedv2
 class Player(object):
     def __init__(self, PLAYER_ID, SEASON_ID,LEAGUE_ID,
                  TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
@@ -77,7 +78,15 @@ def GetScoreboard():
     except requests.exceptions.ConnectionError:
         print("Request failed.")
 #ScratchPad
-# if __name__ == '__main__':
+def GetGame():
+    #gamefinder = leaguegamefinder.LeagueGameFinder(game_id_nullable='0012200018')
+    game = boxscoreadvancedv2.BoxScoreAdvancedV2(game_id='0012200018').get_dict()
+    #games = game.get_data_frames()[0]
+    print(game['resultSets'])
+    #print(games.head())
+
+if __name__ == '__main__':
+    GetGame()
 #     print("X")
     #GetPlayerStats(203076)
 
