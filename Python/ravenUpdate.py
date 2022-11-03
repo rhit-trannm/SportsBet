@@ -8,7 +8,7 @@ logs = client['logs']
 counters = logs['counter']
 raven = logs['raven']
 
-def update_neo4j(doc):
+def update_raven(doc):
     CRUD = doc['command']
     Class = doc['className']
     obj = doc['classObject']
@@ -25,17 +25,22 @@ def update_neo4j(doc):
             RavenDB.DeleteUser(obj['username'])
             counters.update_one({'_id':'raven'},{"$set":{'last_updated':doc['_id']}})
 
-while raven.find_one({'_id':{'$gt':counters.find_one({'_id':'raven'})['last_updated']}}) is not None:
-    try:
-        RavenDB.TestConnection()
-    except:
-        time.sleep(0.100)
-        continue
-    docs = raven.find({'_id':{'$gt':counters.find_one({'_id':'raven'})['last_updated']}}).sort('_id')
-    for doc in docs:
-        update_neo4j(doc)
+while True:
+    while raven.find_one({'_id':{'$gt':counters.find_one({'_id':'raven'})['last_updated']}}) is not None:
+        try:
+            RavenDB.TestConnection()
+        except:
+            time.sleep(0.100)
+            continue
+        docs = raven.find({'_id':{'$gt':counters.find_one({'_id':'raven'})['last_updated']}}).sort('_id')
+        for doc in docs:
+            update_raven(doc)
 
 
-with raven.watch(full_document="updateLookup") as stream:
-    for change in stream:
-        update_neo4j(change['full_document'])
+    with raven.watch(full_document="updateLookup") as stream:
+        for change in stream:
+            try:
+                RavenDB.TestConnection()
+            except:
+                break
+            update_raven(change['full_document'])

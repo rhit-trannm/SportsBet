@@ -30,17 +30,22 @@ def update_neo4j(doc):
             neo4j.Delete_User(obj['username'])
             counters.update_one({'_id':'neo'},{"$set":{'last_updated':doc['_id']}})
 
-while neo.find_one({'_id':{'$gt':counters.find_one({'_id':'neo'})['last_updated']}}) is not None:
-    try:
-        neo4j.CheckConnection()
-    except:
-        time.sleep(0.100)
-        continue
-    docs = neo.find({'_id':{'$gt':counters.find_one({'_id':'neo'})['last_updated']}}).sort('_id')
-    for doc in docs:
-        update_neo4j(doc)
+while True:
+    while neo.find_one({'_id':{'$gt':counters.find_one({'_id':'neo'})['last_updated']}}) is not None:
+        try:
+            neo4j.CheckConnection()
+        except:
+            time.sleep(0.100)
+            continue
+        docs = neo.find({'_id':{'$gt':counters.find_one({'_id':'neo'})['last_updated']}}).sort('_id')
+        for doc in docs:
+            update_neo4j(doc)
 
 
-with neo.watch(full_document="updateLookup") as stream:
-    for change in stream:
-        update_neo4j(change['full_document'])
+    with neo.watch(full_document="updateLookup") as stream:
+        for change in stream:
+            try:
+                neo4j.CheckConnection()
+            except:
+                break
+            update_neo4j(change['full_document'])
