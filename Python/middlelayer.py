@@ -6,6 +6,23 @@ from pyravendb.store import document_store
 from types import SimpleNamespace
 import json
 import os
+import pymongo
+from pymongo import MongoClient
+from pymongo import ReturnDocument
+
+
+client = MongoClient('mongodb://logUser:abcd123@433-16.csse.rose-hulman.edu/?authMechanism=DEFAULT') 
+
+db = client['logs']
+
+counters = db['counter']
+
+def get_id(db):
+    new_id = counters.find_one_and_update({'_id':db}, {'$inc':{'last_written':1}}, return_document=ReturnDocument.AFTER)
+    return new_id['last_written']
+
+'_id':get_id('raven')
+
 
 
 # Principles When coding middle layer:
@@ -114,8 +131,53 @@ def Logging(CRUD, classObject):
     neo4JLog = open("Logs/Neo4JLog.txt", "w")
     print(redisEventList)
     # Create log entry
-    logEntry = json.dumps(LogObject(CRUD, json.dumps(classObject.__dict__), classObject.__class__.__name__).__dict__)
+    logEntry = LogObject(CRUD, classObject.__dict__, classObject.__class__.__name__).__dict__
     # Add to list of event
+    if(CRUD == 'CREATE' & object.__class__.__name__ == "User"): #go to all 3 databases
+        logEntry['_id'] = get_id('redis')
+        db.redis.insert_one(logEntry)
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if(CRUD == 'CREATE' & object.__class__.__name__ == "Bet"):
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+    if(CRUD == 'UPDATE' & object.__class__.__name__ == "User"):
+        logEntry['_id'] = get_id('redis')
+        db.redis.insert_one(logEntry)
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if(CRUD == 'UPDATE' & object.__class__.__name__ == "Bet"):
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+    if(CRUD == 'UPDATE' & object.__class__.__name__ == "Player"):
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if(CRUD == 'UPDATE' & object.__class__.__name__ == "Team"):
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if(CRUD == 'DELETE' & object.__class__.__name__ == "User"):
+        logEntry['_id'] = get_id('redis')
+        db.redis.insert_one(logEntry)
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if(CRUD == 'DELETE' & object.__class__.__name__ == "Bet"):
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+    if(CRUD == 'DELETE' & object.__class__.__name__ == "Player"):
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if(CRUD == 'DELETE' & object.__class__.__name__ == "Team"):
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+
+    #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY
+    
     redisEventList.append(logEntry)
     neo4JEventList.append(logEntry)
     # Write to file
@@ -146,12 +208,12 @@ def Routing(CRUD, object, command):
                 print('x')
         except:
             return 0
-    elif CRUD == "READ":
+    elif CRUD == "READ": #Not stored in Mongo, rather is sent directly to databases
         #Need to check if each database is up to date according to logs.
         if object.__class__.__name__ == "User":
             if command == "Login":
                 try:
-                    if Redis.LoginCheck(object.username, object.hashPassword) == True:
+                    if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
                         return True
                     else:
                         return False
@@ -162,7 +224,7 @@ def Routing(CRUD, object, command):
                         else:
                             return False
                     except:
-                        if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
+                        if Redis.LoginCheck(object.username, object.hashPassword) == True:
                             return True
                         else:
                             return False
