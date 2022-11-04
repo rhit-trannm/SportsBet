@@ -70,8 +70,11 @@ class Team(object):
 
 
 class Match(object):
-    def __init__(self):
-        self.playerid
+    def __init__(self, matchID, playerStats, teamStats, winningTeamID):
+        self.Id = f'Match/{matchID}'
+        self.playerStats = []
+        self.teamStats = []
+        self.winningTeamID = winningTeamID
 
 
 class User(object):
