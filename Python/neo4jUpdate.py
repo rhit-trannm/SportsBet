@@ -21,6 +21,9 @@ def update_neo4j(doc):
         if Class == "Bet":
             neo4j.Create_MoneyLine_Bet(obj['date'], obj['winner'], obj['amount'], obj['user'], obj['game'])
             counters.update_one({'_id':'neo'},{"$set":{'last_updated':doc['_id']}})
+        if Class == "Friends":
+            neo4j.Add_Friend(obj['user'], obj['friend'])
+            counters.update_one({'_id':'neo'},{"$set":{'last_updated':doc['_id']}})
     elif CRUD == 'UPDATE':
         if Class == "User":
             neo4j.Update_User(obj['name'], obj['username'], obj['password'], obj['birthday'])
@@ -39,6 +42,10 @@ while True:
             continue
         docs = neo.find({'_id':{'$gt':counters.find_one({'_id':'neo'})['last_updated']}}).sort('_id')
         for doc in docs:
+            try:
+                neo4j.CheckConnection()
+            except:
+                break
             update_neo4j(doc)
 
 
@@ -48,4 +55,4 @@ while True:
                 neo4j.CheckConnection()
             except:
                 break
-            update_neo4j(change['full_document'])
+            update_neo4j(change['fullDocument'])

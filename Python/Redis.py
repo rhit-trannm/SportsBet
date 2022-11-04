@@ -10,6 +10,8 @@ def ConnectRedis():
 def Ping():
     r.ping()
 
+def CheckUser(username):
+    return r.sismember('users', username)
     
 def CreateUser(name, username, password, birthday):
     #User key format: User_{Username}
@@ -51,6 +53,6 @@ if __name__ == '__main__':
 def loginCheck(username, password):
     if(r.sismember('users', username)):
         correctPasswordHash = r.hget(username, 'passwordHash')
-        if(bcrypt.checkpw(password.encode("utf-8"), correctPasswordHash.encode("utf-8"))):
+        if(bcrypt.checkpw(password.encode("utf-8"), correctPasswordHash)):
             return True
     return False

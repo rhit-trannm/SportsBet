@@ -99,6 +99,11 @@ class User(object):
         self.betID = betID
 
 
+class Friends(object):
+    def __init__(self, user, friend):
+        self.user = user
+        self.friend = friend
+
 class LogObject(object):
     def __init__(self, command, classObject, className):
         self.command = command
@@ -141,6 +146,9 @@ def Logging(CRUD, classObject):
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
     if CRUD == 'CREATE' and classObject.__class__.__name__ == "Bet":
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+    if CRUD == 'CREATE' and classObject.__class__.__name__ == "Friends":
         logEntry['_id'] = get_id('neo')
         db.neo.insert_one(logEntry)
     if CRUD == 'UPDATE' and classObject.__class__.__name__ == "User":

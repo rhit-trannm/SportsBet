@@ -47,6 +47,11 @@ while True:
         docs = redis.find({'_id':{'$gt':counters.find_one({'_id':'redis'})['last_updated']}}).sort('_id')
         #update for each doc
         for doc in docs:
+            try:
+                Redis.Ping()
+            except:
+                #break and go back to the top and wait
+                break
             update_redis(doc)
 
 

@@ -34,6 +34,10 @@ while True:
             continue
         docs = raven.find({'_id':{'$gt':counters.find_one({'_id':'raven'})['last_updated']}}).sort('_id')
         for doc in docs:
+            try:
+                RavenDB.TestConnection()
+            except:
+                break
             update_raven(doc)
 
 
@@ -43,4 +47,4 @@ while True:
                 RavenDB.TestConnection()
             except:
                 break
-            update_raven(change['full_document'])
+            update_raven(change['fullDocument'])

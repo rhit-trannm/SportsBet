@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from sportsstars.forms import AcctForm, LoginForm, FriendForm
 from datetime import datetime, timedelta, date
-from Python import Redis, neo4j, middlelayer
+from Python import Redis, neo4j, middlelayer, RavenDB
 from Python.middlelayer import Logging
-
+import redis
+import py2neo
 
 
 # Create your views here.
@@ -20,8 +21,13 @@ def login(request):
             password = form.cleaned_data['password']
             try:
                 logged_in = Redis.loginCheck(username, password)
-            except:
+            except redis.exceptions.ConnectionError:
                 logged_in = neo4j.Login_Check(username, password)
+            except py2neo.ClientError:
+                logged_in = RavenDB.LoginCheck(username, password)
+            except:
+                newForm = LoginForm(initial={'username':username})
+                return render(request, 'login.html', {'form':newForm, 'error_message': 'Login is unavailable at this time.'})
             if logged_in:
                 #Login successful
                 return homeRender(request, username)
@@ -36,8 +42,14 @@ def login(request):
 
 
 def homeRender(request, username, msg=''):
-    balance = neo4j.Get_Balance(username)
-    num_Friends = neo4j.Get_Number_Of_Friends(username)
+    try:
+        balance = neo4j.Get_Balance(username)
+    except:
+        balance = 'UNAVAILABLE'
+    try:
+        num_Friends = neo4j.Get_Number_Of_Friends(username)
+    except:
+        num_Friends = 'UNAVAILABLE'
     form = FriendForm()
     return render(request, 'home.html', {'username': username, 'balance': balance, 'friends': num_Friends, 'form':form, 'msg':msg})
 
@@ -47,13 +59,21 @@ def friends(request):
         if form.is_valid():
             friend = form.cleaned_data['friend']
             user = request.POST.get('username')
-            friend_exists = neo4j.Find_User(friend)
-            if friend_exists==0:
-                return homeRender(request, user, f'user {friend} does not exist')
+            try:
+                friend_exists = neo4j.Find_User(friend)
+                if friend_exists==0:
+                    return homeRender(request, user, f'user {friend} does not exist')
+            except:
+                pass
+
             else:
-                if neo4j.Check_Friend(user, friend) == 1:
-                    return homeRender(request, user, f'user {friend} is already your friend')
-                neo4j.Add_Friend(user, friend)
+                try:
+                    if neo4j.Check_Friend(user, friend) == 1:
+                        return homeRender(request, user, f'user {friend} is already your friend')
+                except:
+                    pass
+                Friend = middlelayer.Friends(user, friend)
+                middlelayer.Logging('CREATE', Friend)
                 return homeRender(request, user, f'user {friend} added as friend')
     else:
         return login(request)

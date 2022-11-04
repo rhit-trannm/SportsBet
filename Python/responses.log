@@ -331,3 +331,106 @@ DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.155:8
 DEBUG:urllib3.connectionpool:http://137.112.104.155:8080 "POST /databases/temp/bulk_docs HTTP/1.1" 201 None
 DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.155:8080
 DEBUG:urllib3.connectionpool:http://137.112.104.155:8080 "PUT /databases/temp/hilo/return?tag=users&end=49&last=18 HTTP/1.1" 204 0
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-15.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-15.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#D27F] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#D27F] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#D27F] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#D27F] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#D27F] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.10.6-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#D27F] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'server': 'Neo4j/4.4.12', 'connection_id': 'bolt-145', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> from thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> acquired by thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> from thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> acquired by thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client.bolt:[#D27F] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D27F] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D27F] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'t_first': 2, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D27F] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'bookmark': 'FB:kcwQJ+XtpQi/Q1u9p+nhGoM75iKQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> from thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> acquired by thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client.bolt:[#D27F] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D27F] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D27F] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'t_first': 0, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D27F] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'bookmark': 'FB:kcwQJ+XtpQi/Q1u9p+nhGoM75iKQ', 'type': 'r', 't_last': 1, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> from thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> acquired by thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client.bolt:[#D27F] C: RUN "MATCH (u1:Person), (u2:Person) WHERE u1.username = 'bbob' AND u2.username = 'jjacob1' CREATE (u1)-[r:friend_of]->(u2)" {} {}
+DEBUG:py2neo.client.bolt:[#D27F] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D27F] C: (Sent 142 bytes)
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'t_first': 14, 'fields': []}
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'bookmark': 'FB:kcwQJ+XtpQi/Q1u9p+nhGoM75iOQ', 'stats': {'relationships-created': 2}, 'type': 'w', 't_last': 0, 'db': 'neo4j', 'notifications': [{'severity': 'WARNING', 'description': 'If a part of a query contains multiple disconnected patterns, this will build a cartesian product between all those parts. This may produce a large amount of data and slow down query processing. While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product, perhaps by adding a relationship between the different parts or by using OPTIONAL MATCH (identifier is: (u2))', 'code': 'Neo.ClientNotification.Statement.CartesianProductWarning', 'position': {'column': 1, 'offset': 0, 'line': 1}, 'title': 'This query builds a cartesian product between disconnected patterns.'}]}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> from thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AA86A6CB20>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> acquired by thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client.bolt:[#D27F] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D27F] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D27F] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'t_first': 1, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D27F] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#D27F] S: SUCCESS {'bookmark': 'FB:kcwQJ+XtpQi/Q1u9p+nhGoM75iOQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AA86A6CBE0> from thread <_MainThread(MainThread, started 35236)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-15.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000019D39D7CAC0>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-15.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#D2A9] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#D2A9] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#D2A9] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#D2A9] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#D2A9] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.10.6-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#D2A9] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#D2A9] S: SUCCESS {'server': 'Neo4j/4.4.12', 'connection_id': 'bolt-146', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> from thread <_MainThread(MainThread, started 48820)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> does not belong to pool <py2neo.client.ConnectionPool object at 0x0000019D39D7CAC0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> acquired by thread <_MainThread(MainThread, started 48820)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> from thread <_MainThread(MainThread, started 48820)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000019D39D7CAC0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000019D39D7CAC0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> acquired by thread <_MainThread(MainThread, started 48820)>
+DEBUG:py2neo.client.bolt:[#D2A9] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D2A9] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D2A9] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D2A9] S: SUCCESS {'t_first': 1, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D2A9] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#D2A9] S: SUCCESS {'bookmark': 'FB:kcwQJ+XtpQi/Q1u9p+nhGoM75iOQ', 'type': 'r', 't_last': 1, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> from thread <_MainThread(MainThread, started 48820)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000019D39D7CAC0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000019D39D7CAC0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> acquired by thread <_MainThread(MainThread, started 48820)>
+DEBUG:py2neo.client.bolt:[#D2A9] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D2A9] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D2A9] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D2A9] S: SUCCESS {'t_first': 1, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D2A9] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#D2A9] S: SUCCESS {'bookmark': 'FB:kcwQJ+XtpQi/Q1u9p+nhGoM75iOQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> from thread <_MainThread(MainThread, started 48820)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000019D39D7CAC0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000019D39D7CAC0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> acquired by thread <_MainThread(MainThread, started 48820)>
+DEBUG:py2neo.client.bolt:[#D2A9] C: RUN "MATCH (u1:Person), (u2:Person) WHERE u1.username = 'bbob' AND u2.username = 'jsmith' CREATE (u1)-[r:friend_of]->(u2)" {} {}
+DEBUG:py2neo.client.bolt:[#D2A9] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D2A9] C: (Sent 141 bytes)
+DEBUG:py2neo.client.bolt:[#D2A9] S: SUCCESS {'t_first': 15, 'fields': []}
+DEBUG:py2neo.client.bolt:[#D2A9] S: SUCCESS {'bookmark': 'FB:kcwQJ+XtpQi/Q1u9p+nhGoM75iSQ', 'stats': {'relationships-created': 1}, 'type': 'w', 't_last': 0, 'db': 'neo4j', 'notifications': [{'severity': 'WARNING', 'description': 'If a part of a query contains multiple disconnected patterns, this will build a cartesian product between all those parts. This may produce a large amount of data and slow down query processing. While occasionally intended, it may often be possible to reformulate the query that avoids the use of this cross product, perhaps by adding a relationship between the different parts or by using OPTIONAL MATCH (identifier is: (u2))', 'code': 'Neo.ClientNotification.Statement.CartesianProductWarning', 'position': {'column': 1, 'offset': 0, 'line': 1}, 'title': 'This query builds a cartesian product between disconnected patterns.'}]}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000019D39D7CB80> from thread <_MainThread(MainThread, started 48820)>
