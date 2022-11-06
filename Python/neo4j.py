@@ -2,14 +2,8 @@ import json
 
 from py2neo import Graph
 import bcrypt
+import RavenDB
 from pyravendb.store import document_store
-
-class User(object):
-    def __init__(self, username, hashPassword, balance=0, betID=[]):
-        self.username = username
-        self.hashPassword = hashPassword
-        self.balance = balance
-        self.betID = betID
 
 def ConnectNeo4J():
     global graph

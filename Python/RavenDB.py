@@ -68,8 +68,6 @@ class Team(object):
         self.state = state
         self.year_founded = year_founded
         self.team_members = team_members
-
-
 class Match(object):
     def __init__(self, date, matchID, homeTeamID, awayTeamID, winningTeamID = None):
         self.Id = f'Match/{matchID}'
@@ -90,7 +88,7 @@ class Bet(object):
         self.type = type[typeIndex]
 
 class User(object):
-    def __init__(self, name, username, hashPassword, birthday, balance=0, betID=[]):
+    def __init__(self, username, hashPassword,name = None, birthday = None, balance=0, betID=[]):
         self.username = username
         self.hashPassword = hashPassword
         self.birthday = birthday
