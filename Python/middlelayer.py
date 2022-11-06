@@ -57,29 +57,6 @@ class LogObject(object):
 
 
 def Logging(CRUD, classObject):
-    # Need Individual Files for different database to keep track of up to dateness
-    # redisLog = open("Logs/RedisLog.txt", "r")
-    # neo4JLog = open("Logs/Neo4JLog.txt", "r")
-    # # Load into python list
-    # check_file = os.stat("Logs/RedisLog.txt").st_size
-    # check_file2 = os.stat("Logs/Neo4JLog.txt").st_size
-    # redisEventList = []
-    # neo4JEventList = []
-    # if (check_file != 0):
-    #     redisEventList = json.loads(redisLog.read())
-    # else:
-    #     redisEventList = []
-    # if (check_file2 != 0):
-    #     neo4JEventList = json.loads(neo4JLog.read())
-    # else:
-    #     neo4JEventList = []
-
-    # redisLog.close()
-    # neo4JLog.close()
-    # # This isn't safe but no other solution for now
-    # redisLog = open("Logs/RedisLog.txt", "w")
-    # neo4JLog = open("Logs/Neo4JLog.txt", "w")
-    # print(redisEventList)
     # Create log entry
     logEntry = LogObject(CRUD, classObject.__dict__, classObject.__class__.__name__).__dict__
     # Add to list of event
@@ -105,27 +82,10 @@ def Logging(CRUD, classObject):
         db.neo.insert_one(logEntry)
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
-
-
     #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY
-    
-    # redisEventList.append(logEntry)
-    # neo4JEventList.append(logEntry)
-    # # Write to file
-
-    # redisLog.truncate()
-    # neo4JLog.truncate()
-
-    # redisLog.write(json.dumps(redisEventList))
-    # neo4JLog.write(json.dumps(neo4JEventList))
-
-    # redisLog.close()
-    # neo4JLog.close()
 
 
 def Routing(CRUD, object, command):
-    # Theory: CUD should all go through RavenDB first. RavenDB acts as a Master database.
-    # Any changes should go through RavenDB first. Read should be routed to its approriate database.
     if CRUD == "CREATE" or CRUD == "UPDATE" or CRUD == "DELETE":
         Logging(CRUD, object)
     elif CRUD == "READ": #Not stored in Mongo, rather is sent directly to databases
@@ -178,11 +138,6 @@ def Routing(CRUD, object, command):
         elif object.__class__.__name__ == "Team":
             # Do not log
             print('x')
-
-
-# CRUD for each object. if success then log.
-
-
 def UpdateNeo4J():
     #these updates should be multithreaded.
     neo4JLog = open("Logs/Neo4JLog.txt", "r")
@@ -197,22 +152,3 @@ def UpdateRedis():
 
 if __name__ == '__main__':
     file1 = open("Logs/Log.txt", "r")
-    #print(Routing("CREATE", User('johnd', 'password123'), "Login"))
-    ########## Loading & Adding JSON List example ##############
-
-    # file1 = open("Logs/Log.txt", "r")
-    # temp2 = json.loads(file1.read(), object_hook=lambda d: SimpleNamespace(**d))
-    # temp2.append(json.dumps(LogObject("ADD", json.dumps(User("user", "pass").__dict__), "User").__dict__))
-    # print(f"{temp2}")
-
-    ########## Loading & Adding JSON List example ##############
-
-    ########## Storing List as JSON example ##############
-
-    # file1 = open("Logs/Log.txt", "a")
-    # temp = LogObject("ADD", json.dumps(User("user", "pass").__dict__), "User")
-    # temp2 = LogObject("ADD", json.dumps(User("user2", "pass2").__dict__), "User")
-    # lists = [json.dumps(temp.__dict__), json.dumps(temp2.__dict__)]
-    # file1.write(json.dumps(lists))
-
-    ########## Storing List as JSON example ##############
