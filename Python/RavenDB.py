@@ -93,6 +93,8 @@ class User(object):
     def __init__(self, name, username, hashPassword, birthday, balance=0, betID=[]):
         self.username = username
         self.hashPassword = hashPassword
+        self.birthday = birthday
+        self.name = name
         self.balance = balance
         self.betID = betID
 global IPList
