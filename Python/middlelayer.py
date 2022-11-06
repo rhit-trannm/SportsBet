@@ -38,65 +38,10 @@ def get_id(db):
 
 # In general, RavenDB should never go down. If it does go down, the entire system should go down.
 
-class Player(object):
-    def __init__(self, PLAYER_ID, SEASON_ID, LEAGUE_ID,
-                 TEAM_ID, TEAM_ABBREVIATION, PLAYER_AGE, GP,
-                 GS, MIN, FGM, FGA, FG_PCT, FG3M, FG3A, FG3_PCT,
-                 FTM, FTA, FT_PCT, OREB, DREB, REB, AST, STL, BLK, TOV, PF, PTS):
-        self.Id = f'Player/{PLAYER_ID}'
-        self.full_name = None
-        self.first_name = None
-        self.last_name = None
-        self.PLAYER_ID = PLAYER_ID
-        self.SEASON_ID = SEASON_ID
-        self.LEAGUE_ID = LEAGUE_ID
-        self.TEAM_ID = TEAM_ID
-        self.TEAM_ABBREVIATION = TEAM_ABBREVIATION
-        self.PLAYER_AGE = PLAYER_AGE
-        self.GP = GP
-        self.GS = GS
-        self.MIN = MIN
-        self.FGM = FGM
-        self.FGA = FGA
-        self.FG_PCT = FG_PCT
-        self.FG3M = FG3M
-        self.FG3A = FG3A
-        self.FG3_PCT = FG3_PCT
-        self.FTM = FTM
-        self.FTA = FTA
-        self.FT_PCT = FT_PCT
-        self.OREB = OREB
-        self.DREB = DREB
-        self.REB = REB
-        self.AST = AST
-        self.STL = STL
-        self.BLK = BLK
-        self.TOV = TOV
-        self.PF = PF
-        self.PTS = PTS
 
 
-class Team(object):
-    def __init__(self, team_id, full_name, abbreviation, city,
-                 state, year_founded, team_members=[]):
-        self.Id = f'Team/{team_id}'
-        self.team_id = team_id
-        self.full_name = full_name
-        self.abbreviation = abbreviation
-        self.city = city
-        self.state = state
-        self.year_founded = year_founded
-        self.team_members = team_members
 
 
-class User(object):
-    def __init__(self, name, username, password, birthday, balance=0, betID=[]):
-        self.name = name
-        self.username = username
-        self.password = password
-        self.birthday = birthday
-        self.balance = balance
-        self.betID = betID
 
 
 class Friends(object):
@@ -181,19 +126,8 @@ def Logging(CRUD, classObject):
 def Routing(CRUD, object, command):
     # Theory: CUD should all go through RavenDB first. RavenDB acts as a Master database.
     # Any changes should go through RavenDB first. Read should be routed to its approriate database.
-    if CRUD == "CREATE":
-        try:
-            if object.__class__.__name__ == "User":
-                try:
-                    RavenDB.CreateUser(object.username, object.hashPassword)
-                    Logging(CRUD, object)
-                    return 1
-                except:
-                    return 0
-            elif object.__class__.__name__ == "Bet":
-                print('x')
-        except:
-            return 0
+    if CRUD == "CREATE" or CRUD == "UPDATE" or CRUD == "DELETE":
+        Logging(CRUD, object)
     elif CRUD == "READ": #Not stored in Mongo, rather is sent directly to databases
         #Need to check if each database is up to date according to logs.
         if object.__class__.__name__ == "User":
@@ -244,39 +178,6 @@ def Routing(CRUD, object, command):
         elif object.__class__.__name__ == "Team":
             # Do not log
             print('x')
-    elif CRUD == "UPDATE":
-        try:
-            if object.__class__.__name__ == "User":
-                RavenDB.CreateUser(object.username, object.hashPassword)
-                Logging(CRUD, object)
-                return 1
-            elif object.__class__.__name__ == "Bet":
-                print('x')
-            elif object.__class__.__name__ == "Player":
-                # Do not log
-                print('x')
-            elif object.__class__.__name__ == "Team":
-                # Do not log
-                print('x')
-        except:
-            return 0
-        print("x")
-    elif CRUD == "DELETE":
-        try:
-            if object.__class__.__name__ == "User":
-                RavenDB.CreateUser(object.username, object.hashPassword)
-                Logging(CRUD, object)
-                return 1
-            elif object.__class__.__name__ == "Bet":
-                print('x')
-            elif object.__class__.__name__ == "Player":
-                # Do not log
-                print('x')
-            elif object.__class__.__name__ == "Team":
-                # Do not log
-                print('x')
-        except:
-            return 0
 
 
 # CRUD for each object. if success then log.
@@ -295,8 +196,8 @@ def UpdateRedis():
 
 
 if __name__ == '__main__':
-    # file1 = open("Logs/Log.txt", "r")
-    print(Routing("CREATE", User('johnd', 'password123'), "Login"))
+    file1 = open("Logs/Log.txt", "r")
+    #print(Routing("CREATE", User('johnd', 'password123'), "Login"))
     ########## Loading & Adding JSON List example ##############
 
     # file1 = open("Logs/Log.txt", "r")
