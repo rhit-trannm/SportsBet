@@ -87,7 +87,7 @@ def GetWinningTeam(gameId):
         for games in gamefinder:
             #print(games)
             if games[4] == gameId:
-                print(games[1])
+                #print(games[1])
                 return games[1]
     return None
     # games = gamefinder.get_data_frames()[0]

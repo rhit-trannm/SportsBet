@@ -1,6 +1,7 @@
 from pyravendb.store import document_store
 import bcrypt
 import time
+import uuid
 from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats, \
     commonteamroster
 from nba_api.stats.static import teams, players
@@ -77,7 +78,16 @@ class Match(object):
         self.homeTeamId = homeTeamID
         self.awayTeamID = awayTeamID
         self.winningTeamID = winningTeamID
-
+global type
+type = ["Moneyline", "OverUnder"]
+class Bet(object):
+    def __init__(self, id, user, typeIndex, matchId):
+        #Id = uuid.uuid1()
+        self.Id = f'Match/{id}'
+        self.betId = id
+        self.user = user
+        self.matchId = matchId
+        self.type = type[typeIndex]
 
 class User(object):
     def __init__(self, name, username, hashPassword, birthday, balance=0, betID=[]):
@@ -100,7 +110,7 @@ def EditMatch(match):
         store.initialize()
         with store.open_session() as session:
             tempmatch = session.load(f"Match/{match.matchId}")
-            tempmatch = match
+            tempmatch.winningTeamID = match.winningTeamID
             session.save_changes()
 def GetAllTeamInfo():
     nba_teams = teams.get_teams()
