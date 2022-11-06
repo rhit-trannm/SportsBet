@@ -70,10 +70,12 @@ class Team(object):
 
 
 class Match(object):
-    def __init__(self, matchID, playerStats, teamStats, winningTeamID):
+    def __init__(self, date, matchID, homeTeamID, awayTeamID, winningTeamID = None):
         self.Id = f'Match/{matchID}'
-        self.playerStats = []
-        self.teamStats = []
+        self.matchId = matchID
+        self.date = date
+        self.homeTeamId = homeTeamID
+        self.awayTeamID = awayTeamID
         self.winningTeamID = winningTeamID
 
 
@@ -86,6 +88,20 @@ class User(object):
 global IPList
 IPList = ['http://137.112.104.162:8080', 'http://137.112.104.155:8080', 'http://137.112.104.152:8080']
 
+
+def CreateMatch(match):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            session.store(match)
+            session.save_changes()
+def EditMatch(match):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            tempmatch = session.load(f"Match/{match.matchId}")
+            tempmatch = match
+            session.save_changes()
 def GetAllTeamInfo():
     nba_teams = teams.get_teams()
     teamList = []

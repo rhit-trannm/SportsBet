@@ -7,9 +7,11 @@ from nba_api.live.nba.endpoints import boxscore
 from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats
 from nba_api.stats.static import teams
 import json
+import RavenDB
 import numpy
 import pandas
 from nba_api.stats.endpoints import leaguegamefinder, boxscoreadvancedv2
+from datetime import datetime
 class Player(object):
     def __init__(self, PLAYER_ID, SEASON_ID,LEAGUE_ID,
                  TEAM_ID,TEAM_ABBREVIATION, PLAYER_AGE,GP,
@@ -67,7 +69,7 @@ def GetScoreboard():
         current_scoreboard_info = scoreboardv2.ScoreboardV2(
             day_offset=0,
             game_date=date,
-            league_id=id
+            league_id='00'
         )
 
         current_scoreboard_info.get_dict()
@@ -78,26 +80,61 @@ def GetScoreboard():
     except requests.exceptions.ConnectionError:
         print("Request failed.")
 #ScratchPad
-def GetGame():
-    gamefinder  = leaguegamefinder.LeagueGameFinder(game_id_nullable='0012200018')
-    games = gamefinder.get_data_frames()[0]
+def GetWinningTeam(gameId):
+    #gameid is a string
+    gamefinder = leaguegamefinder.LeagueGameFinder(game_id_nullable=gameId).get_dict()['resultSets'][0]['rowSet']
+    if gamefinder is not None:
+        for games in gamefinder:
+            #print(games)
+            if games[4] == gameId:
+                print(games[1])
+                return games[1]
+    return None
+    # games = gamefinder.get_data_frames()[0]
+    # games_1718 = games[games.GAME_ID == str(gameId)]['WL']
+    # #for item in games_1718:
+    # print(games_1718)
+    # print(gamefinder.get_dict()['resultSets'][0]['rowSet'][0])
+def GetGame(date):
+    current_scoreboard_info = scoreboardv2.ScoreboardV2(
+        day_offset=0,
+        game_date=date,
+        league_id='00'
+    )
+    matchList = []
+    dataset = current_scoreboard_info.get_dict()['resultSets'][0]['rowSet']
+    for data in dataset:
+        #GAME_ID = 2, HOME_TEAM_ID = 6, VISITOR_TEAM_ID = 7, GAME_DATE_EST = 0
+        winningTeamId = GetWinningTeam(data[2])
+        date_time_str = data[0][:10]
+        date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d').strftime("%Y-%m-%d")
+        if winningTeamId is None:
+            match = RavenDB.Match(date_time_obj, int(data[2]), int(data[6]), int(data[7]))
+        else:
+            match = RavenDB.Match(date_time_obj, int(data[2]), int(data[6]), int(data[7]), int(winningTeamId))
+        matchList.append(match)
+    for match in matchList:
+        RavenDB.CreateTeam(match)
+        #print(json.dumps(match.__dict__))
+
 
     #print(games.head())
     #print(games.groupby(games.SEASON_ID.str[-4:])[['GAME_ID']].count().loc['2022':])
-    games_1718 = games[games.GAME_ID == '0012200018']['WL']
-    print(games_1718)
+    #games_1718 = games[games.GAME_ID == '0012200018']
+    #print(games_1718)
 
-    #game = boxscoreadvancedv2.BoxScoreAdvancedV2(game_id='0012200018').get_dict()
+    #game = boxscoreadvancedv2.BoxScoreAdvancedV2(game_id='0012200018')
     #games = game.get_data_frames()[0]
     #f = open("demofile2.json", "w")
-    #print(game['resultSets']['GAME_ID'])
+    #print(games['resultSets']['GAME_ID'])
     #f.write(json.dumps(game))
     #f.close()
 
     #print(games.head())
 
 if __name__ == '__main__':
-    GetGame()
+    GetGame('2022-10-6')
+    #GetWinningTeam('0012200018')
 #     print("X")
     #GetPlayerStats(203076)
 
