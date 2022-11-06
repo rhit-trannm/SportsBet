@@ -113,8 +113,9 @@ def GetGame(date):
         else:
             match = RavenDB.Match(date_time_obj, int(data[2]), int(data[6]), int(data[7]), int(winningTeamId))
         matchList.append(match)
-    for match in matchList:
-        RavenDB.CreateTeam(match)
+    # for match in matchList:
+    #     RavenDB.CreateTeam(match)
+    return matchList
         #print(json.dumps(match.__dict__))
 
 

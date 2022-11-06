@@ -138,51 +138,29 @@ def Logging(CRUD, classObject):
     # Create log entry
     logEntry = LogObject(CRUD, classObject.__dict__, classObject.__class__.__name__).__dict__
     # Add to list of event
-    if CRUD == 'CREATE' and classObject.__class__.__name__ == "User": #go to all 3 databases
+    if classObject.__class__.__name__ == "User": #go to all 3 databases
         logEntry['_id'] = get_id('redis')
         db.redis.insert_one(logEntry)
         logEntry['_id'] = get_id('neo')
         db.neo.insert_one(logEntry)
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
-    if CRUD == 'CREATE' and classObject.__class__.__name__ == "Bet":
-        logEntry['_id'] = get_id('neo')
-        db.neo.insert_one(logEntry)
-    if CRUD == 'CREATE' and classObject.__class__.__name__ == "Friends":
-        logEntry['_id'] = get_id('neo')
-        db.neo.insert_one(logEntry)
-    if CRUD == 'UPDATE' and classObject.__class__.__name__ == "User":
-        logEntry['_id'] = get_id('redis')
-        db.redis.insert_one(logEntry)
+    if classObject.__class__.__name__ == "Bet":
         logEntry['_id'] = get_id('neo')
         db.neo.insert_one(logEntry)
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
-    if CRUD == 'UPDATE' and classObject.__class__.__name__ == "Bet":
-        logEntry['_id'] = get_id('neo')
-        db.neo.insert_one(logEntry)
-    if CRUD == 'UPDATE' and classObject.__class__.__name__ == "Player":
-        logEntry['_id'] = get_id('raven')
-        db.raven.insert_one(logEntry)
-    if CRUD == 'UPDATE' and classObject.__class__.__name__ == "Team":
-        logEntry['_id'] = get_id('raven')
-        db.raven.insert_one(logEntry)
-    if CRUD == 'DELETE' and classObject.__class__.__name__ == "User":
-        logEntry['_id'] = get_id('redis')
-        db.redis.insert_one(logEntry)
+    if classObject.__class__.__name__ == "Friends":
         logEntry['_id'] = get_id('neo')
         db.neo.insert_one(logEntry)
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
-    if CRUD == 'DELETE' and classObject.__class__.__name__ == "Bet":
+    if classObject.__class__.__name__ == "Match":
         logEntry['_id'] = get_id('neo')
         db.neo.insert_one(logEntry)
-    if CRUD == 'DELETE' and classObject.__class__.__name__ == "Player":
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
-    if CRUD == 'DELETE' and classObject.__class__.__name__ == "Team":
-        logEntry['_id'] = get_id('raven')
-        db.raven.insert_one(logEntry)
+
 
     #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY
     
