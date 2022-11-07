@@ -139,8 +139,14 @@ def CheckWinning(match):
     else:
         return None
 
+def Test():
+    GetAllTeamInfo()
+    StoreAllPlayers()
+
+
     # print(games.head())
-# if __name__ == '__main__':
+if __name__ == '__main__':
+    Test()
 #     GetGame('2022-10-6')
     # GetWinningTeam('0012200018')
 #     print("X")

@@ -64,3 +64,6 @@ def LoginCheck(username, password):
         if(bcrypt.checkpw(password.encode('utf-8'), correctPasswordHash)):
             return True
     return False
+
+if __name__ == '__main__':
+    print(LoginCheck("HelloUser", "HelloPassword"))

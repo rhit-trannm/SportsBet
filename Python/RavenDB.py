@@ -68,6 +68,9 @@ class Team(object):
         self.state = state
         self.year_founded = year_founded
         self.team_members = team_members
+
+
+        
 class Match(object):
     def __init__(self, date, matchID, homeTeamID, awayTeamID, winningTeamID = None):
         self.Id = f'Match/{matchID}'
@@ -126,7 +129,7 @@ def QueryTeam(id):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            query_result = list(session.query().where_equals("team_id", id))
+            query_result = list(session.query(object_type=Team).where_equals("team_id", id))
             return query_result
 
 def EditTeam(team):

@@ -1,8 +1,8 @@
 import datetime
 
-from Python import neo4j
-from Python import RavenDB
-from Python import Redis
+import neo4j
+import RavenDB
+import Redis
 from py2neo import Graph
 from pyravendb.store import document_store
 from types import SimpleNamespace

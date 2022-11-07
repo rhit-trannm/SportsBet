@@ -17,7 +17,7 @@ def update_raven(doc):
     CRUD = doc['command']
     Class = doc['className']
     obj = doc['classObject']
-    obj = json.loads(obj, object_hook=lambda d: SimpleNamespace(**d))
+    obj = json.loads(json.dumps(obj), object_hook=lambda d: SimpleNamespace(**d))
     if CRUD == 'CREATE':
         if Class == "User":
             RavenDB.CreateUser(name=obj.name, username=obj.username, password=obj.password,
