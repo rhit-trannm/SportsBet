@@ -88,10 +88,11 @@ class Bet(object):
         self.type = type[typeIndex]
 
 class User(object):
-    def __init__(self, username, hashPassword,name = None, birthday = None, balance=0, betID=[]):
+    def __init__(self, username, hashPassword = None,name = None, password = None, birthday = None, balance=0, betID=[]):
         self.username = username
         self.hashPassword = hashPassword
         self.birthday = birthday
+        self.password = password
         self.name = name
         self.balance = balance
         self.betID = betID

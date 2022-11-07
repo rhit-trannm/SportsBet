@@ -1,3 +1,5 @@
+import datetime
+
 from Python import neo4j
 from Python import RavenDB
 from Python import Redis
@@ -85,7 +87,7 @@ def Logging(CRUD, classObject):
     #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY
 
 
-def Routing(CRUD, object, command):
+def Routing(CRUD, object, command = None):
     if CRUD == "CREATE" or CRUD == "UPDATE" or CRUD == "DELETE":
         Logging(CRUD, object)
     elif CRUD == "READ": #Not stored in Mongo, rather is sent directly to databases
@@ -93,7 +95,7 @@ def Routing(CRUD, object, command):
         if object.__class__.__name__ == "User":
             if command == "Login":
                 try:
-                    if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
+                    if Redis.LoginCheck(object.username, object.hashPassword) == True:
                         return True
                     else:
                         return False
@@ -104,7 +106,7 @@ def Routing(CRUD, object, command):
                         else:
                             return False
                     except:
-                        if Redis.LoginCheck(object.username, object.hashPassword) == True:
+                        if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
                             return True
                         else:
                             return False
@@ -151,4 +153,6 @@ def UpdateRedis():
 
 
 if __name__ == '__main__':
-    file1 = open("Logs/Log.txt", "r")
+    #file1 = open("Logs/Log.txt", "r")
+    Routing("CREATE", RavenDB.User(username="HelloUser", password="HelloPass", birthday='2022-10-2'))
+    #Routing("READ", User())

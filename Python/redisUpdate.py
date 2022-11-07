@@ -19,6 +19,7 @@ def update_redis(doc):
     if CRUD == 'CREATE':
         #Checking class type - users are the only thing stored in redis.
         if Class == "User":
+            print('x')
             #Calling Command from Redis.py file
             Redis.CreateUser(User['name'], User['username'], User['password'], User['birthday'])
             #Update the last_updated value for redis

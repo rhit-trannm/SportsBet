@@ -5,8 +5,8 @@ import RavenDB
 def ConnectRedis():
         global r
         r = redis.Redis(
-            host='433-17.csse.rose-hulman.edu',
-            port=6378)
+            host='433-14.csse.rose-hulman.edu',
+            port=6379)
 
 def Ping():
     r.ping()
@@ -26,8 +26,9 @@ def CreateUser(name, username, password, birthday):
     passwordSalt = bcrypt.gensalt()
     hashPassword = bcrypt.hashpw(password.encode("utf-8"), passwordSalt)
 
-    if r.sismember(f'users', username):
-        raise ValueError('Username not unique')
+    # if r.sismember(f'users', username):
+    #     raise ValueError('Username not unique')
+
     r.sadd(f'users', username)
     r.hset(username, 'passwordHash', hashPassword)
     r.hset(username, 'birthday', birthday)
