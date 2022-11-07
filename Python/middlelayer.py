@@ -136,6 +136,22 @@ def Routing(CRUD, object, command = None):
                         except:
                             print("All DB down")
                             return False
+            elif command == "GetFriends":
+                try:
+                    result = neo4j.GetUser(username=object.username)
+                    return result
+                except:
+                    try:
+                        result = neo4j.GetUser(username=object.username)
+                        return result
+                    except:
+                        try:
+                            result = RavenDB.QueryUser(username=object.username)
+                            return result
+                        except:
+                            print("All DB down")
+                            return False
+
         elif object.__class__.__name__ == "Bet":
             try:
                 print('x')
