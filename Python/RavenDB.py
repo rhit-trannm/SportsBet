@@ -77,13 +77,14 @@ class Match(object):
         self.awayTeamID = awayTeamID
         self.winningTeamID = winningTeamID
 class Bet(object):
-    def __init__(self, id, user, typeIndex, matchId):
+    def __init__(self, id, user, type, matchId, status):
         #Id = uuid.uuid1()
         self.Id = f'Match/{id}'
         self.betId = id
         self.user = user
         self.matchId = matchId
-        self.type = type[typeIndex]
+        self.type = type
+        self.status = status
 
 class User(object):
     def __init__(self, username, hashPassword = None,name = None, password = None, birthday = None, balance=0, betID=[], friends = []):
@@ -116,9 +117,10 @@ def StoreTeam(team):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            tempTeam = session.load(f"Team/{team.team_id}")
-            tempTeam.team_members = team.team_members
-            session.save_changes()
+            if QueryTeam(team.team_id) == []:
+                session.store(team)
+                session.save_changes()
+
 def QueryTeam(id):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
@@ -152,6 +154,21 @@ def StorePlayer(object):
             if query_result == []:
                 session.store(object)
                 session.save_changes()
+def CreateBet(bet):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query().where_equals("betId", bet.betId))
+            if query_result == []:
+                session.store(bet)
+                session.save_changes()
+def EditBet(bet):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            tempBet = session.load(f"Bet/{bet.betId}")
+            tempBet.status = bet.status
+            session.save_changes()
 def GetBet(id):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()

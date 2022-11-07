@@ -22,12 +22,11 @@ def update_raven(doc):
         elif Class == "Team":
             RavenDB.StoreTeam(obj)
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
-            print('x')
         elif Class == "Match":
-            print('x')
+            RavenDB.CreateMatch(obj)
+            counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
         elif Class == "Bet":
             print('x')
-
     elif CRUD == 'UPDATE':
         if Class == "User":
             RavenDB.UpdateUser(obj['name'], obj['username'], obj['password'], obj['birthday'])
