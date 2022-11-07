@@ -107,6 +107,7 @@ def GetWinningTeam(gameId):
 
 
 def GetGame(date):
+    #Format 2022-10-6
     current_scoreboard_info = scoreboardv2.ScoreboardV2(
         day_offset=0,
         game_date=date,
@@ -129,26 +130,18 @@ def GetGame(date):
     for match in matchList:
         middlelayer.Routing("CREATE", match)
     return matchList
-    # print(json.dumps(match.__dict__))
+
+
+def CheckWinning(match):
+    result = GetWinningTeam(match.matchId)
+    if result is not None:
+        match.winningTeamID = result
+    else:
+        return None
 
     # print(games.head())
-    # print(games.groupby(games.SEASON_ID.str[-4:])[['GAME_ID']].count().loc['2022':])
-    # games_1718 = games[games.GAME_ID == '0012200018']
-    # print(games_1718)
-
-    # game = boxscoreadvancedv2.BoxScoreAdvancedV2(game_id='0012200018')
-    # games = game.get_data_frames()[0]
-    # f = open("demofile2.json", "w")
-    # print(games['resultSets']['GAME_ID'])
-    # f.write(json.dumps(game))
-    # f.close()
-
-    # print(games.head())
-
-def UpdateBet():
-    print('x')
-if __name__ == '__main__':
-    GetGame('2022-10-6')
+# if __name__ == '__main__':
+#     GetGame('2022-10-6')
     # GetWinningTeam('0012200018')
 #     print("X")
 # GetPlayerStats(203076)

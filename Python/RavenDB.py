@@ -88,6 +88,7 @@ class Bet(object):
 
 class User(object):
     def __init__(self, username, hashPassword = None,name = None, password = None, birthday = None, balance=0, betID=[], friends = []):
+        self.Id = f'User/{username}'
         self.username = username
         self.hashPassword = hashPassword
         self.birthday = birthday
@@ -135,6 +136,18 @@ def EditTeam(team):
             query_result = list(session.query().where_equals("team_id", team.team_id))
             if query_result == []:
                 session.store(team)
+                session.save_changes()
+            else:
+                session.delete(f"Team/{team.team_id}")
+                session.store(team)
+                session.save_changes()
+def EditPlayer(player):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            if QueryPlayer(player.PLAYER_ID) is not None:
+                tempBet = session.delete(f"Player/{player.PLAYER_ID}")
+                session.store(player)
                 session.save_changes()
 
 def QueryPlayer(playerId):
@@ -228,6 +241,12 @@ def StoreObject(object):
             if query_result == []:
                 session.store(object)
                 session.save_changes()
+def DeleteDocument(obj):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            session.delete(obj.Id)
+            session.save_changes()
 
 
 #if __name__ == '__main__':
