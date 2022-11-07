@@ -84,6 +84,9 @@ def Logging(CRUD, classObject):
         db.neo.insert_one(logEntry)
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
+    if classObject.__class__.__name__ == "Team":
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
     #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY
 
 global UserCommands, BetCommands
@@ -153,11 +156,13 @@ def Routing(CRUD, object, command = None):
                             return False
 
         elif object.__class__.__name__ == "Bet":
-            try:
-                print('x')
-            except:
-                print('x')
-
+            if command == "GetBet":
+                try:
+                    result = neo4j.GetBet(object.betId)
+                    return result
+                except:
+                    result = RavenDB.GetBet(object.betId)
+                    return result
         elif object.__class__.__name__ == "Player":
             # Do not log
             result = RavenDB.QueryPlayer(object.PLAYER_ID)
@@ -166,8 +171,11 @@ def Routing(CRUD, object, command = None):
             else:
                 return 0
         elif object.__class__.__name__ == "Team":
-            # Do not log
-            print('x')
+            result = RavenDB.QueryTeam(object.team_id)
+            if result != 0:
+                return result
+            else:
+                return 0
 def UpdateNeo4J():
     #these updates should be multithreaded.
     neo4JLog = open("Logs/Neo4JLog.txt", "r")

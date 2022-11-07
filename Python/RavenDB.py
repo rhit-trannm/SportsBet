@@ -114,85 +114,31 @@ def EditMatch(match):
             tempmatch = session.load(f"Match/{match.matchId}")
             tempmatch.winningTeamID = match.winningTeamID
             session.save_changes()
-def GetAllTeamInfo():
-    nba_teams = teams.get_teams()
-    teamList = []
-    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
-        store.initialize()
-        for team in nba_teams:
-            temp = Team(team['id'], team['full_name'], team['abbreviation'], team['city'], team['state'],
-                        team['year_founded'], team_members = [])
-            teamfinder = commonteamroster.CommonTeamRoster(season='2021-22',
-                                                           team_id=f'{team["id"]}',
-                                                           league_id_nullable='00').get_dict()
-            for x in teamfinder['resultSets'][0]['rowSet']:
-                id = x[14]
-                print(x)
-                temp.team_members.append(id)
-                print(f"{temp.team_id}|{temp.team_members}")
-                with store.open_session() as session:
-                    temp2 = list(session.query().where_equals("PLAYER_ID", id))
-                    if temp2 == []:
-                        player = CreatePlayer(id)
-                        if player is None:
-                            break
-                        session.store(CreatePlayer(id))
-                        session.save_changes()
-                        store.close()
-                        break
-            with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
-                store.initialize()
-                with store.open_session() as session:
+def StoreTeam(team):
+    print('x')
 
-                    session.store(temp)
-                    session.save_changes()
-
-
-def GetAllPlayerStats():
-    nba_players = players.get_active_players()
-    PlayerList = []
-    for player in nba_players:
-        PlayerList.append(GetPlayerStats(player['id']))
-    return PlayerList
 
 def QueryPlayer(playerId):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            temp2 = list(session.query().where_equals("PLAYER_ID", id))
+            temp2 = list(session.query().where_equals("PLAYER_ID", playerId))
             if temp2 != []:
                 return temp2.pop()
             else:
-                return 0
-def GetPlayerStats(playerID):
-    career = playercareerstats.PlayerCareerStats(player_id=f'{playerID}').get_dict()
-    # might need validation if json is different format.
-    if career['resultSets'][0]['rowSet'] != []:
-        i = len(career['resultSets'][0]['rowSet'])
-        row = career['resultSets'][0]['rowSet'][i - 1]
-        tempPlayer = Player(row[0], row[1], row[2], row[3], row[4], row[5],
-                            row[6], row[7], row[8], row[9], row[10], row[11],
-                            row[12], row[13], row[14], row[15], row[16], row[17],
-                            row[18], row[19], row[20], row[21],
-                            row[22], row[23], row[24],
-                            row[25], row[26])
-        return tempPlayer
-
-
-
+                return None
 
 def QueryUser(username):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
             query_result = list(session.query().where_equals("username", username))
-            return query_resul
+            return query_result
 def CreateUser(name, username, password, birthday):
     # User key format: User_{Username}
     passwordSalt = bcrypt.gensalt()
     password =  password.encode('utf-8')
     hashPassword = bcrypt.hashpw(password, passwordSalt)
-    password = password.decode('utf-8')
     temp = User(name=name, username=username, hashPassword=hashPassword.decode('utf-8'), birthday=birthday)
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
@@ -228,8 +174,6 @@ def TestConnection():
             a = session.query()
             return a
 
-
-
 def StoreObject(object):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
@@ -238,36 +182,6 @@ def StoreObject(object):
             if query_result == []:
                 session.store(object)
                 session.save_changes()
-
-
-def CreatePlayer(id):
-    time.sleep(0.7)
-    player = players.find_player_by_id(id)
-    if player is not None:
-        print(players.find_player_by_id(id))
-        temp = GetPlayerStats(id)
-        if temp is None:
-            return
-        temp.full_name = player['full_name']
-        temp.first_name = player['first_name']
-        temp.last_name = player['last_name']
-        return temp
-
-
-def StoreAllPlayers():
-    nba_players = players.get_active_players()
-    for player in nba_players:
-        if player['id'] is not None:
-            time.sleep(0.7)
-            temp = GetPlayerStats(player['id'])
-            if temp is not None:
-                temp.full_name = player['full_name']
-                temp.first_name = player['first_name']
-                temp.last_name = player['last_name']
-                # try:
-                StoreObject(temp)
-                # except:
-                # print("ID already exists")
 
 
 #if __name__ == '__main__':
