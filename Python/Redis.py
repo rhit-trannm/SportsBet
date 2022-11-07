@@ -8,6 +8,8 @@ def ConnectRedis():
             host='433-14.csse.rose-hulman.edu',
             port=6379)
 
+global r
+r = redis.Redis(host='433-14.csse.rose-hulman.edu',port=6379)
 def Ping():
     r.ping()
 
@@ -18,7 +20,7 @@ def GetUser(username):
     if (r.sismember('users', username)):
         print(r.hgetall(username))
         result = r.hgetall(username)
-        return RavenDB.User(username = username, hashPassword=result['passwordHash'])
+        return RavenDB.User(username=username, hashPassword=result['passwordHash'], name=result['name'], birthday=result['birthday'])
 
 
 def CreateUser(name, username, password, birthday):
@@ -55,9 +57,10 @@ if __name__ == '__main__':
     ConnectRedis()
 
 
-def loginCheck(username, password):
+def LoginCheck(username, password):
+    ConnectRedis()
     if(r.sismember('users', username)):
         correctPasswordHash = r.hget(username, 'passwordHash')
-        if(bcrypt.checkpw(password.encode("utf-8"), correctPasswordHash)):
+        if(bcrypt.checkpw(password.encode('utf-8'), correctPasswordHash)):
             return True
     return False

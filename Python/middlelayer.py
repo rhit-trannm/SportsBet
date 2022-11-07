@@ -86,7 +86,9 @@ def Logging(CRUD, classObject):
         db.raven.insert_one(logEntry)
     #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY
 
-
+global UserCommands, BetCommands
+Usercommands = ["Login"]
+BetCommands = ["Cashout", "Check"]
 def Routing(CRUD, object, command = None):
     if CRUD == "CREATE" or CRUD == "UPDATE" or CRUD == "DELETE":
         Logging(CRUD, object)
@@ -95,41 +97,51 @@ def Routing(CRUD, object, command = None):
         if object.__class__.__name__ == "User":
             if command == "Login":
                 try:
-                    if Redis.LoginCheck(object.username, object.hashPassword) == True:
+                    if Redis.LoginCheck(object.username, object.password) == True:
+                        print("OuterShellTrue1")
                         return True
                     else:
+                        print("OuterShellFalse1")
                         return False
                 except:
                     try:
-                        if neo4j.Login_Check(object.username, object.hashPassword) == True:
+                        if neo4j.Login_Check(object.username, object.password) == True:
+                            print("OuterShellTrue2")
                             return True
                         else:
+                            print("OuterShellFalse2")
                             return False
                     except:
-                        if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
-                            return True
-                        else:
+                        try:
+                            if RavenDB.LoginCheck(object.username, object.password) == True:
+                                return True
+                            else:
+                                print("OuterShellFalse3")
+                                return False
+                        except:
+                            print("All DB down")
                             return False
             elif command == "GetUser":
                 try:
-                    if Redis.GetUser(object.username) == True:
-                        return True
-                    else:
-                        return False
+                    result = Redis.GetUser(username=object.username)
+                    return result
                 except:
                     try:
-                        if neo4j.GetUser(object.username) == True:
-                            return True
-                        else:
-                            return False
+                        result = neo4j.GetUser(username=object.username)
+                        return result
                     except:
-                        if RavenDB.LoginCheck(object.username, object.hashPassword) == True:
-                            return True
-                        else:
+                        try:
+                            result = RavenDB.QueryUser(username=object.username)
+                            return result
+                        except:
+                            print("All DB down")
                             return False
-
         elif object.__class__.__name__ == "Bet":
-            print('x')
+            try:
+                print('x')
+            except:
+                print('x')
+
         elif object.__class__.__name__ == "Player":
             # Do not log
             result = RavenDB.QueryPlayer(object.PLAYER_ID)
@@ -154,5 +166,9 @@ def UpdateRedis():
 
 if __name__ == '__main__':
     #file1 = open("Logs/Log.txt", "r")
-    Routing("CREATE", RavenDB.User(username="HelloUser", password="HelloPass", birthday='2022-10-2'))
-    #Routing("READ", User())
+    #Routing("CREATE", RavenDB.User(name="Hello" ,username="HelloUser", password="HelloPass", birthday='2022-10-2'))
+    #result = Routing("READ", RavenDB.User(username="HelloUser", password="HelloPass"), "Login")
+    #print(result)
+    print(neo4j.GetUser("HelloUser"))
+    #print(Redis.LoginCheck("HelloUser", "HelloPass"))
+    #print(neo4j.Login_Check("HelloUser", "HelloPass"))

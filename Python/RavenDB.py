@@ -88,7 +88,7 @@ class Bet(object):
         self.type = type[typeIndex]
 
 class User(object):
-    def __init__(self, username, hashPassword = None,name = None, password = None, birthday = None, balance=0, betID=[]):
+    def __init__(self, username, hashPassword = None,name = None, password = None, birthday = None, balance=0, betID=[], friends = []):
         self.username = username
         self.hashPassword = hashPassword
         self.birthday = birthday
@@ -96,6 +96,7 @@ class User(object):
         self.name = name
         self.balance = balance
         self.betID = betID
+        self.friends = friends
 global IPList
 IPList = ['http://137.112.104.162:8080', 'http://137.112.104.155:8080', 'http://137.112.104.152:8080']
 
@@ -130,7 +131,7 @@ def GetAllTeamInfo():
                 temp.team_members.append(id)
                 print(f"{temp.team_id}|{temp.team_members}")
                 with store.open_session() as session:
-                    temp2 = list(session.query(object_type=Player).where_equals("PLAYER_ID", id))
+                    temp2 = list(session.query().where_equals("PLAYER_ID", id))
                     if temp2 == []:
                         player = CreatePlayer(id)
                         if player is None:
@@ -158,7 +159,7 @@ def QueryPlayer(playerId):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            temp2 = list(session.query(object_type=Player).where_equals("PLAYER_ID", id))
+            temp2 = list(session.query().where_equals("PLAYER_ID", id))
             if temp2 != []:
                 return temp2.pop()
             else:
@@ -180,19 +181,23 @@ def GetPlayerStats(playerID):
 
 
 
-
-
+def QueryUser(username):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query().where_equals("username", username))
+            return query_resul
 def CreateUser(name, username, password, birthday):
     # User key format: User_{Username}
     passwordSalt = bcrypt.gensalt()
     password =  password.encode('utf-8')
     hashPassword = bcrypt.hashpw(password, passwordSalt)
     password = password.decode('utf-8')
-    temp = User(name, username, hashPassword.decode('utf-8'), birthday)
+    temp = User(name=name, username=username, hashPassword=hashPassword.decode('utf-8'), birthday=birthday)
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            query_result = list(session.query(object_type=User).where_equals("username", "Username"))
+            query_result = list(session.query().where_equals("username", username))
             if query_result == []:
                 session.store(temp)
                 session.save_changes()
@@ -205,9 +210,9 @@ def LoginCheck(username, password):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            query_result = list(session.query(object_type=User).where_equals("username", "Username"))
+            query_result = list(session.query().where_equals("username", username))
             if query_result != []:
-                passwordHash = json.dumps(query_result[0].__dict__)
+                passwordHash = query_result[0].hashPassword
                 if bcrypt.checkpw(password.encode("utf-8"), passwordHash.encode("utf-8")):
                     return True
                 else:
@@ -229,7 +234,7 @@ def StoreObject(object):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            query_result = list(session.query(object_type=Player).where_equals("PLAYER_ID", object.PLAYER_ID))
+            query_result = list(session.query().where_equals("PLAYER_ID", object.PLAYER_ID))
             if query_result == []:
                 session.store(object)
                 session.save_changes()

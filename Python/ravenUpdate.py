@@ -14,7 +14,7 @@ def update_raven(doc):
     obj = doc['classObject']
     if CRUD == 'CREATE':
         if Class == "User":
-            RavenDB.CreateUser(obj['name'], obj['username'], obj['password'], obj['birthday'])
+            RavenDB.CreateUser(name=obj['name'], username=obj['username'], password=obj['password'], birthday=obj['birthday'])
             counters.update_one({'_id':'raven'},{"$set":{'last_updated':doc['_id']}})
     elif CRUD == 'UPDATE':
         if Class == "User":

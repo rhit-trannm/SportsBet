@@ -4,10 +4,9 @@ from py2neo import Graph
 import bcrypt
 import RavenDB
 from pyravendb.store import document_store
-
 def ConnectNeo4J():
     global graph
-    graph = Graph("bolt://433-14.csse.rose-hulman.edu:7687", auth=("neo4j", "433-15")) #EDIT THIS TO BE ACCURATE -Josh Mestemacher
+    graph = Graph("bolt://433-16.csse.rose-hulman.edu:7687", auth=("neo4j", "433-16")) #EDIT THIS TO BE ACCURATE -Josh Mestemacher
 
 def CheckConnection():
     try:
@@ -36,10 +35,12 @@ def Find_User(user):
     return num
     
 def GetUser(username):
+    ConnectNeo4J()
     dataset = graph.run(f"MATCH (n:Person {{username : '{username}'}}) RETURN n").data()
     if dataset != []:
         #print(json.loads(json.dumps(dataset.pop()['n'])))
-        return json.loads(json.dumps(dataset.pop()['n']))
+        data = dataset.pop()['n']
+        return RavenDB.User(username=data['username'], name=data['fullName'], hashPassword=data['passwordHash'], friends=data['friends'], birthday=data['birthday'])
         #return dataset.pop()['n']
 
 def Create_User(name, username, password, birthday):
@@ -56,6 +57,7 @@ def Login_Check(username, password):
     if bcrypt.checkpw(password.encode("utf-8"), passwordHash.encode("utf-8")):
         return True
     else:
+        print("InnerShellFalse")
         return False
 
 def Create_MoneyLine_Bet(game_date, winner_team_abbrev, amount_betted, username, gameId): #I assume team abbrev is a drop down for this,  and so is gameId and game_date

@@ -624,3 +624,791 @@ DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): stats.nba.com:44
 DEBUG:urllib3.connectionpool:https://stats.nba.com:443 "GET /stats/leaguegamefinder?Conference=&DateFrom=&DateTo=&Division=&DraftNumber=&DraftRound=&DraftTeamID=&DraftYear=&EqAST=&EqBLK=&EqDD=&EqDREB=&EqFG3A=&EqFG3M=&EqFG3_PCT=&EqFGA=&EqFGM=&EqFG_PCT=&EqFTA=&EqFTM=&EqFT_PCT=&EqMINUTES=&EqOREB=&EqPF=&EqPTS=&EqREB=&EqSTL=&EqTD=&EqTOV=&GameID=0012200027&GtAST=&GtBLK=&GtDD=&GtDREB=&GtFG3A=&GtFG3M=&GtFG3_PCT=&GtFGA=&GtFGM=&GtFG_PCT=&GtFTA=&GtFTM=&GtFT_PCT=&GtMINUTES=&GtOREB=&GtPF=&GtPTS=&GtREB=&GtSTL=&GtTD=&GtTOV=&LeagueID=&Location=&LtAST=&LtBLK=&LtDD=&LtDREB=&LtFG3A=&LtFG3M=&LtFG3_PCT=&LtFGA=&LtFGM=&LtFG_PCT=&LtFTA=&LtFTM=&LtFT_PCT=&LtMINUTES=&LtOREB=&LtPF=&LtPTS=&LtREB=&LtSTL=&LtTD=&LtTOV=&Outcome=&PORound=&PlayerID=&PlayerOrTeam=T&RookieYear=&Season=&SeasonSegment=&SeasonType=&StarterBench=&TeamID=&VsConference=&VsDivision=&VsTeamID=&YearsExperience= HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): stats.nba.com:443
 DEBUG:urllib3.connectionpool:https://stats.nba.com:443 "GET /stats/leaguegamefinder?Conference=&DateFrom=&DateTo=&Division=&DraftNumber=&DraftRound=&DraftTeamID=&DraftYear=&EqAST=&EqBLK=&EqDD=&EqDREB=&EqFG3A=&EqFG3M=&EqFG3_PCT=&EqFGA=&EqFGM=&EqFG_PCT=&EqFTA=&EqFTM=&EqFT_PCT=&EqMINUTES=&EqOREB=&EqPF=&EqPTS=&EqREB=&EqSTL=&EqTD=&EqTOV=&GameID=0012200028&GtAST=&GtBLK=&GtDD=&GtDREB=&GtFG3A=&GtFG3M=&GtFG3_PCT=&GtFGA=&GtFGM=&GtFG_PCT=&GtFTA=&GtFTM=&GtFT_PCT=&GtMINUTES=&GtOREB=&GtPF=&GtPTS=&GtREB=&GtSTL=&GtTD=&GtTOV=&LeagueID=&Location=&LtAST=&LtBLK=&LtDD=&LtDREB=&LtFG3A=&LtFG3M=&LtFG3_PCT=&LtFGA=&LtFGM=&LtFG_PCT=&LtFTA=&LtFTM=&LtFT_PCT=&LtMINUTES=&LtOREB=&LtPF=&LtPTS=&LtREB=&LtSTL=&LtTD=&LtTOV=&Outcome=&PORound=&PlayerID=&PlayerOrTeam=T&RookieYear=&Season=&SeasonSegment=&SeasonType=&StarterBench=&TeamID=&VsConference=&VsDivision=&VsTeamID=&YearsExperience= HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=4827478841360296958 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=1181812498164920613 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=6348652753750578343 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-3501182903632042124 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-3457584073739826561 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-1815487283137081854 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-710376697923326056 HTTP/1.1" 200 None
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#D784] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#D784] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#D784] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#D784] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#D784] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#D784] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-58', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> does not belong to pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> acquired by thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> acquired by thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client.bolt:[#D784] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D784] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D784] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'t_first': 36, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPhyQ', 'type': 'r', 't_last': 5, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> acquired by thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client.bolt:[#D784] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D784] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D784] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'t_first': 1, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPhyQ', 'type': 'r', 't_last': 1, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> acquired by thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client.bolt:[#D784] C: RUN "CREATE (n:Person {username: 'HelloUser', passwordHash: '$2b$12$1p3l8N/EXpuQvC2deWioC.MaQV4/SeZAEJ4wdKoASKXXw6wLtr0zy', balance: 0, fullName: 'None', birthday: '2022-10-2', friends: []})" {} {}
+DEBUG:py2neo.client.bolt:[#D784] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D784] C: (Sent 210 bytes)
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'t_first': 351, 'fields': []}
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiOQ', 'stats': {'labels-added': 1, 'nodes-created': 1, 'properties-set': 6}, 'type': 'w', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> acquired by thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client.bolt:[#D784] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D784] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D784] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'t_first': 3, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D784] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiOQ', 'type': 'r', 't_last': 1, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> acquired by thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client.bolt:[#D784] C: RUN "CREATE (n:Person {username: 'HelloUser', passwordHash: '$2b$12$MdvfDrsQP.pe4yeaNnJgzem7NVSra3ZDc6XjgtHA3Gz1IsJtD8t/i', balance: 0, fullName: '', birthday: '2022-10-2', friends: []})" {} {}
+DEBUG:py2neo.client.bolt:[#D784] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D784] C: (Sent 206 bytes)
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'t_first': 16, 'fields': []}
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiSQ', 'stats': {'labels-added': 1, 'nodes-created': 1, 'properties-set': 6}, 'type': 'w', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> acquired by thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client.bolt:[#D784] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#D784] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D784] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'t_first': 2, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#D784] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiSQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000249A7A0EDF0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> acquired by thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client.bolt:[#D784] C: RUN "CREATE (n:Person {username: 'HelloUser', passwordHash: '$2b$12$hCRB17cTgSzW2O7n.Z19lef1uYmYls9jyOHjuzneVl/8HlfNM5mZe', balance: 0, fullName: 'HelloUser', birthday: '2022-10-2', friends: []})" {} {}
+DEBUG:py2neo.client.bolt:[#D784] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#D784] C: (Sent 215 bytes)
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'t_first': 9, 'fields': []}
+DEBUG:py2neo.client.bolt:[#D784] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiWQ', 'stats': {'labels-added': 1, 'nodes-created': 1, 'properties-set': 6}, 'type': 'w', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000249A7A27D60> from thread <_MainThread(MainThread, started 26260)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002649B1954F0>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#E008] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#E008] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#E008] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#E008] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#E008] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#E008] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#E008] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-69', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> from thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> does not belong to pool <py2neo.client.ConnectionPool object at 0x000002649B1954F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> acquired by thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> from thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000002649B1954F0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002649B1954F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> acquired by thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client.bolt:[#E008] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#E008] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#E008] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#E008] S: SUCCESS {'t_first': 2, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#E008] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#E008] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiWQ', 'type': 'r', 't_last': 1, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> from thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000002649B1954F0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002649B1954F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> acquired by thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client.bolt:[#E008] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#E008] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#E008] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#E008] S: SUCCESS {'t_first': 1, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#E008] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#E008] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiWQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> from thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000002649B1954F0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002649B1954F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> acquired by thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client.bolt:[#E008] C: RUN "CREATE (n:Person {username: 'HelloUser', passwordHash: '$2b$12$ubnTX2i/yqstfD4NeK5vheI86zMLs233DspxXseoqEET7dRefq7S2', balance: 0, fullName: 'HelloUser', birthday: '2022-10-2', friends: []})" {} {}
+DEBUG:py2neo.client.bolt:[#E008] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#E008] C: (Sent 215 bytes)
+DEBUG:py2neo.client.bolt:[#E008] S: SUCCESS {'t_first': 18, 'fields': []}
+DEBUG:py2neo.client.bolt:[#E008] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiaQ', 'stats': {'labels-added': 1, 'nodes-created': 1, 'properties-set': 6}, 'type': 'w', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002649B1C6D60> from thread <_MainThread(MainThread, started 22276)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002B03C9954F0>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#C859] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#C859] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#C859] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#C859] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#C859] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#C859] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#C859] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-123', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> from thread <_MainThread(MainThread, started 22944)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> does not belong to pool <py2neo.client.ConnectionPool object at 0x000002B03C9954F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> acquired by thread <_MainThread(MainThread, started 22944)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> from thread <_MainThread(MainThread, started 22944)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000002B03C9954F0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002B03C9954F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> acquired by thread <_MainThread(MainThread, started 22944)>
+DEBUG:py2neo.client.bolt:[#C859] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#C859] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#C859] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#C859] S: SUCCESS {'t_first': 2, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#C859] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPieQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> from thread <_MainThread(MainThread, started 22944)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000002B03C9954F0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002B03C9954F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> acquired by thread <_MainThread(MainThread, started 22944)>
+DEBUG:py2neo.client.bolt:[#C859] C: RUN 'Match () return 1 limit 1' {} {}
+DEBUG:py2neo.client.bolt:[#C859] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#C859] C: (Sent 50 bytes)
+DEBUG:py2neo.client.bolt:[#C859] S: SUCCESS {'t_first': 2, 'fields': ['1']}
+DEBUG:py2neo.client.bolt:[#C859] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPieQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> from thread <_MainThread(MainThread, started 22944)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000002B03C9954F0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002B03C9954F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> acquired by thread <_MainThread(MainThread, started 22944)>
+DEBUG:py2neo.client.bolt:[#C859] C: RUN "CREATE (n:Person {username: 'HelloUser', passwordHash: '$2b$12$4gv71cjtbb/hWResXZPnZeVVGxVxhcKJKxnO0ucb/ZLmAvRXn2uv6', balance: 0, fullName: 'HelloUser', birthday: '2022-10-2', friends: []})" {} {}
+DEBUG:py2neo.client.bolt:[#C859] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#C859] C: (Sent 215 bytes)
+DEBUG:py2neo.client.bolt:[#C859] S: SUCCESS {'t_first': 10, 'fields': []}
+DEBUG:py2neo.client.bolt:[#C859] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'stats': {'labels-added': 1, 'nodes-created': 1, 'properties-set': 6}, 'type': 'w', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002B03C9C6D60> from thread <_MainThread(MainThread, started 22944)>
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=3369090233028809457 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=6573173672517535072 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=8166925599291347694 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-3984509090728430118 HTTP/1.1" 200 None
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001F988E4B850>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#E78C] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#E78C] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#E78C] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#E78C] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#E78C] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#E78C] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#E78C] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-152', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001F988E8BBB0> from thread <_MainThread(MainThread, started 24848)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001F988E8BBB0> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001F988E4B850>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001F988E8BBB0> acquired by thread <_MainThread(MainThread, started 24848)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001F988E8BBB0> from thread <_MainThread(MainThread, started 24848)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001FF6D0DB2B0>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#E78E] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#E78E] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#E78E] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#E78E] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#E78E] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#E78E] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#E78E] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-153', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001FF0E1CCC70> from thread <_MainThread(MainThread, started 22756)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001FF0E1CCC70> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001FF6D0DB2B0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001FF0E1CCC70> acquired by thread <_MainThread(MainThread, started 22756)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001FF0E1CCC70> from thread <_MainThread(MainThread, started 22756)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001FF6D0DB2B0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001FF6D0DB2B0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001FF0E1CCC70> acquired by thread <_MainThread(MainThread, started 22756)>
+DEBUG:py2neo.client.bolt:[#E78E] C: RUN "MATCH (u:User) WHERE u.username = 'HelloUser' WITH COUNT(u) > 0 as node_exists RETURN node_exists" {} {}
+DEBUG:py2neo.client.bolt:[#E78E] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#E78E] C: (Sent 122 bytes)
+DEBUG:py2neo.client.bolt:[#E78E] S: SUCCESS {'t_first': 65, 'fields': ['node_exists']}
+DEBUG:py2neo.client.bolt:[#E78E] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#E78E] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 4, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001FF0E1CCC70> from thread <_MainThread(MainThread, started 22756)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001FF6D0DB2B0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001FF6D0DB2B0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001FF0E1CCC70> acquired by thread <_MainThread(MainThread, started 22756)>
+DEBUG:py2neo.client.bolt:[#E78E] C: RUN "MATCH(User) WHERE User.username = 'HelloUser' RETURN User.passwordHash" {} {}
+DEBUG:py2neo.client.bolt:[#E78E] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#E78E] C: (Sent 95 bytes)
+DEBUG:py2neo.client.bolt:[#E78E] S: SUCCESS {'t_first': 24, 'fields': ['User.passwordHash']}
+DEBUG:py2neo.client.bolt:[#E78E] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#E78E] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001FF0E1CCC70> from thread <_MainThread(MainThread, started 22756)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001BD653A1040>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#F0BA] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#F0BA] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#F0BA] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#F0BA] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#F0BA] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#F0BA] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#F0BA] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-156', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BD0774DD60> from thread <_MainThread(MainThread, started 23332)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BD0774DD60> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001BD653A1040>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BD0774DD60> acquired by thread <_MainThread(MainThread, started 23332)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BD0774DD60> from thread <_MainThread(MainThread, started 23332)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001BD653A1040>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001BD653A1040>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BD0774DD60> acquired by thread <_MainThread(MainThread, started 23332)>
+DEBUG:py2neo.client.bolt:[#F0BA] C: RUN "MATCH (u:User) WHERE u.username = 'HelloUser' WITH COUNT(u) > 0 as node_exists RETURN node_exists" {} {}
+DEBUG:py2neo.client.bolt:[#F0BA] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#F0BA] C: (Sent 122 bytes)
+DEBUG:py2neo.client.bolt:[#F0BA] S: SUCCESS {'t_first': 2, 'fields': ['node_exists']}
+DEBUG:py2neo.client.bolt:[#F0BA] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#F0BA] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BD0774DD60> from thread <_MainThread(MainThread, started 23332)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001BD653A1040>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001BD653A1040>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BD0774DD60> acquired by thread <_MainThread(MainThread, started 23332)>
+DEBUG:py2neo.client.bolt:[#F0BA] C: RUN "MATCH(User) WHERE User.username = 'HelloUser' RETURN User.passwordHash" {} {}
+DEBUG:py2neo.client.bolt:[#F0BA] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#F0BA] C: (Sent 95 bytes)
+DEBUG:py2neo.client.bolt:[#F0BA] S: SUCCESS {'t_first': 1, 'fields': ['User.passwordHash']}
+DEBUG:py2neo.client.bolt:[#F0BA] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#F0BA] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BD0774DD60> from thread <_MainThread(MainThread, started 23332)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000026234B22100>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#C1CD] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#C1CD] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#C1CD] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#C1CD] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#C1CD] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#C1CD] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#C1CD] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-163', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026235BFED60> from thread <_MainThread(MainThread, started 11504)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026235BFED60> does not belong to pool <py2neo.client.ConnectionPool object at 0x0000026234B22100>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026235BFED60> acquired by thread <_MainThread(MainThread, started 11504)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026235BFED60> from thread <_MainThread(MainThread, started 11504)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000026234B22100>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000026234B22100>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026235BFED60> acquired by thread <_MainThread(MainThread, started 11504)>
+DEBUG:py2neo.client.bolt:[#C1CD] C: RUN "MATCH (u:User) WHERE u.username = 'HelloUser' WITH COUNT(u) > 0 as node_exists RETURN node_exists" {} {}
+DEBUG:py2neo.client.bolt:[#C1CD] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#C1CD] C: (Sent 122 bytes)
+DEBUG:py2neo.client.bolt:[#C1CD] S: SUCCESS {'t_first': 2, 'fields': ['node_exists']}
+DEBUG:py2neo.client.bolt:[#C1CD] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#C1CD] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026235BFED60> from thread <_MainThread(MainThread, started 11504)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000026234B22100>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000026234B22100>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026235BFED60> acquired by thread <_MainThread(MainThread, started 11504)>
+DEBUG:py2neo.client.bolt:[#C1CD] C: RUN "MATCH(User) WHERE User.username = 'HelloUser' RETURN User.passwordHash" {} {}
+DEBUG:py2neo.client.bolt:[#C1CD] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#C1CD] C: (Sent 95 bytes)
+DEBUG:py2neo.client.bolt:[#C1CD] S: SUCCESS {'t_first': 1, 'fields': ['User.passwordHash']}
+DEBUG:py2neo.client.bolt:[#C1CD] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#C1CD] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 0, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026235BFED60> from thread <_MainThread(MainThread, started 11504)>
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-5841119370992419516 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /databases/temp/hilo/next?tag=users&lastBatchSize=0&lastRangeAt=0001-01-01%2000:00:00&identityPartsSeparator=/&lastMax=0 HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/bulk_docs HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "PUT /databases/temp/hilo/return?tag=users&end=53&last=22 HTTP/1.1" 204 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=560988984099115550 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /databases/temp/hilo/next?tag=users&lastBatchSize=0&lastRangeAt=0001-01-01%2000:00:00&identityPartsSeparator=/&lastMax=0 HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/bulk_docs HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "PUT /databases/temp/hilo/return?tag=users&end=54&last=23 HTTP/1.1" 204 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=6908642144841344890 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /databases/temp/hilo/next?tag=users&lastBatchSize=0&lastRangeAt=0001-01-01%2000:00:00&identityPartsSeparator=/&lastMax=0 HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/bulk_docs HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "PUT /databases/temp/hilo/return?tag=users&end=55&last=24 HTTP/1.1" 204 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=4446466007405816333 HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /databases/temp/hilo/next?tag=users&lastBatchSize=0&lastRangeAt=0001-01-01%2000:00:00&identityPartsSeparator=/&lastMax=0 HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/bulk_docs HTTP/1.1" 201 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "PUT /databases/temp/hilo/return?tag=users&end=56&last=25 HTTP/1.1" 204 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=2429344386577839797 HTTP/1.1" 200 None
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000029AF95F2100>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x00000154DD162100>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-158682457146984588 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-3042293404286558787 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-3826875932882523950 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM Users WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=7370876518069291580 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=4568329020688025924 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=4055550733628388542 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=6138759418393417500 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-7028915110434387345 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=5322900630931119084 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-1249307349438547244 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-1492568088767848564 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=2254429449990781140 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-3140087463221904842 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=-8008454493102003926 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=8576253886222456419 HTTP/1.1" 200 None
+DEBUG:root:Executing query 'FROM @all_docs WHERE username = $p0' on index 'dynamic'
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "GET /topology?name=temp HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 137.112.104.162:8080
+DEBUG:urllib3.connectionpool:http://137.112.104.162:8080 "POST /databases/temp/queries?query-hash=3085436795648969561 HTTP/1.1" 200 None
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002154BC20220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AC192801F0>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#CF4A] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#CF4A] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#CF4A] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#CF4A] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#CF4A] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#CF4A] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#CF4A] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-0', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AC1AEB2820> from thread <_MainThread(MainThread, started 19504)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AC1AEB2820> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001AC192801F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AC1AEB2820> acquired by thread <_MainThread(MainThread, started 19504)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AC1AEB2820> from thread <_MainThread(MainThread, started 19504)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001AC192801F0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AC192801F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AC1AEB2820> acquired by thread <_MainThread(MainThread, started 19504)>
+DEBUG:py2neo.client.bolt:[#CF4A] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#CF4A] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#CF4A] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#CF4A] S: SUCCESS {'t_first': 2401, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#CF4A] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#CF4A] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 22, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AC1AEB2820> from thread <_MainThread(MainThread, started 19504)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002358CE41220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#EFCF] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#EFCF] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#EFCF] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#EFCF] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#EFCF] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#EFCF] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#EFCF] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-1', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002358EA77130> from thread <_MainThread(MainThread, started 17336)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002358EA77130> does not belong to pool <py2neo.client.ConnectionPool object at 0x000002358CE41220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002358EA77130> acquired by thread <_MainThread(MainThread, started 17336)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002358EA77130> from thread <_MainThread(MainThread, started 17336)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000002358CE41220>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002358CE41220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002358EA77130> acquired by thread <_MainThread(MainThread, started 17336)>
+DEBUG:py2neo.client.bolt:[#EFCF] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#EFCF] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#EFCF] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#EFCF] S: SUCCESS {'t_first': 6, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#EFCF] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#EFCF] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 1, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002358EA77130> from thread <_MainThread(MainThread, started 17336)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000018A46CDF220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#EFDE] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#EFDE] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#EFDE] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#EFDE] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#EFDE] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#EFDE] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#EFDE] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-2', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000018A48901E80> from thread <_MainThread(MainThread, started 24932)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000018A48901E80> does not belong to pool <py2neo.client.ConnectionPool object at 0x0000018A46CDF220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000018A48901E80> acquired by thread <_MainThread(MainThread, started 24932)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000018A48901E80> from thread <_MainThread(MainThread, started 24932)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000018A46CDF220>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000018A46CDF220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000018A48901E80> acquired by thread <_MainThread(MainThread, started 24932)>
+DEBUG:py2neo.client.bolt:[#EFDE] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#EFDE] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#EFDE] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#EFDE] S: SUCCESS {'t_first': 6, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#EFDE] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#EFDE] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 2, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000018A48901E80> from thread <_MainThread(MainThread, started 24932)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000026023FDF220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#EFE8] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#EFE8] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#EFE8] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#EFE8] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#EFE8] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#EFE8] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#EFE8] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-3', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026025C01100> from thread <_MainThread(MainThread, started 19520)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026025C01100> does not belong to pool <py2neo.client.ConnectionPool object at 0x0000026023FDF220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026025C01100> acquired by thread <_MainThread(MainThread, started 19520)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026025C01100> from thread <_MainThread(MainThread, started 19520)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000026023FDF220>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000026023FDF220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026025C01100> acquired by thread <_MainThread(MainThread, started 19520)>
+DEBUG:py2neo.client.bolt:[#EFE8] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#EFE8] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#EFE8] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#EFE8] S: SUCCESS {'t_first': 3, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#EFE8] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#EFE8] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 2, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000026025C01100> from thread <_MainThread(MainThread, started 19520)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002AACCC16C70>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#EFF0] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#EFF0] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#EFF0] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#EFF0] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#EFF0] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#EFF0] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#EFF0] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-4', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002AACE8350D0> from thread <_MainThread(MainThread, started 26296)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002AACE8350D0> does not belong to pool <py2neo.client.ConnectionPool object at 0x000002AACCC16C70>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002AACE8350D0> acquired by thread <_MainThread(MainThread, started 26296)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002AACE8350D0> from thread <_MainThread(MainThread, started 26296)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000002AACCC16C70>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000002AACCC16C70>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000002AACE8350D0> acquired by thread <_MainThread(MainThread, started 26296)>
+DEBUG:py2neo.client.bolt:[#EFF0] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#EFF0] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#EFF0] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#EFF0] S: SUCCESS {'t_first': 2, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#EFF0] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#EFF0] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 2, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000002AACE8350D0> from thread <_MainThread(MainThread, started 26296)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001BF33DCF220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#EFF9] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#EFF9] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#EFF9] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#EFF9] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#EFF9] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#EFF9] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#EFF9] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-5', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BF359F6130> from thread <_MainThread(MainThread, started 23624)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BF359F6130> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001BF33DCF220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BF359F6130> acquired by thread <_MainThread(MainThread, started 23624)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BF359F6130> from thread <_MainThread(MainThread, started 23624)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001BF33DCF220>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001BF33DCF220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BF359F6130> acquired by thread <_MainThread(MainThread, started 23624)>
+DEBUG:py2neo.client.bolt:[#EFF9] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#EFF9] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#EFF9] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#EFF9] S: SUCCESS {'t_first': 3, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#EFF9] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#EFF9] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 2, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BF359F6130> from thread <_MainThread(MainThread, started 23624)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001BB6E9BF220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#F004] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#F004] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#F004] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#F004] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#F004] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#F004] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#F004] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-6', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BB705E5130> from thread <_MainThread(MainThread, started 19540)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BB705E5130> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001BB6E9BF220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BB705E5130> acquired by thread <_MainThread(MainThread, started 19540)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BB705E5130> from thread <_MainThread(MainThread, started 19540)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001BB6E9BF220>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001BB6E9BF220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BB705E5130> acquired by thread <_MainThread(MainThread, started 19540)>
+DEBUG:py2neo.client.bolt:[#F004] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#F004] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#F004] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#F004] S: SUCCESS {'t_first': 3, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#F004] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#F004] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 1, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001BB705E5130> from thread <_MainThread(MainThread, started 19540)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001E482A601F0>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#F00C] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#F00C] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#F00C] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#F00C] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#F00C] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#F00C] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#F00C] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-7', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001E48467FE20> from thread <_MainThread(MainThread, started 17908)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001E48467FE20> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001E482A601F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001E48467FE20> acquired by thread <_MainThread(MainThread, started 17908)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001E48467FE20> from thread <_MainThread(MainThread, started 17908)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001E482A601F0>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001E482A601F0>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001E48467FE20> acquired by thread <_MainThread(MainThread, started 17908)>
+DEBUG:py2neo.client.bolt:[#F00C] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#F00C] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#F00C] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#F00C] S: SUCCESS {'t_first': 2, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#F00C] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#F00C] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 2, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001E48467FE20> from thread <_MainThread(MainThread, started 17908)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000024D6B83F220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#F014] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#F014] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#F014] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#F014] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#F014] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#F014] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#F014] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-8', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000024D6D4740D0> from thread <_MainThread(MainThread, started 15584)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000024D6D4740D0> does not belong to pool <py2neo.client.ConnectionPool object at 0x0000024D6B83F220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000024D6D4740D0> acquired by thread <_MainThread(MainThread, started 15584)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000024D6D4740D0> from thread <_MainThread(MainThread, started 15584)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000024D6B83F220>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000024D6B83F220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x0000024D6D4740D0> acquired by thread <_MainThread(MainThread, started 15584)>
+DEBUG:py2neo.client.bolt:[#F014] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#F014] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#F014] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#F014] S: SUCCESS {'t_first': 3, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#F014] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#F014] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 1, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x0000024D6D4740D0> from thread <_MainThread(MainThread, started 15584)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000023395420220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#F01C] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#F01C] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#F01C] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#F01C] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#F01C] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#F01C] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#F01C] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-9', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000233970550D0> from thread <_MainThread(MainThread, started 16660)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000233970550D0> does not belong to pool <py2neo.client.ConnectionPool object at 0x0000023395420220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000233970550D0> acquired by thread <_MainThread(MainThread, started 16660)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000233970550D0> from thread <_MainThread(MainThread, started 16660)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x0000023395420220>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x0000023395420220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x00000233970550D0> acquired by thread <_MainThread(MainThread, started 16660)>
+DEBUG:py2neo.client.bolt:[#F01C] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#F01C] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#F01C] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#F01C] S: SUCCESS {'t_first': 2, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#F01C] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#F01C] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 2, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x00000233970550D0> from thread <_MainThread(MainThread, started 16660)>
+DEBUG:py2neo.client:Adding connection pool for profile ConnectionProfile('bolt://433-16.csse.rose-hulman.edu:7687')
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AEE9160220>
+DEBUG:py2neo.client.bolt:[#0000] C: (Dialing <433-16.csse.rose-hulman.edu:7687>)
+DEBUG:py2neo.client.bolt:[#F026] S: (Accepted)
+DEBUG:py2neo.client.bolt:[#F026] C: <BOLT>
+DEBUG:py2neo.client.bolt:[#F026] C: <PROTOCOL> 4.3~4.0 | 4.0 | 3.0 | 2.0
+DEBUG:py2neo.client.bolt:[#F026] S: <PROTOCOL> 4.3
+DEBUG:py2neo.client.bolt:[#F026] C: HELLO {'user_agent': 'py2neo/2021.2.3 Python/3.9.13-final-0 (win32)', 'scheme': 'basic', 'principal': 'neo4j', 'credentials': '*******'}
+DEBUG:py2neo.client.bolt:[#F026] C: (Sent 113 bytes)
+DEBUG:py2neo.client.bolt:[#F026] S: SUCCESS {'server': 'Neo4j/4.4.11', 'connection_id': 'bolt-10', 'hints': {}}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AEEAD85100> from thread <_MainThread(MainThread, started 25852)>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AEEAD85100> does not belong to pool <py2neo.client.ConnectionPool object at 0x000001AEE9160220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AEEAD85100> acquired by thread <_MainThread(MainThread, started 25852)>
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AEEAD85100> from thread <_MainThread(MainThread, started 25852)>
+DEBUG:py2neo.client:Attempting to acquire read-write connection to default database
+DEBUG:py2neo.client:Using connection pool <py2neo.client.ConnectionPool object at 0x000001AEE9160220>
+DEBUG:py2neo.client:Trying to acquire connection from pool <py2neo.client.ConnectionPool object at 0x000001AEE9160220>
+DEBUG:py2neo.client:Connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AEEAD85100> acquired by thread <_MainThread(MainThread, started 25852)>
+DEBUG:py2neo.client.bolt:[#F026] C: RUN "MATCH (n:Person {username : 'HelloUser'}) RETURN n" {} {}
+DEBUG:py2neo.client.bolt:[#F026] C: PULL {'n': -1, 'qid': -1}
+DEBUG:py2neo.client.bolt:[#F026] C: (Sent 75 bytes)
+DEBUG:py2neo.client.bolt:[#F026] S: SUCCESS {'t_first': 16, 'fields': ['n']}
+DEBUG:py2neo.client.bolt:[#F026] S: RECORD * 1
+DEBUG:py2neo.client.bolt:[#F026] S: SUCCESS {'bookmark': 'FB:kcwQoVEtI8YdRMKq8+4WeeQNPiiQ', 'type': 'r', 't_last': 2, 'db': 'neo4j'}
+DEBUG:py2neo.client:Releasing connection <py2neo.client.bolt.Bolt4x3 object at 0x000001AEEAD85100> from thread <_MainThread(MainThread, started 25852)>
