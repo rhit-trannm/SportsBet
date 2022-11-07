@@ -17,8 +17,11 @@ def update_raven(doc):
             RavenDB.CreateUser(name=obj['name'], username=obj['username'], password=obj['password'], birthday=obj['birthday'])
             counters.update_one({'_id':'raven'},{"$set":{'last_updated':doc['_id']}})
         elif Class == "Player":
-            print('x')
+            RavenDB.StorePlayer(obj)
+            counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
         elif Class == "Team":
+            RavenDB.StoreTeam(obj)
+            counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
             print('x')
         elif Class == "Match":
             print('x')

@@ -116,9 +116,24 @@ def StoreTeam(team):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            session.store(team)
+            tempTeam = session.load(f"Team/{team.team_id}")
+            tempTeam.team_members = team.team_members
             session.save_changes()
+def QueryTeam(id):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query().where_equals("team_id", id))
+            return query_result
 
+def EditTeam(team):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query().where_equals("team_id", team.team_id))
+            if query_result == []:
+                session.store(team)
+                session.save_changes()
 
 def QueryPlayer(playerId):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
@@ -129,6 +144,14 @@ def QueryPlayer(playerId):
                 return temp2.pop()
             else:
                 return None
+def StorePlayer(object):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query().where_equals("PLAYER_ID", object.PLAYER_ID))
+            if query_result == []:
+                session.store(object)
+                session.save_changes()
 def GetBet(id):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
