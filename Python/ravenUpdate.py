@@ -16,14 +16,39 @@ def update_raven(doc):
         if Class == "User":
             RavenDB.CreateUser(name=obj['name'], username=obj['username'], password=obj['password'], birthday=obj['birthday'])
             counters.update_one({'_id':'raven'},{"$set":{'last_updated':doc['_id']}})
+        elif Class == "Player":
+            print('x')
+        elif Class == "Team":
+            print('x')
+        elif Class == "Match":
+            print('x')
+        elif Class == "Bet":
+            print('x')
+
     elif CRUD == 'UPDATE':
         if Class == "User":
             RavenDB.UpdateUser(obj['name'], obj['username'], obj['password'], obj['birthday'])
             counters.update_one({'_id':'raven'},{"$set":{'last_updated':doc['_id']}})
+        elif Class == "Player":
+            print('x')
+        elif Class == "Team":
+            print('x')
+        elif Class == "Match":
+            print('x')
+        elif Class == "Bet":
+            print('x')
     elif CRUD == 'DELETE':
         if Class == "User":
             RavenDB.DeleteUser(obj['username'])
             counters.update_one({'_id':'raven'},{"$set":{'last_updated':doc['_id']}})
+        elif Class == "Player":
+            print('x')
+        elif Class == "Team":
+            print('x')
+        elif Class == "Match":
+            print('x')
+        elif Class == "Bet":
+            print('x')
 
 while True:
     while raven.find_one({'_id':{'$gt':counters.find_one({'_id':'raven'})['last_updated']}}) is not None:

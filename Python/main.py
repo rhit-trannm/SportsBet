@@ -126,6 +126,8 @@ def GetGame(date):
         matchList.append(match)
     # for match in matchList:
     #     RavenDB.CreateTeam(match)
+    for match in matchList:
+        middlelayer.Routing("CREATE", match)
     return matchList
     # print(json.dumps(match.__dict__))
 
@@ -143,7 +145,8 @@ def GetGame(date):
 
     # print(games.head())
 
-
+def UpdateBet():
+    print('x')
 if __name__ == '__main__':
     GetGame('2022-10-6')
     # GetWinningTeam('0012200018')

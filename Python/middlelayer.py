@@ -176,23 +176,13 @@ def Routing(CRUD, object, command = None):
                 return result
             else:
                 return 0
-def UpdateNeo4J():
-    #these updates should be multithreaded.
-    neo4JLog = open("Logs/Neo4JLog.txt", "r")
 
 
-def UpdateRedis():
-    redisLog = open("Logs/RedisLog.txt", "r")
-    temp2 = json.loads(redisLog.read(), object_hook=lambda d: SimpleNamespace(**d))
-    for item in temp2:
-        print(json.loads(item))
-
-
-if __name__ == '__main__':
+#if __name__ == '__main__':
     #file1 = open("Logs/Log.txt", "r")
     #Routing("CREATE", RavenDB.User(name="Hello" ,username="HelloUser", password="HelloPass", birthday='2022-10-2'))
     #result = Routing("READ", RavenDB.User(username="HelloUser", password="HelloPass"), "Login")
     #print(result)
-    print(neo4j.GetUser("HelloUser"))
+    #print(neo4j.GetUser("HelloUser"))
     #print(Redis.LoginCheck("HelloUser", "HelloPass"))
     #print(neo4j.Login_Check("HelloUser", "HelloPass"))

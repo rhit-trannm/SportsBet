@@ -76,8 +76,6 @@ class Match(object):
         self.homeTeamId = homeTeamID
         self.awayTeamID = awayTeamID
         self.winningTeamID = winningTeamID
-global type
-type = ["Moneyline", "OverUnder"]
 class Bet(object):
     def __init__(self, id, user, typeIndex, matchId):
         #Id = uuid.uuid1()
@@ -115,7 +113,11 @@ def EditMatch(match):
             tempmatch.winningTeamID = match.winningTeamID
             session.save_changes()
 def StoreTeam(team):
-    print('x')
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            session.store(team)
+            session.save_changes()
 
 
 def QueryPlayer(playerId):
@@ -127,6 +129,12 @@ def QueryPlayer(playerId):
                 return temp2.pop()
             else:
                 return None
+def GetBet(id):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query().where_equals("betId", id))
+            return query_result
 
 def QueryUser(username):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
@@ -165,8 +173,6 @@ def LoginCheck(username, password):
                     return False
             else:
                 return False
-
-
 def TestConnection():
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
