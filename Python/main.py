@@ -1,5 +1,6 @@
 import time
 import middlelayer
+import numpy as np
 import pip
 from datetime import datetime, timezone
 import requests
@@ -7,7 +8,7 @@ from dateutil import parser
 from nba_api.live.nba.endpoints import scoreboard
 from nba_api.live.nba.endpoints import boxscore
 from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats, \
-    commonteamroster, playergamelog
+    commonteamroster, playergamelog, teamyearbyyearstats
 from nba_api.stats.static import teams, __all__, players
 import json
 import RavenDB
@@ -22,13 +23,13 @@ def GetPlayerStats(playerID):
     # might need validation if json is different format.
     if career['resultSets'][0]['rowSet'] != []:
         for row in career['resultSets'][0]['rowSet']:
-            if (row[1] == '2021-22'):
+            if (row[1] == '2022-23'):
                 tempPlayer = RavenDB.Player(row[0], row[1], row[2], row[3], row[4], row[5],
                                             row[6], row[7], row[8], row[9], row[10], row[11],
                                             row[12], row[13], row[14], row[15], row[16], row[17],
                                             row[18], row[19], row[20], row[21],
                                             row[22], row[23], row[24],
-                                            row[25], row[26])
+                                            row[25], (row[26]/row[10]))
                 return tempPlayer
     # print(json.dumps(career.get_dict()['resultSets'][0]['rowSet']))
     # f = open("playerdemo.json", "a")
@@ -53,14 +54,35 @@ def GetAllTeamInfo():
     for team in nba_teams:
         temp = RavenDB.Team(team['id'], team['full_name'], team['abbreviation'], team['city'], team['state'],
                             team['year_founded'], team_members=[])
-        teamfinder = commonteamroster.CommonTeamRoster(season='2021-22',
-                                                       team_id=f'{team["id"]}',
-                                                       league_id_nullable='00').get_dict()
+        teamfinder = commonteamroster.CommonTeamRoster(team_id=f'{team["id"]}', league_id_nullable='00').get_dict()
         for x in teamfinder['resultSets'][0]['rowSet']:
             id = x[14]
             temp.team_members.append(id)
         middlelayer.Routing("CREATE", temp)
 
+
+def GetTeamSeason(teamID):
+    season = teamyearbyyearstats.TeamYearByYearStats(team_id=str(teamID)).get_dict()
+    if len(season['resultSets'][0]['rowSet'])>0:
+        row = season['resultSets'][0]['rowSet'][-1]
+        temp = RavenDB.TeamSeason(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
+                        row[10], row[11], np.round(row[15]/row[4],2), np.round(row[16]/row[4],2), row[17],
+                        np.round(row[18]/row[4],2), np.round(row[19]/row[4],2), row[20], np.round(row[21]/row[4],2),
+                        np.round(row[22]/row[4],2), row[23], np.round(row[24]/row[4],2), np.round(row[25]/row[4],2),
+                        np.round(row[26]/row[4],2), np.round(row[27]/row[4],2), np.round(row[28]/row[4],2),
+                        np.round(row[29]/row[4],2), np.round(row[30]/row[4],2), np.round(row[31]/row[4],2),
+                        np.round(row[32]/row[4],2), row[33])
+        return temp
+
+
+def StoreAllTeamSeasons():
+    nba_teams = teams.get_teams()
+    for team in nba_teams:
+        if team['id'] is not None:
+            time.sleep(0.7)
+            temp = GetTeamSeason(team['id'])
+            if temp is not None:
+                middlelayer.Routing("CREATE", temp)
 
 def StoreAllPlayers():
     nba_players = players.get_active_players()
@@ -91,9 +113,9 @@ def StoreAllPlayerGames():
 
 
 
-def GetScoreboard():
+def GetScoreboard(date):
     day_offset = 0
-    date = "2022-10-5"
+    date = date
     id = '00'
     try:
         current_scoreboard_info = scoreboardv2.ScoreboardV2(
@@ -102,10 +124,10 @@ def GetScoreboard():
             league_id='00'
         )
 
-        current_scoreboard_info.get_dict()
-        f = open("demofile2.json", "a")
-        f.write(json.dumps(current_scoreboard_info.get_dict()))
-        f.close()
+        games = current_scoreboard_info.get_dict()['resultSets'][0]['rowSet'][0]
+        for g in games:
+            temp = RavenDB.Match(g[0][:-9], g[4], g[2], g[6], g[7])
+            middlelayer.Routing("CREATE", temp)
 
     except requests.exceptions.ConnectionError:
         print("Request failed.")
@@ -163,7 +185,7 @@ def CheckWinning(match):
         return None
 
 def Test():
-    StoreAllPlayerGames()
+    StoreAllTeamSeasons()
 
 
     # print(games.head())

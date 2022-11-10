@@ -27,21 +27,27 @@ def update_raven(doc):
             RavenDB.StorePlayer(obj)
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
         elif Class == "Team":
-            RavenDB.StoreTeam(obj)
+            del obj['Id']
+            object = json.loads(json.dumps(obj), object_hook=lambda d: RavenDB.Team(**d))
+            RavenDB.StoreTeam(object)
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
         elif Class == "Match":
-            RavenDB.CreateMatch(obj)
+            del obj['Id']
+            object = json.loads(json.dumps(obj), object_hook=lambda d: RavenDB.Match(**d))
+            RavenDB.CreateMatch(object)
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
         elif Class == "Bet":
             RavenDB.CreateBet(obj)
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
         elif Class == "PlayerGame":
-            object = RavenDB.PlayerGame(obj['PLAYER_ID'], obj['GAME_ID'], obj['GAME_DATE'],
-            obj['MATCHUP'], obj['WL'], obj['MIN'], obj['FGM'], obj['FGA'], obj['FG_PCT'], obj['FG3M'],
-            obj['FG3A'], obj['FG3_PCT'], obj['FTM'], obj['FTA'], obj['FT_PCT'], obj['OREB'], obj['DREB'],
-            obj['REB'], obj['AST'], obj['STL'], obj['BLK'], obj['TOV'], obj['PF'], obj['PTS'], obj['PLUS_MINUS'])
+            object = json.loads(json.dumps(obj), object_hook=lambda d: RavenDB.PlayerGame(**d))
             RavenDB.StoreGame(object)
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
+        elif Class == "TeamSeason":
+            del obj['Id']
+            object = json.loads(json.dumps(obj), object_hook=lambda d: RavenDB.TeamSeason(**d))
+            RavenDB.StoreSeason(object)
+            counters.update_one({'_id': 'raven'}, {'$set': {'last_updated': doc['_id']}})
     elif CRUD == 'UPDATE':
         if Class == "User":
             RavenDB.UpdateUser(obj)

@@ -2,11 +2,14 @@ import json
 
 from py2neo import Graph
 import bcrypt
-from Python import RavenDB
+try:
+    from Python import RavenDB
+except:
+    import RavenDB
 from pyravendb.store import document_store
 def ConnectNeo4J():
     global graph
-    graph = Graph("bolt://433-16.csse.rose-hulman.edu:7687", auth=("neo4j", "433-16")) #EDIT THIS TO BE ACCURATE -Josh Mestemacher
+    graph = Graph("bolt://433-15.csse.rose-hulman.edu:7687", auth=("neo4j", "433-15")) #EDIT THIS TO BE ACCURATE -Josh Mestemacher
 
 def CheckConnection():
     try:
@@ -29,14 +32,23 @@ def Get_Balance(username):
     balance = cursor.evaluate()
     return balance
 
+def add_balance(user, amount):
+    graph.run(f"MATCH (u:User) WHERE u.username='{user}' SET u.balance=u.balance+{amount}")
+    
+def remove_balance(user, amount):
+    cursor = graph.run(f"MATCH (u:User) WHERE u.username='{user}' SET u.balance=u.balance-{amount} RETURN u.balance")
+    new_bal = cursor.evaluate()
+    if new_bal < 0:
+        add_balance(user, amount)
+
 def Find_User(user):
-    cursor = graph.run(f"MATCH (u) WHERE u.username='{user}' \nRETURN COUNT(u)")
+    cursor = graph.run(f"MATCH (u:User) WHERE u.username='{user}' \nRETURN COUNT(u)")
     num = cursor.evaluate()
     return num
     
 def GetUser(username):
     ConnectNeo4J()
-    dataset = graph.run(f"MATCH (n:Person {{username : '{username}'}}) RETURN n").data()
+    dataset = graph.run(f"MATCH (n:User {{username : '{username}'}}) RETURN n").data()
     if dataset != []:
         #print(json.loads(json.dumps(dataset.pop()['n'])))
         data = dataset.pop()['n']
@@ -46,7 +58,7 @@ def GetUser(username):
 def Create_User(name, username, password, birthday):
     passwordSalt = bcrypt.gensalt()
     hashPassword = bcrypt.hashpw(password.encode("utf-8"), passwordSalt)
-    graph.run(f"CREATE (n:Person {{username: '{username}', passwordHash: '{hashPassword.decode()}', balance: {0}, fullName: '{name}', birthday: '{birthday}', friends: []}})")
+    graph.run(f"CREATE (n:User {{username: '{username}', passwordHash: '{hashPassword.decode()}', balance: {0}, fullName: '{name}', birthday: '{birthday}', friends: []}})")
     #graph.run(f"CREATE CONSTRAINT usernameUniqueness ON (u:User) ASSERT u.username IS UNIQUE") #add constraint enforcing uniqueness of usernames
 
 def Login_Check(username, password):
@@ -60,24 +72,25 @@ def Login_Check(username, password):
         print("InnerShellFalse")
         return False
 
-def Create_MoneyLine_Bet(game_date, winner_team_abbrev, amount_betted, username, gameId): #I assume team abbrev is a drop down for this,  and so is gameId and game_date
+def Create_MoneyLine_Bet(winner_team_abbrev, amount_betted, username, gameId): #I assume team abbrev is a drop down for this,  and so is gameId and game_date
     ConnectNeo4J
-    userExists = graph.run(f"MATCH (u:User) WHERE User.username = {username} WITH COUNT(u) > {0} as node_exists RETURN node_exists")
+    userExists = graph.run(f"MATCH (u:User) WHERE u.username = '{username}' WITH COUNT(u) > 0 as node_exists RETURN node_exists")
     if(userExists):
         if(amount_betted > 0):
             #actually create bet, will implement balance checking here sometime soon,
-            graph.run(f"CREATE (n:MoneyLineBet {{user: '{username}', amountBetted: '{amount_betted}', winnerAbbrev: '{winner_team_abbrev}', game_date: '{game_date}', gameID: '{gameId}'}})")
-            graph.run(f"MATCH (u:User) WHERE u.username = {username} SET u.balance = u.balance - {amount_betted}") #adjust user balance,
+            graph.run(f"CREATE (n:MoneyLineBet {{amount: {amount_betted}, winner: '{winner_team_abbrev}', gameID: '{gameId}'}})")
+            graph.run(f"MATCH (u:User {{username:'{username}'}}), (b:MoneyLineBet {{gameID: '{gameId}'}}) CREATE (u)-[r:BETS]->(b)")
+            graph.run(f"MATCH (u:User) WHERE u.username = '{username}' SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
-def Create_OverUnder_Bet_Player(game_date, stat_type_abbrev, amount_betted, username, isUnder, stat_bet, gameId, playerId): #isUnder is 1 or 0 (meaning its an over bet), I assume isUnder will be a drop down
+def Create_OverUnder_Bet_Player(stat_type_abbrev, amount_betted, username, isUnder, stat_bet, gameId, playerId): #isUnder is 1 or 0 (meaning its an over bet), I assume isUnder will be a drop down
     #box, same for stat_type_abbrev, I assume amount_betted will be an integer. stat_bet is amount you are betting a stat will be under or over, technically in real betting not controlled by you
     #I assume gameId and game_date and playerId is point and click or drop done or automatically determined by ravenDb and sent here as inputs.
-    userExists = graph.run(f"MATCH (u:User) WHERE User.username = {username} WITH COUNT(u) > {0} as node_exists RETURN node_exists")
+    userExists = graph.run(f"MATCH (u:User) WHERE User.username = '{username}' WITH COUNT(u) > 0 as node_exists RETURN node_exists")
     if(userExists):
         if(amount_betted > 0):
             #actually create bet, will implement balance checking here sometime soon,
-            graph.run(f"CREATE (n:OverUnderBetPlayer {{user: '{username}', amountBetted: '{amount_betted}', playerId: '{playerId}', isUnder: '{isUnder}', game_date: '{game_date}', stat_type: '{stat_type_abbrev}', stat_bet: '{stat_bet}', gameID: '{gameId}'}})")
-            graph.run(f"MATCH (u:User) WHERE u.username = {username} SET u.balance = u.balance - {amount_betted}") #adjust user balance,
+            graph.run(f"CREATE (n:OverUnderBetPlayer {{user: '{username}', amountBetted: '{amount_betted}', playerId: '{playerId}', isUnder: '{isUnder}', stat_type: '{stat_type_abbrev}', stat_bet: '{stat_bet}', gameID: '{gameId}'}})")
+            graph.run(f"MATCH (u:User) WHERE u.username = '{username}' SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
 
 def Payout_MoneyLine_Bets(currentDate, winningTeamAbbrev): #we assume a team can't play 2 games in one day for this method, going with double payout for now for simplicity's sake - Josh Mestemacher
@@ -88,7 +101,7 @@ def Payout_MoneyLine_Bets(currentDate, winningTeamAbbrev): #we assume a team can
 
 def Add_Friend(userUsername, userFriendUsername): #note that I assume both usernames are 
     #actual usernames in the system here, I may go back and change this later.
-    graph.run(f"MATCH (u1:Person), (u2:Person) WHERE u1.username = '{userUsername}' AND u2.username = '{userFriendUsername}' CREATE (u1)-[r:friend_of]->(u2)")
+    graph.run(f"MATCH (u1:User), (u2:User) WHERE u1.username = '{userUsername}' AND u2.username = '{userFriendUsername}' CREATE (u1)-[r:friend_of]->(u2)")
 
 def Remove_Friend(userUsername, userFriendUsername):
     #note that I assume both usernames are 

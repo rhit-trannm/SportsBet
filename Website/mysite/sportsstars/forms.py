@@ -19,5 +19,23 @@ class playerSearch(forms.Form):
     Name = forms.CharField(label='Name', max_length=50, required=False, empty_value=None)
     Team = forms.CharField(label = 'Team', max_length=40, required=False, empty_value=None)
 
-class goHome(forms.Form):
-    user = forms.CharField(label='user', widget=forms.TextInput(attrs={'readonly':'readonly'}))
+class gameSearch(forms.Form):
+    date = forms.DateField(label='date', widget=forms.SelectDateWidget(years=[2022]))
+
+
+class betType(forms.Form):
+    bet = forms.ChoiceField(label='bet', choices=[("O", "Over/Under"), ("M", "Money Line")])
+
+class overUnder(forms.Form):
+    over_under = forms.ChoiceField(label='over_under', choices=[(0, 'Over'), (1,'Under')])
+    amount = forms.IntegerField(label='amount', min_value=1)
+
+class moneyLine(forms.Form):
+    def __init__(self, choices, *args, **kwargs):
+        super(moneyLine, self).__init__(*args, **kwargs)
+        self.fields['winner'] = forms.ChoiceField(label='winner', choices=choices)
+        self.fields['amount'] = forms.IntegerField(label='amount', min_value=1)
+
+class balanceForm(forms.Form):
+    type = forms.ChoiceField(label='type', choices=[('D', 'Deposit'), ('W', 'Withdraw')])
+    amount = forms.IntegerField(label='amount', min_value=1)

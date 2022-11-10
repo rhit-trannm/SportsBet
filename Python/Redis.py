@@ -1,7 +1,10 @@
 import bcrypt
 import redis
 import datetime
-from Python import RavenDB
+try:
+    from Python import RavenDB
+except:
+    import RavenDB
 def ConnectRedis():
         global r
         r = redis.Redis(

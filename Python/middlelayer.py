@@ -1,8 +1,13 @@
 import datetime
 
-from Python import neo4j
-from Python import RavenDB
-from Python import Redis
+try:
+    from Python import neo4j
+    from Python import RavenDB
+    from Python import Redis
+except:
+    import neo4j
+    import RavenDB
+    import Redis
 from py2neo import Graph
 from pyravendb.store import document_store
 from types import SimpleNamespace
@@ -57,6 +62,11 @@ class LogObject(object):
         self.classObject = classObject
         self.className = className
 
+class Balance(object):
+    def __init__(self, user, amount):
+        self.user =user
+        self.amount = amount
+
 
 def Logging(CRUD, classObject):
     # Create log entry
@@ -69,7 +79,18 @@ def Logging(CRUD, classObject):
         db.neo.insert_one(logEntry)
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
+    if classObject.__class__.__name__ == "Balance":
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
     if classObject.__class__.__name__ == "Bet":
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+    if classObject.__class__.__name__ == "moneyLineBet":
+        logEntry['_id'] = get_id('neo')
+        db.neo.insert_one(logEntry)
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if classObject.__class__.__name__ == "overUnderBet":
         logEntry['_id'] = get_id('neo')
         db.neo.insert_one(logEntry)
         logEntry['_id'] = get_id('raven')
@@ -80,8 +101,8 @@ def Logging(CRUD, classObject):
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
     if classObject.__class__.__name__ == "Match":
-        logEntry['_id'] = get_id('neo')
-        db.neo.insert_one(logEntry)
+        # logEntry['_id'] = get_id('neo')
+        # db.neo.insert_one(logEntry)
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
     if classObject.__class__.__name__ == "Team":
@@ -89,6 +110,9 @@ def Logging(CRUD, classObject):
         db.raven.insert_one(logEntry)
     if classObject.__class__.__name__ == "PlayerGame":
         logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if classObject.__class__.__name__ == "TeamSeason":
+        logEntry["_id"] = get_id('raven')
         db.raven.insert_one(logEntry)
     #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY
 

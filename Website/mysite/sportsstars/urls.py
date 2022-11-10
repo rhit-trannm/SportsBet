@@ -26,4 +26,8 @@ urlpatterns = [
     path('friends', views.friends, name='friends'),
     path('players', views.players, name='players'),
     path('playerstats', views.playerstats, name='playerstats'),
+    path('games', views.games, name='games'),
+    path('teamstats', views.teamstats, name='teamstats'),
+    path('bet', views.placeBet, name='bet'),
+    path('wallet', views.wallet, name='wallet'),
 ]

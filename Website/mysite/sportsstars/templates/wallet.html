@@ -102,16 +102,20 @@
         <center><h2>Welcome {{ username }}</h2>
         <br>
         <h4>Balance: ${{ balance }}</h4>
-        <br>
-        <h4>You have {{ friends }} friends</h4></center>
     </div>
+    <form method="GET" action="{% url 'home' %}" id="home">
+        <input type="hidden" id="user" name="user" value="{{ user }}">
+      </form>
 
+      <div class="text-center">
+        <input type="submit" class="btn btn-primary" form="home" id="home" name="home" value="Go Home">
+      </div>
     {{ error }}
     <br>
     <br>
     <div class="text-center">
     {{ msg }}
-    <form method="POST" action="{% url 'friends' %}" id="friends">
+    <form method="POST" action="{% url 'wallet' %}" id="wallet">
       {% csrf_token %}
             {% for field in form %}
                 <div class="fieldWrapper">
@@ -120,31 +124,10 @@
                 </div>
                 <br>
             {% endfor %}
-            <input type="hidden" name="username" value="{{ username }}">
-            <input type="submit" name="submitfriend" id="submitfriend" form="friends">
+            <input type="hidden" name="user" value="{{ user }}">
+            <input type="submit" name="submit" id="submit" form="wallet">
     </form>
     </div>
-
-    <form method="GET" action="{% url 'wallet' %}" id="wallet">
-      <input type="hidden" name="user" id="user" value="{{ username }}">
-      <input type="submit" name="submit" id="submit" value="Wallet">
-    </form>
-
-    <form method="GET" action="{% url 'games' %}" id="games">
-      <input type="hidden" id="user" name="user" value="{{ username }}">
-    </form>
-
-    <form method="GET" action="{% url 'players' %}" id="players">
-      <input type="hidden" id="user" name="user" value="{{ username }}">
-    </form>
-
-    <br>
-    <br>
-    <div class="text-center">
-      <input type="submit" class="btn btn-primary" form="games" id="games" name="games" value="Games">
-      <input type="submit" class="btn btn-primary" form="players" id="players" name="players" value="Players">
-    </div>
-
 
     
 

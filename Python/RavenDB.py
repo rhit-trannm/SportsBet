@@ -99,23 +99,69 @@ class PlayerGame(object):
         self.PTS = PTS
         self.PLUS_MINUS = PLUS_MINUS
 
+class TeamSeason(object):
+    def __init__(self, TEAM_ID, TEAM_CITY, TEAM_NAME, YEAR, GP, WINS, LOSSES, WIN_PCT, CONF_RANK, DIV_RANK, PO_WINS, PO_LOSSES,
+        FGM, FGA, FG_PCT, FG3M, FG3A, FG3_PCT, FTM, FTA, FT_PCT, OREB, DREB, REB, AST, PF, STL, TOV, BLK, PTS, PTS_RANK):
+        self.Id = f'{TEAM_ID}/{YEAR}'
+        self.TEAM_ID = TEAM_ID
+        self.TEAM_CITY = TEAM_CITY
+        self.TEAM_NAME = TEAM_NAME
+        self.YEAR = YEAR
+        self.GP = GP
+        self.WINS = WINS
+        self.LOSSES = LOSSES
+        self.WIN_PCT = WIN_PCT
+        self.CONF_RANK = CONF_RANK
+        self.DIV_RANK = DIV_RANK
+        self.PO_WINS = PO_WINS
+        self.PO_LOSSES = PO_LOSSES
+        self.FGM = FGM
+        self.FGA = FGA
+        self.FG_PCT = FG_PCT
+        self.FG3M = FG3M
+        self.FG3A = FG3A
+        self.FG3_PCT = FG3_PCT
+        self.FTM = FTM
+        self.FTA = FTA
+        self.FT_PCT = FT_PCT
+        self.OREB = OREB
+        self.DREB = DREB
+        self.REB = REB
+        self.AST = AST
+        self.STL = STL
+        self.BLK = BLK
+        self.TOV = TOV
+        self.PF = PF
+        self.PTS = PTS
+        self.PTS_RANK = PTS_RANK
         
 class Match(object):
-    def __init__(self, date, matchID, homeTeamID, awayTeamID, winningTeamID = None):
-        self.Id = f'Match/{matchID}'
-        self.matchId = matchID
+    def __init__(self, date, matchId, homeTeamId, awayTeamID, winningTeamID = None):
+        self.Id = f'Match/{matchId}'
+        self.matchId = matchId
         self.date = date
-        self.homeTeamId = homeTeamID
+        self.homeTeamId = homeTeamId
         self.awayTeamID = awayTeamID
         self.winningTeamID = winningTeamID
-class Bet(object):
-    def __init__(self, id, user, type, matchId, status):
+
+
+class overUnderBet(object):
+    def __init__(self, amount, user, isUnder, matchId, status='PENDING'):
         #Id = uuid.uuid1()
-        self.Id = f'Match/{id}'
-        self.betId = id
+        self.Id = f'BetOU/{user}/{matchId}'
+        self.amount = amount
         self.user = user
         self.matchId = matchId
-        self.type = type
+        self.isUnder = isUnder
+        self.status = status
+
+class moneyLineBet(object):
+    def __init__(self, winner, amount, user, matchId, status='PENDING'):
+        self.Id = f'BetML/{user}/{matchId}'
+        self.winner = winner
+        self.amount = amount
+        self.user = user
+        self.matchId = matchId
         self.status = status
 
 class User(object):
@@ -146,20 +192,36 @@ def EditMatch(match):
             tempmatch = session.load(f"Match/{match.matchId}")
             tempmatch.winningTeamID = match.winningTeamID
             session.save_changes()
+
+def GetMatches(date):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            games = list(session.query(object_type=Match).where_equals("date", date))
+            if len(games)==0:
+                return None
+            else:
+                return games
+
+
 def StoreTeam(team):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            if QueryTeam(team.team_id) == []:
+            if QueryTeam(team.team_id) is None:
                 session.store(team)
                 session.save_changes()
+    
 
 def QueryTeam(id):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
             query_result = list(session.query(object_type=Team).where_equals("team_id", id))
-            return query_result
+            if len(query_result) == 0:
+                return None
+            return query_result.pop()
+
 
 def EditTeam(team):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
@@ -173,6 +235,8 @@ def EditTeam(team):
                 session.delete(f"Team/{team.team_id}")
                 session.store(team)
                 session.save_changes()
+
+    
 def EditPlayer(player):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
@@ -247,6 +311,26 @@ def StoreGame(object):
             if query_result == []:
                 session.store(object)
                 session.save_changes()
+
+
+def StoreSeason(object):
+    with document_store.DocumentStore(urls=IPList[0], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query(object_type=TeamSeason).where_equals("TEAM_ID", object.TEAM_ID).and_also().where_equals("YEAR", object.YEAR))
+            if len(query_result)>0:
+                session.delete(f'{object.TEAM_ID}/{object.YEAR}')
+            session.store(object)
+            session.save_changes()
+
+def GetSeason(teamID):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query(object_type=TeamSeason).where_equals("TEAM_ID", teamID))
+            return query_result.pop()
+
+
 
 def QueryPlayerGames(playerId):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:

@@ -46,7 +46,7 @@
     <br>
     {{ error }}
     <div class="form">
-      <form id="GenForm"  name="{{ formName }}" method="POST" action="{% url 'players' %}">
+      <form id="GenForm"  name="{{ formName }}" method="POST" action="{% url 'games' %}">
         {% csrf_token %}
         {% for field in form %}
           <div class="fieldWrapper">
@@ -65,67 +65,28 @@
       <thead>
       <tr>
         <th></th>
-        <th>Team</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>GP</th>
-        <th>GS</th>
-        <th>MIN</th>
-        <th>PTS</th>
-        <th>OREB</th>
-        <th>DREB</th>
-        <th>REB</th>
-        <th>AST</th>
-        <th>STL</th>
-        <th>BLK</th>
-        <th>TOV</th>
-        <th>PF</th>
-        <th>FGM</th>
-        <th>FGA</th>
-        <th>FG%</th>
-        <th>3PM</th>
-        <th>3PA</th>
-        <th>3P%</th>
-        <th>FTM</th>
-        <th>FTA</th>
-        <th>FT%</th>
+        <th>Date</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Result</th>
       </tr>
       </thead>
       <tbody>
-    {% for data in players %}
+    {% for data in games %}
       <tr>
-        <td><form action="{% url 'playerstats' %}" method="post">
+        <td><form action="{% url 'teamstats' %}" method="post">
           {% csrf_token %}
           <input type="hidden" id="user" name="user" value="{{ user }}">
-          <input type="hidden" id="player" name="player" value="{{ data.PLAYER_ID }}">
+          <input type="hidden" id="match" name="match" value="{{ data.matchId }}">
+          <input type="hidden" id="date" name="date" value="{{ data.date }}">
+          <input type="hidden" id="home" name="home" value="{{ data.homeTeamId }}">
+          <input type="hidden" id="away" name="away" value="{{ data.awayTeamID }}">
           <input type="submit" name="submit" value="">
         </form></td>
-        <td>{{ data.TEAM_ABBREVIATION }}</td>
-        <td>{{ data.first_name }}</td>
-        <td>{{ data.last_name }}</td>
-        <td>{{ data.PLAYER_AGE }}</td>
-        <td>{{ data.GP }}</td>
-        <td>{{ data.GS }}</td>
-        <td>{{ data.MIN }}</td>
-        <td>{{ data.PTS }}</td>
-        <td>{{ data.OREB }}</td>
-        <td>{{ data.DREB }}</td>
-        <td>{{ data.REB }}</td>
-        <td>{{ data.AST }}</td>
-        <td>{{ data.STL }}</td>
-        <td>{{ data.BLK }}</td>
-        <td>{{ data.TOV }}</td>
-        <td>{{ data.PF }}</td>
-        <td>{{ data.FGM }}</td>
-        <td>{{ data.FGA }}</td>
-        <td>{{ data.FG_PCT }}</td>
-        <td>{{ data.FG3M }}</td>
-        <td>{{ data.FG3A }}</td>
-        <td>{{ data.FG3_PCT }}</td>
-        <td>{{ data.FTM }}</td>
-        <td>{{ data.FTA }}</td>
-        <td>{{ data.FT_PCT }}</td>
+        <td>{{ data.date }}</td>
+        <td>{{ data.home_team }}</td>
+        <td>{{ data.away_team }}</td>
+        <td>{{ data.Result }}</td>
       </tr>
       </form>
     {% endfor %}

@@ -23,9 +23,11 @@ def update_neo4j(doc):
         if Class == "User":
             neo4j.Create_User(obj['name'], obj['username'], obj['password'], obj['birthday'])
             counters.update_one({'_id': 'neo'}, {"$set": {'last_updated': doc['_id']}})
-        if Class == "Bet":
-            neo4j.Create_MoneyLine_Bet(obj['date'], obj['winner'], obj['amount'], obj['user'], obj['game'])
+        if Class == "moneyLineBet":
+            neo4j.Create_MoneyLine_Bet(obj['winner'], obj['amount'], obj['user'], obj['matchId'])
             counters.update_one({'_id': 'neo'}, {"$set": {'last_updated': doc['_id']}})
+        if Class == "overUnderBet":
+            neo4j.Create_OverUnder_Bet_Player('pts', obj['amount'], obj['user'], obj['isUnder'], )
         if Class == "Friends":
             neo4j.Add_Friend(obj['user'], obj['friend'])
             counters.update_one({'_id': 'neo'}, {"$set": {'last_updated': doc['_id']}})
@@ -39,6 +41,12 @@ def update_neo4j(doc):
         if Class == "Friends":
             neo4j.Add_Friend(obj['user'], obj['friend'])
             counters.update_one({'_id': 'neo'}, {"$set": {'last_updated': doc['_id']}})
+        if Class == "Balance":
+            if obj['amount']<0:
+                neo4j.remove_balance(obj['user'], obj['amount'])
+            else:
+                neo4j.add_balance(obj['user'], obj['amount'])
+            counters.update_one({'_id':'neo'}, {"$set": {'last_updated': doc['_id']}})
     elif CRUD == 'DELETE':
         if Class == "User":
             neo4j.Delete_User(obj['username'])

@@ -37,9 +37,17 @@
 
     {{ error }}
 
+    <form method="GET" action="{% url 'home' %}" id="home">
+      <input type="hidden" id="user" name="user" value="{{ user }}">
+    </form>
+
+    <form method="GET" action="{% url 'players' %}" id="players">
+      <input type="hidden" id="user" name="user" value="{{ user }}">
+    </form>
+
     <div class="text-center">
-        <a class="btn btn-primary" id="home" href="{% url 'home' %}">Home</a>
-        <a class="btn btn-primary" id="players" href="{% url 'players' %}">Back to Players</a>
+        <input type="submit" class="btn btn-primary" form="home" id="home" name="home" value="Go Home">
+        <input type="submit" class="btn btn-primary" form="players" id="players" name="players" value="Back to Players">
       </div>
 
     <table class="table table-bordered table-sm table-striped" id="gameTable">

@@ -14,7 +14,7 @@
 	
 
       $(document).ready(function () {
-        $('#playerTable').DataTable();
+        $('#statsTable').DataTable();
       });
       
       
@@ -32,46 +32,57 @@
 <body style="background-color: #f5fdff">
     <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
     <div class="text-right">
-      <a class="btn btn-danger" id="logoutbtn" href="{% url 'login' %}">Log Out</a>
-    </div>
+        <a class="btn btn-danger" id="logoutbtn" href="{% url 'login' %}">Log Out</a>
+      </div>
+
+    {{ error }}
 
     <form method="GET" action="{% url 'home' %}" id="home">
       <input type="hidden" id="user" name="user" value="{{ user }}">
     </form>
 
+    <form method="GET" action="{% url 'games' %}" id="games">
+      <input type="hidden" id="user" name="user" value="{{ user }}">
+    </form>
+
     <div class="text-center">
-      <input type="submit" class="btn btn-primary" form="home" id="home" name="home" value="Go Home">
-    </div> 
-    <br>
-    <br>
-    {{ error }}
-    <div class="form">
-      <form id="GenForm"  name="{{ formName }}" method="POST" action="{% url 'players' %}">
-        {% csrf_token %}
-        {% for field in form %}
-          <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-          </div>
-          <br>
-        {% endfor %}
-        <input type="hidden" id="user" name="user" value="{{ user }}">
-      </form>
-      <input type="submit" name="submitform" id="submitform" form="GenForm">
-    </div>
+        <input type="submit" class="btn btn-primary" form="home" id="home" name="home" value="Go Home">
+        <input type="submit" class="btn btn-primary" form="games" id="games" name="games" value="Back to Games">
+      </div>
+      <br>
+      <br>
+      Game Date: {{ date }}
+      <div class="text-center">
+        <form method="POST" action="{% url 'bets' %}" id="bets">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                    {{ field.errors }}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+                <br>
+            {% endfor %}
+            <input type="hidden" id="match" name="match" value="{{ game }}">
+            <input type="hidden" id="home" name="home" value="{{ home }}">
+            <input type="hidden" id="away" name="away" value="{{ away }}">
+            <input type="hidden" id="user" name="user" value="{{ user }}">
+            <input type="hidden" id="homename" name="homename" value="{{ home_name }}">
+            <input type="hidden" id="awayname" name="awayname" value="{{ away_name }}">
+            <input type="submit" id="submit" name="submit">
+        </form>
+      </div>
 
-
-    <table class="table table-bordered table-sm table-striped" id="playerTable">
+    <table class="table table-bordered table-sm table-striped" id="statsTable">
       <thead>
       <tr>
-        <th></th>
-        <th>Team</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
+        <th>City</th>
+        <th>Team Name</th>
         <th>GP</th>
-        <th>GS</th>
-        <th>MIN</th>
+        <th>W</th>
+        <th>L</th>
+        <th>W%</th>
+        <th>Conf Rank</th>
+        <th>Div Rank</th>
         <th>PTS</th>
         <th>OREB</th>
         <th>DREB</th>
@@ -90,24 +101,20 @@
         <th>FTM</th>
         <th>FTA</th>
         <th>FT%</th>
+        <th>Pts Rank</th>
       </tr>
       </thead>
       <tbody>
-    {% for data in players %}
+    {% for data in stats %}
       <tr>
-        <td><form action="{% url 'playerstats' %}" method="post">
-          {% csrf_token %}
-          <input type="hidden" id="user" name="user" value="{{ user }}">
-          <input type="hidden" id="player" name="player" value="{{ data.PLAYER_ID }}">
-          <input type="submit" name="submit" value="">
-        </form></td>
-        <td>{{ data.TEAM_ABBREVIATION }}</td>
-        <td>{{ data.first_name }}</td>
-        <td>{{ data.last_name }}</td>
-        <td>{{ data.PLAYER_AGE }}</td>
+        <td>{{ data.TEAM_CITY }}</td>
+        <td>{{ data.TEAM_NAME }}</td>
         <td>{{ data.GP }}</td>
-        <td>{{ data.GS }}</td>
-        <td>{{ data.MIN }}</td>
+        <td>{{ data.WINS }}</td>
+        <td>{{ data.LOSSES }}</td>
+        <td>{{ data.WIN_PCT }}</td>
+        <td>{{ data.CONF_RANK }}</td>
+        <td>{{ data.DIV_RANK }}</td>
         <td>{{ data.PTS }}</td>
         <td>{{ data.OREB }}</td>
         <td>{{ data.DREB }}</td>
@@ -126,6 +133,7 @@
         <td>{{ data.FTM }}</td>
         <td>{{ data.FTA }}</td>
         <td>{{ data.FT_PCT }}</td>
+        <td>{{ data.PTS_RANK }}</td>
       </tr>
       </form>
     {% endfor %}

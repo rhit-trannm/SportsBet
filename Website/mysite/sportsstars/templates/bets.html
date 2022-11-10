@@ -9,54 +9,34 @@
 </head>
 
 <style>
-  .highlight {
-    background-color: yellow;
-  }
-
-  menu {
-    position:absolute;
-    display:block;
-    left:0px;
-    top:0px;
-    height:20px;
-    width:20px;
-    padding:0;
-    margin:0;
-    border:1px solid;
-    background-color:white;
-    font-weight:normal;
-    white-space:nowrap;
-  }
-  menu:hover{
-      background-color:#eef;
-      font-weight:bold;
-  }
-  menu:hover > menu{
-      display:block;
-  }
-  menu > menu{
-      display:none;
-      position:relative;
-      top:-20px;
-      left:100%;
-      width:55px;
-  }
-  menu[title]:before{
-      content:attr(title);
-  }
-  menu:not([title]):before{
-      content:"\2630";
-  }
+  
 
 </style>
 <body style="background-color: #f5fdff">
     <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
     <div class="container" style="width: 50%; margin: auto">
-      <div class="row">
-        <br><br>
-        <center><h2>Welcome {{ username }}</h2></center>
-      </div>
-    </div>
+      
+      <div class="text-center">
+        {{ msg }}
+        <form method="POST" action="{% url 'bet' %}" id="bet">
+          {% csrf_token %}
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                    <br>
+                {% endfor %}
+                <input type="hidden" name="type" id="type" value="{{ type }}">
+                <input type="hidden" id="user" name="user" value="{{ user }}">
+                <input type="hidden" id="game" name="game" value="{{ game }}">
+                <input type="hidden" id="home" name="home" value="{{ home }}">
+                <input type="hidden" id="away" name="away" value="{{ away }}">
+                <input type="hidden" id="homename" name="homename" value="{{ home_name }}">
+                <input type="hidden" id="awayname" name="awayname" value="{{ away_name }}">
+                <input type="submit" name="submit" id="submit" form="bet">
+        </form>
+        </div>
 
     <div class="row">
       <div class="form">
