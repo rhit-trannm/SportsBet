@@ -20,14 +20,14 @@ import pandas
 
 
 class Player(object):
-    def __init__(self, PLAYER_ID, SEASON_ID, LEAGUE_ID,
+    def __init__(self, full_name, first_name, last_name, PLAYER_ID, SEASON_ID, LEAGUE_ID,
                  TEAM_ID, TEAM_ABBREVIATION, PLAYER_AGE, GP,
                  GS, MIN, FGM, FGA, FG_PCT, FG3M, FG3A, FG3_PCT,
                  FTM, FTA, FT_PCT, OREB, DREB, REB, AST, STL, BLK, TOV, PF, PTS):
         self.Id = f'Player/{PLAYER_ID}'
-        self.full_name = None
-        self.first_name = None
-        self.last_name = None
+        self.full_name = full_name
+        self.first_name = first_name
+        self.last_name = last_name
         self.PLAYER_ID = PLAYER_ID
         self.SEASON_ID = SEASON_ID
         self.LEAGUE_ID = LEAGUE_ID
@@ -69,6 +69,35 @@ class Team(object):
         self.year_founded = year_founded
         self.team_members = team_members
 
+
+class PlayerGame(object):
+    def __init__(self, PLAYER_ID, GAME_ID, GAME_DATE, MATCHUP, WL, MIN, FGM, FGA, FG_PCT, FG3M, FG3A, FG3_PCT, FTM, FTA, FT_PCT,
+        OREB, DREB, REB, AST, STL, BLK, TOV, PF, PTS, PLUS_MINUS):
+        self.PLAYER_ID = PLAYER_ID
+        self.GAME_ID = GAME_ID
+        self.GAME_DATE = GAME_DATE
+        self.MATCHUP = MATCHUP
+        self.WL = WL
+        self.MIN = MIN
+        self.FGM = FGM
+        self.FGA = FGA
+        self.FG_PCT = FG_PCT
+        self.FG3M = FG3M
+        self.FG3A = FG3A
+        self.FG3_PCT = FG3_PCT
+        self.FTM = FTM
+        self.FTA = FTA
+        self.FT_PCT = FT_PCT
+        self.OREB = OREB
+        self.DREB = DREB
+        self.REB = REB
+        self.AST = AST
+        self.STL = STL
+        self.BLK = BLK
+        self.TOV = TOV
+        self.PF = PF
+        self.PTS = PTS
+        self.PLUS_MINUS = PLUS_MINUS
 
         
 class Match(object):
@@ -162,6 +191,73 @@ def QueryPlayer(playerId):
                 return temp2.pop()
             else:
                 return None
+
+def SearchPlayerName(name):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            temp = list(session.query(object_type=Player).where_equals("full_name", name))
+            temp1 = list(session.query(object_type=Player).where_equals("first_name", name))
+            temp2 = list(session.query(object_type=Player).where_equals("last_name", name))
+            results = temp+temp1+temp2
+            if len(results)>0:
+                return results
+            else:
+                return None
+
+
+def SearchPlayerTeam(team):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            temp = list(session.query(object_type=Player).where_equals("TEAM_ABBREVIATION", team))
+            if len(temp)>0:
+                return temp
+            else:
+                return None
+
+def SearchPlayerNameTeam(name, team):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            temp = list(session.query(object_type=Player).where_equals("full_name", name).and_also().where_equals("TEAM_ABBREVIATION", team))
+            temp1 = list(session.query(object_type=Player).where_equals("first_name", name).and_also().where_equals("TEAM_ABBREVIATION", team))
+            temp2 = list(session.query(object_type=Player).where_equals('last_name',name).and_also().where_equals('TEAM_ABBREVIATION',team))
+            temp3 = temp+temp1+temp2
+            if len(temp3)>0:
+                return temp3
+            else:
+                return None
+
+def SearchPlayers():
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            temp = list(session.query(object_type=Player))
+            if len(temp)>0:
+                return temp
+            else:
+                return None
+
+def StoreGame(object):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query(object_type=PlayerGame).where_equals("PLAYER_ID", object.PLAYER_ID).and_also().where_equals("GAME_ID", object.GAME_ID))
+            if query_result == []:
+                session.store(object)
+                session.save_changes()
+
+def QueryPlayerGames(playerId):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            temp2 = list(session.query(object_type=PlayerGame).where_equals("PLAYER_ID", playerId))
+            if len(temp2) > 0:
+                return temp2
+            else:
+                return None
+
 def StorePlayer(object):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()

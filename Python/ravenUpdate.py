@@ -17,11 +17,11 @@ def update_raven(doc):
     CRUD = doc['command']
     Class = doc['className']
     obj = doc['classObject']
-    obj = json.loads(json.dumps(obj), object_hook=lambda d: SimpleNamespace(**d))
+    #obj = json.loads(json.dumps(obj), object_hook=lambda d: SimpleNamespace(**d))
     if CRUD == 'CREATE':
         if Class == "User":
-            RavenDB.CreateUser(name=obj.name, username=obj.username, password=obj.password,
-                               birthday=obj.birthday)
+            RavenDB.CreateUser(name=obj.get('name'), username=obj.get('username'), password=obj.get('password'),
+                               birthday=obj.get('birthday'))
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
         elif Class == "Player":
             RavenDB.StorePlayer(obj)
@@ -34,6 +34,13 @@ def update_raven(doc):
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
         elif Class == "Bet":
             RavenDB.CreateBet(obj)
+            counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
+        elif Class == "PlayerGame":
+            object = RavenDB.PlayerGame(obj['PLAYER_ID'], obj['GAME_ID'], obj['GAME_DATE'],
+            obj['MATCHUP'], obj['WL'], obj['MIN'], obj['FGM'], obj['FGA'], obj['FG_PCT'], obj['FG3M'],
+            obj['FG3A'], obj['FG3_PCT'], obj['FTM'], obj['FTA'], obj['FT_PCT'], obj['OREB'], obj['DREB'],
+            obj['REB'], obj['AST'], obj['STL'], obj['BLK'], obj['TOV'], obj['PF'], obj['PTS'], obj['PLUS_MINUS'])
+            RavenDB.StoreGame(object)
             counters.update_one({'_id': 'raven'}, {"$set": {'last_updated': doc['_id']}})
     elif CRUD == 'UPDATE':
         if Class == "User":

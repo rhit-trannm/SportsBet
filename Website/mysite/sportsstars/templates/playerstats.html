@@ -14,7 +14,7 @@
 	
 
       $(document).ready(function () {
-        $('#playerTable').DataTable();
+        $('#gameTable').DataTable();
       });
       
       
@@ -32,36 +32,22 @@
 <body style="background-color: #f5fdff">
     <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
     <div class="text-right">
-      <a class="btn btn-danger" id="logoutbtn" href="{% url 'login' %}">Log Out</a>
-    </div>
+        <a class="btn btn-danger" id="logoutbtn" href="{% url 'login' %}">Log Out</a>
+      </div>
 
     {{ error }}
 
-    <div class="form">
-      <form id="GenForm"  name="{{ formName }}" method="POST" action="{% url 'players' %}">
-        {% csrf_token %}
-        {% for field in form %}
-          <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-          </div>
-          <br>
-        {% endfor %}
-      </form>
-      <input type="submit" name="submitform" id="submitform" form="GenForm">
-    </div>
+    <div class="text-center">
+        <a class="btn btn-primary" id="home" href="{% url 'home' %}">Home</a>
+        <a class="btn btn-primary" id="players" href="{% url 'players' %}">Back to Players</a>
+      </div>
 
-
-    <table class="table table-bordered table-sm table-striped" id="playerTable">
+    <table class="table table-bordered table-sm table-striped" id="gameTable">
       <thead>
       <tr>
-        <th></th>
-        <th>Team</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>GP</th>
-        <th>GS</th>
+        <th>Date</th>
+        <th>Matchup</th>
+        <th>Win/Loss</th>
         <th>MIN</th>
         <th>PTS</th>
         <th>OREB</th>
@@ -81,18 +67,15 @@
         <th>FTM</th>
         <th>FTA</th>
         <th>FT%</th>
+        <th>+/-</th>
       </tr>
       </thead>
       <tbody>
-    {% for data in players %}
+    {% for data in games %}
       <tr>
-        <td><form action="{% url 'playerstats' %}" method="post">{% csrf_token %}<input type="submit" name="submit" value="{{ data.PLAYER_ID }}"></form></td>
-        <td>{{ data.TEAM_ABBREVIATION }}</td>
-        <td>{{ data.first_name }}</td>
-        <td>{{ data.last_name }}</td>
-        <td>{{ data.PLAYER_AGE }}</td>
-        <td>{{ data.GP }}</td>
-        <td>{{ data.GS }}</td>
+        <td>{{ data.GAME_DATE }}</td>
+        <td>{{ data.MATCHUP }}</td>
+        <td>{{ data.WL }}</td>
         <td>{{ data.MIN }}</td>
         <td>{{ data.PTS }}</td>
         <td>{{ data.OREB }}</td>
@@ -112,6 +95,7 @@
         <td>{{ data.FTM }}</td>
         <td>{{ data.FTA }}</td>
         <td>{{ data.FT_PCT }}</td>
+        <td>{{ data.PLUS_MINUS }}</td>
       </tr>
       </form>
     {% endfor %}

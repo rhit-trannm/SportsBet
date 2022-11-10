@@ -5,6 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+      var currSeconds = 0;
+        
+      $(document).click(function(){
+        if(typeof timeOutObj != "undefined") {
+            clearTimeout(timeOutObj);
+        }
+
+        timeOutObj = setTimeout(function(){ 
+            ("#logoutbtn").click();
+        }, 30000);   //will expire after five minutes
+
+   });
+  </script>
     <title>Sports Stars</title>
 </head>
 
@@ -80,7 +95,7 @@
 <body style="background-color: #f5fdff">
     <center><h1 style="margin-top: 5%">Sports Stars</h1></center>
     <div class="text-right">
-      <a class="btn btn-danger" href="{% url 'login' %}">Log Out</a>
+      <a class="btn btn-danger" id="logoutbtn" href="{% url 'login' %}">Log Out</a>
     </div>
     <div class="container" style="width: 50%; margin: auto">
         <br>
@@ -116,10 +131,12 @@
     <br>
     <br>
     <div class="text-center">
-      <input type="submit" form="bets" value="View Bets">
-      <input type="submit" form="stats" value="View Stats">
+      <a class="btn btn-primary" id="bets" href="{% url 'bets' %}">Bets</a>
+      <a class="btn btn-primary" id="players" href="{% url 'players' %}">Stats</a>
     </div>
 
+
+    
 
 </body>
 </html>

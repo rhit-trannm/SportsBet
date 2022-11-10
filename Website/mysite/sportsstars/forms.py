@@ -14,3 +14,10 @@ class AcctForm(forms.Form):
 
 class FriendForm(forms.Form):
     friend = forms.CharField(label='friend', max_length=20)
+
+class playerSearch(forms.Form):
+    Name = forms.CharField(label='Name', max_length=50, required=False, empty_value=None)
+    Team = forms.CharField(label = 'Team', max_length=40, required=False, empty_value=None)
+
+class goHome(forms.Form):
+    user = forms.CharField(label='user', widget=forms.TextInput(attrs={'readonly':'readonly'}))

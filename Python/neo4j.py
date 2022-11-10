@@ -2,7 +2,7 @@ import json
 
 from py2neo import Graph
 import bcrypt
-import RavenDB
+from Python import RavenDB
 from pyravendb.store import document_store
 def ConnectNeo4J():
     global graph

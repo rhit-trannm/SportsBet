@@ -1,8 +1,8 @@
 import datetime
 
-import neo4j
-import RavenDB
-import Redis
+from Python import neo4j
+from Python import RavenDB
+from Python import Redis
 from py2neo import Graph
 from pyravendb.store import document_store
 from types import SimpleNamespace
@@ -85,6 +85,9 @@ def Logging(CRUD, classObject):
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
     if classObject.__class__.__name__ == "Team":
+        logEntry['_id'] = get_id('raven')
+        db.raven.insert_one(logEntry)
+    if classObject.__class__.__name__ == "PlayerGame":
         logEntry['_id'] = get_id('raven')
         db.raven.insert_one(logEntry)
     #NEED TO ADD FRIEND COMMANDS HERE EVENTUALLY

@@ -7,7 +7,7 @@ from dateutil import parser
 from nba_api.live.nba.endpoints import scoreboard
 from nba_api.live.nba.endpoints import boxscore
 from nba_api.stats.endpoints import commonplayerinfo, leaguegamefinder, scoreboardv2, playercareerstats, \
-    commonteamroster
+    commonteamroster, playergamelog
 from nba_api.stats.static import teams, __all__, players
 import json
 import RavenDB
@@ -34,6 +34,17 @@ def GetPlayerStats(playerID):
     # f = open("playerdemo.json", "a")
     # f.write(json.dumps(career.get_dict()['resultSets'][0]))
     # f.close()
+
+def GetPlayerGames(playerID):
+    games = playergamelog.PlayerGameLog(player_id=str(playerID)).get_dict()
+    # might need validation if json is different format.
+    if len(games['resultSets'][0]['rowSet']) > 0:
+        tempPlayerGames = [RavenDB.PlayerGame(row[1], row[2], row[3], row[4], row[5],
+                                    row[6], row[7], row[8], row[9], row[10], row[11],
+                                    row[12], row[13], row[14], row[15], row[16], row[17],
+                                    row[18], row[19], row[20], row[21],
+                                    row[22], row[23], row[24], row[25]) for row in games['resultSets'][0]['rowSet']]
+        return tempPlayerGames
 
 
 def GetAllTeamInfo():
@@ -66,6 +77,18 @@ def StoreAllPlayers():
                 # StoreObject(temp)
                 # except:
                 # print("ID already exists")
+
+
+def StoreAllPlayerGames():
+    nba_players = players.get_active_players()
+    for player in nba_players:
+        if player['id'] is not None:
+            time.sleep(0.7)
+            temp = GetPlayerGames(player['id'])
+            if temp is not None:
+                for game in temp:
+                    middlelayer.Routing("CREATE", game)
+
 
 
 def GetScoreboard():
@@ -140,8 +163,7 @@ def CheckWinning(match):
         return None
 
 def Test():
-    GetAllTeamInfo()
-    StoreAllPlayers()
+    StoreAllPlayerGames()
 
 
     # print(games.head())

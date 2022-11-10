@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from sportsstars.forms import AcctForm, LoginForm, FriendForm
+from sportsstars.forms import AcctForm, LoginForm, FriendForm, playerSearch
 from datetime import datetime, timedelta, date
 from Python import Redis, neo4j, middlelayer, RavenDB
 from Python.middlelayer import Logging
@@ -20,7 +20,7 @@ def login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             try:
-                logged_in = Redis.loginCheck(username, password)
+                logged_in = Redis.LoginCheck(username, password)
             except redis.exceptions.ConnectionError:
                 logged_in = neo4j.Login_Check(username, password)
             except py2neo.ClientError:
@@ -102,6 +102,38 @@ def acct(request):
         form = AcctForm()
         return render(request, 'acct.html', {'form': form})
 
+def players(request):
+    if request.method == 'POST':
+        form = playerSearch(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['Name']
+            team = form.cleaned_data['Team']
+            if name is not None and team is None:
+                players = RavenDB.SearchPlayerName(name)
+            if name is None and team is not None:
+                players = RavenDB.SearchPlayerTeam(team)
+            if name is not None and team is not None:
+                players = RavenDB.SearchPlayerNameTeam(name, team)
+            if name is None and team is None:
+                players = RavenDB.SearchPlayers()
+            if players is None:
+                results = []
+            else:
+                results = [p.__dict__ for p in players]
+            newForm = playerSearch()
+            return render(request, "stats.html", {'form':form, 'players':results})
+        return render(request, "stats.html", {'error':form.errors})
+    form = playerSearch()
+    return render(request, "stats.html", {'form': form})
+
+def playerstats(request):
+    if request.method == 'POST':
+        player = request.POST['submit']
+        games = RavenDB.QueryPlayerGames(player)
+        print(len(games))
+        results = [g.__dict__ for g in games]
+        return render(request, "playerstats.html", {'games':results})
+    return render(request, 'home.html', {})
 
 def stats(request):
     return render(request, 'stats.html', {})
