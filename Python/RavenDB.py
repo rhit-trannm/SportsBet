@@ -403,6 +403,15 @@ def CreateUser(name, username, password, birthday):
             else:
                 return 0
 
+def deleteUser(userID):
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            session.delete(f"User/{userID}")
+            return
+
+
+
 
 def LoginCheck(username, password):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
@@ -438,6 +447,8 @@ def DeleteDocument(obj):
         with store.open_session() as session:
             session.delete(obj.Id)
             session.save_changes()
+
+
 
 
 #if __name__ == '__main__':
