@@ -90,7 +90,7 @@ def Create_OverUnder_Bet_Player(stat_type_abbrev, amount_betted, username, isUnd
     if(userExists):
         if(amount_betted > 0):
             #actually create bet, will implement balance checking here sometime soon,
-            graph.run(f"CREATE (n:OverUnderBetPlayer {{user: '{username}', amountBetted: '{amount_betted}', playerId: '{playerId}', isUnder: '{isUnder}', stat_type: '{stat_type_abbrev}', stat_bet: '{stat_bet}', gameID: '{gameId}'}})")
+            graph.run(f"CREATE (n:OverUnderBetPlayer {{user: '{username}', amountBetted: '{amount_betted}', playerId: '{playerId}', isUnder: '{isUnder}', stat_type: '{stat_type_abbrev}', stat_bet: '{stat_bet}', gameID: '{gameId}', Status: '{'Pending'}'}})")
             graph.run(f"MATCH (u:User) WHERE u.username = '{username}' SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
 
@@ -98,8 +98,10 @@ def Payout_MoneyLine_Bets(winningTeamID, gameId): #we assume a team can't play 2
     graph.run(f"MATCH (b:MoneyLineBet) WHERE b.gameID = {gameId} AND b.winner = {winningTeamID} AND b.Status = '{'Pending'}' MATCH (c.User) WHERE b.user = c.username SET c.balance = c.balance + 2 * b.amountBetted SET b.Status = '{'Paid'}'") #reward winners
     graph.run(f"MATCH (b:MoneyLineBet) WHERE b.gameID = {gameId} ") #delete old moneyline bets (including both winning and losing ones)
 
-def Payout_OverUnder_Bet(currentDate, username, isOver):
-    graph.run(f"MATCH 
+def Payout_OverUnder_Bet(pointsScored, gameID):
+    isUnder = graph.run(f"MATCH (c:OverUnderBetPlayer) WHERE c.gameID ='{gameID}' AND c.isUnder = '{1}' AND c.stat_bet < '{pointsScored}' AND c.Status = '{'Pending'}' MATCH (u:User) WHERE c.user = u.username SET u.balance = u.balance + 2 * c.amountBetted SET b.Status = '{'Paid'}'")
+
+    
 
 #Rewarding over\under bets will be difficult until I fully understand RavenDB -Josh Mestemacher
 
@@ -134,15 +136,16 @@ def checkIfBetPlaced_OrderUnder(username, gameId):
         return cursora s
 
 def DeleteOverUnderBet(gameID, username):
-    graph.run(f"MATCH (n:OverUnderBet) WHERE n.gameID = '{gameID} AND  n.user = '{username}' DETACH DELETE A)
+    graph.run(f"MATCH (n:OverUnderBetPlayer) WHERE n.gameID = '{gameID} AND  n.user = '{username}' DETACH DELETE A)
     
     trnfs mMATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DETACH DELETE n")
 
-def DeleteMoneyLineBet(BetID):
-    graph.run(f"MATCH (n:MoneyLineBet) WHERE n.betId = '{BetID}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DETACH DELETE n")
+def DeleteMoneyLineBet(gameID, username):
+    graph.run(f"MATCH (n:MoneyLineBet) WHERE n.gameID = '{gameID}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DETACH DELETE n")
 
 
-
+def DeleteUser(username):
+    graph.run(f"MATCH (u:User) WHERE u.username = '{username}' MATCH (n:OverUnderBet) WHERE n.user = u.username DETACH DELETE n MATCH (c:MoneyLineBet) WHERE c.user = u.username DETACH DELETE c DETACH DELETE u")
 
 
 
