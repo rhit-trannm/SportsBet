@@ -79,7 +79,7 @@ def Create_MoneyLine_Bet(winner_team_abbrev, amount_betted, username, gameId): #
     if(userExists):
         if(amount_betted > 0):
             #actually create bet, will implement balance checking here sometime soon,
-            graph.run(f"CREATE (n:MoneyLineBet {{amount: {amount_betted}, winner: '{winner_team_abbrev}', gameID: '{gameId}', user: '{username}'}})")
+            graph.run(f"CREATE (n:MoneyLineBet {{amount: {amount_betted}, winner: '{winner_team_abbrev}', gameID: '{gameId}', user: '{username}', Status: '{'Pending'}'}})")
             graph.run(f"MATCH (u:User {{username:'{username}'}}), (b:MoneyLineBet {{gameID: '{gameId}'}}) CREATE (u)-[r:BETS]->(b)")
             graph.run(f"MATCH (u:User) WHERE u.username = '{username}' SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
@@ -94,9 +94,12 @@ def Create_OverUnder_Bet_Player(stat_type_abbrev, amount_betted, username, isUnd
             graph.run(f"MATCH (u:User) WHERE u.username = '{username}' SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
 
-def Payout_MoneyLine_Bets(currentDate, winningTeamAbbrev): #we assume a team can't play 2 games in one day for this method, going with double payout for now for simplicity's sake - Josh Mestemacher
-    graph.run(f"MATCH (b:MoneyLineBet) WHERE b.data < {currentDate} AND b.winnerAbbrev = {winningTeamAbbrev} WITH C MATCH (u.User) WHERE C.user = u.username SET u.balance = u.balance + 2 * b.amountBetted") #reward winners
-    graph.run(f"MATCH (b:MoneyLineBet) WHERE b.data < {currentDate} DETACH DELETE b") #delete old moneyline bets (including both winning and losing ones)
+def Payout_MoneyLine_Bets(winningTeamID, gameId): #we assume a team can't play 2 games in one day for this method, going with double payout for now for simplicity's sake - Josh Mestemacher
+    graph.run(f"MATCH (b:MoneyLineBet) WHERE b.gameID = {gameId} AND b.winner = {winningTeamID} AND b.Status = '{'Pending'}' MATCH (c.User) WHERE b.user = c.username SET c.balance = c.balance + 2 * b.amountBetted SET b.Status = '{'Paid'}'") #reward winners
+    graph.run(f"MATCH (b:MoneyLineBet) WHERE b.gameID = {gameId} ") #delete old moneyline bets (including both winning and losing ones)
+
+def Payout_OverUnder_Bet(currentDate, username, isOver):
+    graph.run(f"MATCH 
 
 #Rewarding over\under bets will be difficult until I fully understand RavenDB -Josh Mestemacher
 
@@ -128,7 +131,16 @@ def checkIfBetPlaced_OrderUnder(username, gameId):
     if(cursor.evaluate() > 0):
         return True
     else:
-        return False
+        return cursora s
+
+def DeleteOverUnderBet(gameID, username):
+    graph.run(f"MATCH (n:OverUnderBet) WHERE n.gameID = '{gameID} AND  n.user = '{username}' DETACH DELETE A)
+    
+    trnfs mMATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DETACH DELETE n")
+
+def DeleteMoneyLineBet(BetID):
+    graph.run(f"MATCH (n:MoneyLineBet) WHERE n.betId = '{BetID}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DETACH DELETE n")
+
 
 
 
