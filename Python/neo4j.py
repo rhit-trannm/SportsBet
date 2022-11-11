@@ -31,15 +31,12 @@ def Get_Balance(username):
     return balance
 
 def Get_Friend_List(username):
-    cursor  = graph.run(f"MATCH (User1)-[r:friend_of]-(u:User2)\nWHERE User1.username = '{username}' \nRETURN u")
+    cursor  = graph.run(f"MATCH (User1)-[r:friend_of]-(u:User2)\nWHERE User1.username = '{username}' \nRETURN u.username")
     numberOfFriends = Get_Number_Of_Friends(username)
     if(numberOfFriends == 0):
         return None; #change this if need be to work with front end
     data = [record for record in cursor.data()]
-    friendList = [None] * numberOfFriends
-    for i in range(0, numberOfFriends):
-        friendList[i] = data[i]['u'].get('username') #returned friend list will be list of usernames, change if necessary
-    return friendList
+    return data
 
 def GetUser(username):
     dataset = graph.run(f"MATCH (n:Person {{username : '{username}'}}) RETURN n").data()
@@ -85,6 +82,11 @@ def Create_OverUnder_Bet_Team(game_date, amount_betted, username, isUnder, point
             #actually create bet, will implement balance checking here sometime soon,
             graph.run(f"CREATE (n:OverUnderBet {{user: '{username}', amountBetted: '{amount_betted}', teamId: '{teamId}', isUnder: '{isUnder}', game_date: '{game_date}', points_bet: '{points_bet}', matchId: '{matchId}', betID:'{betId}'}})")
             graph.run(f"MATCH (u:User) WHERE u.username = {username} SET u.balance = u.balance - {amount_betted}") #adjust user balance,
+
+def getBetsForUser(username):
+    cursor = graph.run(f"MATCH (n:overUnderBet) WHERE n.user = '{username}' RETURN n AS bet UNION ALL MATCH (n1:MoneyLineBet) WHERE n1.user = '{username}' RETURN n1 AS bet")
+    return cursor.data()
+
 
 def DeleteOverUnderBet(BetId):
     graph.run(f"MATCH (n:OverUnderBet) WHERE n.betId = '{BetId}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DETACH DELETE n")
