@@ -67,25 +67,30 @@ if __name__ == '__main__':
     #Create_User("billy", "billy2", "billa", "10-2-22")
     GetUser("billy2")
 
-def Create_MoneyLine_Bet(game_date, winner_team_abbrev, amount_betted, username, matchId): #I assume team abbrev is a drop down for this,  and so is matchId and game_date
+def Create_MoneyLine_Bet(game_date, winner_team_abbrev, amount_betted, username, matchId, betId): #I assume team abbrev is a drop down for this,  and so is matchId and game_date you can pass in user generated name for betId
     ConnectNeo4J
     userExists = graph.run(f"MATCH (u:User) WHERE User.username = {username} WITH COUNT(u) > {0} as node_exists RETURN node_exists")
     if(userExists):
         if(amount_betted > 0):
             #actually create bet, will implement balance checking here sometime soon,
-            graph.run(f"CREATE (n:MoneyLineBet {{user: '{username}', amountBetted: '{amount_betted}', winnerAbbrev: '{winner_team_abbrev}', game_date: '{game_date}', gameID: '{matchId}'}})")
+            graph.run(f"CREATE (n:MoneyLineBet {{user: '{username}', amountBetted: '{amount_betted}', winnerAbbrev: '{winner_team_abbrev}', game_date: '{game_date}', gameID: '{matchId}', betID: '{betId}'}})")
             graph.run(f"MATCH (u:User) WHERE u.username = {username} SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
-def Create_OverUnder_Bet_Team(game_date, amount_betted, username, isUnder, points_bet, matchId, teamId): #isUnder is 1 or 0 (meaning its an over bet), I assume isUnder will be a drop down
+def Create_OverUnder_Bet_Team(game_date, amount_betted, username, isUnder, points_bet, matchId, teamId, betId): #isUnder is 1 or 0 (meaning its an over bet), I assume isUnder will be a drop down
     #box, I assume amount_betted will be an integer. points_bet is amount you are betting point count for a team will be under or over, technically in real betting not controlled by you
-    #I assume gameId and game_date and teamId is point and click or drop done or automatically determined by ravenDb and sent here as inputs.
+    #I assume gameId and game_date and teamId is point and click or drop done or automatically determined by ravenDb and sent here as inputs. you can pass in user generated name for betId
     userExists = graph.run(f"MATCH (u:User) WHERE User.username = {username} WITH COUNT(u) > {0} as node_exists RETURN node_exists")
     if(userExists):
         if(amount_betted > 0):
             #actually create bet, will implement balance checking here sometime soon,
-            graph.run(f"CREATE (n:OverUnderBetPlayer {{user: '{username}', amountBetted: '{amount_betted}', teamId: '{teamId}', isUnder: '{isUnder}', game_date: '{game_date}', points_bet: '{points_bet}', matchId: '{matchId}'}})")
+            graph.run(f"CREATE (n:OverUnderBet {{user: '{username}', amountBetted: '{amount_betted}', teamId: '{teamId}', isUnder: '{isUnder}', game_date: '{game_date}', points_bet: '{points_bet}', matchId: '{matchId}', betID:'{betId}'}})")
             graph.run(f"MATCH (u:User) WHERE u.username = {username} SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
+def DeleteOverUnderBet(BetId):
+    graph.run(f"MATCH (n:OverUnderBet) WHERE n.betId = '{BetId}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DELETE DETACH n")
+
+def DeleteMoneyLineBet(BetID):
+    graph.run(f"MATCH (n:MoneyLineBet) WHERE n.betId = '{BetID}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DELETE DETACH n")
 
 def Payout_MoneyLine_Bets(currentDate, winningTeamAbbrev): #we assume a team can't play 2 games in one day for this method, going with double payout for now for simplicity's sake - Josh Mestemacher
     graph.run(f"MATCH (b.MoneyLineBet) WHERE b.data < {currentDate} AND b.winnerAbbrev = {winningTeamAbbrev} WITH C MATCH (u.User) WHERE C.user = u.username SET u.balance = u.balance + 2 * b.amountBetted") #reward winners
