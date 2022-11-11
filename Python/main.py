@@ -183,7 +183,10 @@ def CheckWinning(match):
         match.winningTeamID = result
     else:
         return None
-
+def AutomaticPinging():
+    StoreAllPlayers()
+    GetAllTeamInfo()
+    time.sleep(86400)
 def Test():
     StoreAllTeamSeasons()
 
@@ -191,6 +194,8 @@ def Test():
     # print(games.head())
 if __name__ == '__main__':
     Test()
+    while(True):
+        AutomaticPinging()
 #     GetGame('2022-10-6')
     # GetWinningTeam('0012200018')
 #     print("X")
