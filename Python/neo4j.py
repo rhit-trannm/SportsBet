@@ -61,6 +61,7 @@ def Create_User(name, username, password, birthday):
     graph.run(f"CREATE (n:User {{username: '{username}', passwordHash: '{hashPassword.decode()}', balance: {0}, fullName: '{name}', birthday: '{birthday}', friends: []}})")
     #graph.run(f"CREATE CONSTRAINT usernameUniqueness ON (u:User) ASSERT u.username IS UNIQUE") #add constraint enforcing uniqueness of usernames
 
+
 def Login_Check(username, password):
    userExists = graph.run(f"MATCH (u:User) WHERE u.username = '{username}' WITH COUNT(u) > {0} as node_exists RETURN node_exists")
    if(userExists):
@@ -72,24 +73,24 @@ def Login_Check(username, password):
         print("InnerShellFalse")
         return False
 
-def Create_MoneyLine_Bet(winner_team_abbrev, amount_betted, username, gameId): #I assume team abbrev is a drop down for this,  and so is gameId and game_date
+def Create_MoneyLine_Bet(winner_team_abbrev, amount_betted, username, gameId, betId): #I assume team abbrev is a drop down for this,  and so is gameId and game_date
     ConnectNeo4J
     userExists = graph.run(f"MATCH (u:User) WHERE u.username = '{username}' WITH COUNT(u) > 0 as node_exists RETURN node_exists")
     if(userExists):
         if(amount_betted > 0):
             #actually create bet, will implement balance checking here sometime soon,
-            graph.run(f"CREATE (n:MoneyLineBet {{amount: {amount_betted}, winner: '{winner_team_abbrev}', gameID: '{gameId}'}})")
+            graph.run(f"CREATE (n:MoneyLineBet {{amount: {amount_betted}, winner: '{winner_team_abbrev}', gameID: '{gameId}', betId: '{betId}'}})")
             graph.run(f"MATCH (u:User {{username:'{username}'}}), (b:MoneyLineBet {{gameID: '{gameId}'}}) CREATE (u)-[r:BETS]->(b)")
             graph.run(f"MATCH (u:User) WHERE u.username = '{username}' SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
-def Create_OverUnder_Bet_Player(stat_type_abbrev, amount_betted, username, isUnder, stat_bet, gameId, playerId): #isUnder is 1 or 0 (meaning its an over bet), I assume isUnder will be a drop down
+def Create_OverUnder_Bet_Player(stat_type_abbrev, amount_betted, username, isUnder, stat_bet, gameId, playerId, betId): #isUnder is 1 or 0 (meaning its an over bet), I assume isUnder will be a drop down
     #box, same for stat_type_abbrev, I assume amount_betted will be an integer. stat_bet is amount you are betting a stat will be under or over, technically in real betting not controlled by you
     #I assume gameId and game_date and playerId is point and click or drop done or automatically determined by ravenDb and sent here as inputs.
     userExists = graph.run(f"MATCH (u:User) WHERE User.username = '{username}' WITH COUNT(u) > 0 as node_exists RETURN node_exists")
     if(userExists):
         if(amount_betted > 0):
             #actually create bet, will implement balance checking here sometime soon,
-            graph.run(f"CREATE (n:OverUnderBetPlayer {{user: '{username}', amountBetted: '{amount_betted}', playerId: '{playerId}', isUnder: '{isUnder}', stat_type: '{stat_type_abbrev}', stat_bet: '{stat_bet}', gameID: '{gameId}'}})")
+            graph.run(f"CREATE (n:OverUnderBetPlayer {{user: '{username}', amountBetted: '{amount_betted}', playerId: '{playerId}', isUnder: '{isUnder}', stat_type: '{stat_type_abbrev}', stat_bet: '{stat_bet}', gameID: '{gameId}', betId: '{betId}'}})")
             graph.run(f"MATCH (u:User) WHERE u.username = '{username}' SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
 
@@ -109,6 +110,15 @@ def Remove_Friend(userUsername, userFriendUsername):
     #actually is a friend of the user for simplicity's sake for the demo, I may go
     #back and change this later
     graph.run(f"MATCH (u.User) WHERE u.username = {userUsername} AND EXISTS(u.friends) SET n.friends = [x IN n.friends WHERE x <> '{userFriendUsername}']")
+
+
+def getUsers():
+    cursor = graph.run(f"MATCH (u.User) RETURN u.username, u.fullName, [(u)-[r:friend_of]-(C:User)|C.username] AS Friends")
+    return cursor.data()
+
+
+
+
 
 
 
