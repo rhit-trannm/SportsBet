@@ -376,8 +376,16 @@ def QueryUser(username):
     with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
         store.initialize()
         with store.open_session() as session:
-            query_result = list(session.query().where_equals("username", username))
+            query_result = list(session.query(object_type=User).where_equals("username", username))
             return query_result
+
+def getUsers():
+    with document_store.DocumentStore(urls=[IPList[0]], database="temp") as store:
+        store.initialize()
+        with store.open_session() as session:
+            query_result = list(session.query(object_type=User))
+            return query_result
+
 def CreateUser(name, username, password, birthday):
     # User key format: User_{Username}
     passwordSalt = bcrypt.gensalt()
