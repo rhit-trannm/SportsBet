@@ -30,6 +30,17 @@ def Get_Balance(username):
     balance = cursor.evaluate()
     return balance
 
+def Get_Friend_List(username):
+    cursor  = graph.run(f"MATCH (User1)-[r:friend_of]-(u:User2)\nWHERE User1.username = '{username}' \nRETURN u")
+    numberOfFriends = Get_Number_Of_Friends(username)
+    if(numberOfFriends == 0):
+        return None; #change this if need be to work with front end
+    data = [record for record in cursor.data()]
+    friendList = [None] * numberOfFriends
+    for i in range(0, numberOfFriends):
+        friendList[i] = data[i]['u'].get('username') #returned friend list will be list of usernames, change if necessary
+    return friendList
+
 def GetUser(username):
     dataset = graph.run(f"MATCH (n:Person {{username : '{username}'}}) RETURN n").data()
     if dataset != []:
