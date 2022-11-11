@@ -55,6 +55,9 @@ def DeleteUser(username):
 def ChangeUserInformation(field, value):
     print('x')
 
+def getUsers():
+    return r.smembers('users')
+
 
 if __name__ == '__main__':
     ConnectRedis()
