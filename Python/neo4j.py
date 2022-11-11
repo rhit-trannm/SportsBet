@@ -87,10 +87,10 @@ def Create_OverUnder_Bet_Team(game_date, amount_betted, username, isUnder, point
             graph.run(f"MATCH (u:User) WHERE u.username = {username} SET u.balance = u.balance - {amount_betted}") #adjust user balance,
 
 def DeleteOverUnderBet(BetId):
-    graph.run(f"MATCH (n:OverUnderBet) WHERE n.betId = '{BetId}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DELETE DETACH n")
+    graph.run(f"MATCH (n:OverUnderBet) WHERE n.betId = '{BetId}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DETACH DELETE n")
 
 def DeleteMoneyLineBet(BetID):
-    graph.run(f"MATCH (n:MoneyLineBet) WHERE n.betId = '{BetID}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DELETE DETACH n")
+    graph.run(f"MATCH (n:MoneyLineBet) WHERE n.betId = '{BetID}' MATCH (u:User) WHERE u.username = n.user SET u.balance = u.balance + n.AmountBetted DETACH DELETE n")
 
 def Payout_MoneyLine_Bets(currentDate, winningTeamAbbrev): #we assume a team can't play 2 games in one day for this method, going with double payout for now for simplicity's sake - Josh Mestemacher
     graph.run(f"MATCH (b.MoneyLineBet) WHERE b.data < {currentDate} AND b.winnerAbbrev = {winningTeamAbbrev} WITH C MATCH (u.User) WHERE C.user = u.username SET u.balance = u.balance + 2 * b.amountBetted") #reward winners
